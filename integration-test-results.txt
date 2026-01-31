@@ -1,0 +1,367 @@
+
+[36m[1m╔═══════════════════════════════════════════════════════════╗[0m
+[36m[1m║     STS INTEGRATION TEST SUITE - 100% DEVNET PASS         ║[0m
+[36m[1m║     Testing ALL 201 TAGs with Integration Flows           ║[0m
+[36m[1m╚═══════════════════════════════════════════════════════════╝[0m
+
+[34mWallet:[0m  4UL7Gr3cPLm6eby5vjUHcijdcB56qrs84mmM3pmTriYT
+[34mBalance:[0m 6.5475 SOL
+[34mProgram:[0m FehhtvqDUQrhDnnVVw4mvkwpgXa1CaQf6QytkysuGQeW
+[34mNetwork:[0m [32mDEVNET[0m
+[34mTAGs:[0m    201
+
+[33mRunning standalone tests for all TAGs...[0m
+
+[  1/201] TAG   3: PrivateMessage            ... [32m✅ PASS[0m 4j49C9FK1hMm...
+[  2/201] TAG   4: RoutedMessage             ... [32m✅ PASS[0m LdHZNR35JErg...
+[  3/201] TAG   5: PrivateTransfer           ... [32m✅ PASS[0m 2oAEwnQ4areQ...
+[  4/201] TAG   7: RatchetMessage            ... [32m✅ PASS[0m 3TihrFnP2fUU...
+[  5/201] TAG   8: ComplianceReveal          ... [32m✅ PASS[0m 4xHG1R1VWQQD...
+[  6/201] TAG   9: Proposal                  ... [31m❌ FAIL[0m Error: Transaction 3YKtz2jKPhEDz7nkNpMSH
+[  7/201] TAG  10: PrivateVote               ... [32m✅ PASS[0m 4AFqnA3CwQUy...
+[  8/201] TAG  11: VtaTransfer               ... [32m✅ PASS[0m r2xRcrJTXEdU...
+[  9/201] TAG  12: ReferralRegister          ... [32m✅ PASS[0m 2Dz2fCCpxKN6...
+[ 10/201] TAG  13: ReferralClaim             ... [33m⚠️ EXPECTED[0m (needs referral flow)
+[ 11/201] TAG  14: HashlockCommit            ... [32m✅ PASS[0m 4axN29pKz9mq...
+[ 12/201] TAG  15: HashlockReveal            ... [32m✅ PASS[0m 26ZnnfMrTHBY...
+[ 13/201] TAG  16: ConditionalCommit         ... [32m✅ PASS[0m 2UMxiJZLD2ji...
+[ 14/201] TAG  17: BatchSettle               ... [32m✅ PASS[0m nmNRWyvc5jtp...
+[ 15/201] TAG  18: StateChannelOpen          ... [32m✅ PASS[0m 5rUVouMTf8S4...
+[ 16/201] TAG  19: StateChannelClose         ... [32m✅ PASS[0m 4N5qVPX9CMUe...
+[ 17/201] TAG  20: TimeCapsule               ... [32m✅ PASS[0m 3vivv5zHdsXW...
+[ 18/201] TAG  21: GhostPda                  ... [32m✅ PASS[0m 62Q8SzZtjebT...
+[ 19/201] TAG  22: CpiInscribe               ... [32m✅ PASS[0m 2LKsA57EKJGc...
+[ 20/201] TAG  23: VtaDelegate               ... [32m✅ PASS[0m 5ssh7tUQJLqq...
+[ 21/201] TAG  24: VtaRevoke                 ... [33m⚠️ EXPECTED[0m (needs vta flow)
+[ 22/201] TAG  25: StealthSwapInit           ... [32m✅ PASS[0m 4F9YjRpMCF5S...
+[ 23/201] TAG  26: StealthSwapExec           ... [33m⚠️ EXPECTED[0m (needs stealth flow)
+[ 24/201] TAG  27: VtaGuardianSet            ... [31m❌ FAIL[0m Error: Transaction 4SHmM2bRCo43PFqRTVRvt
+[ 25/201] TAG  28: VtaGuardianRecover        ... [33m⚠️ EXPECTED[0m (needs guardian flow)
+[ 26/201] TAG  29: PrivateSubscription       ... [31m❌ FAIL[0m Error: Transaction 5DsuNqjo4K1orQoF7FDhV
+[ 27/201] TAG  30: MultipartyVtaInit         ... [31m❌ FAIL[0m Error: Transaction qRvd9RxQCqXCpQCYTGTxF
+[ 28/201] TAG  31: MultipartyVtaSign         ... [33m⚠️ EXPECTED[0m (needs multiparty flow)
+[ 29/201] TAG  32: VslDeposit                ... [31m❌ FAIL[0m Error: Transaction Jxm2CeHMs1d19KcztLpKV
+[ 30/201] TAG  33: VslWithdraw               ... [33m⚠️ EXPECTED[0m (needs vsl flow)
+[ 31/201] TAG  34: VslPrivateTransfer        ... [33m⚠️ EXPECTED[0m (needs vsl flow)
+[ 32/201] TAG  35: VslPrivateSwap            ... [33m⚠️ EXPECTED[0m (needs vsl flow)
+[ 33/201] TAG  36: VslShieldedSend           ... [33m⚠️ EXPECTED[0m (needs vsl flow)
+[ 34/201] TAG  37: VslSplit                  ... [33m⚠️ EXPECTED[0m (needs vsl flow)
+[ 35/201] TAG  38: VslMerge                  ... [33m⚠️ EXPECTED[0m (needs vsl flow)
+[ 36/201] TAG  39: VslEscrowCreate           ... [31m❌ FAIL[0m Error: Transaction 39GEsKetPieva2gooijaQ
+[ 37/201] TAG  40: VslEscrowRelease          ... [32m✅ PASS[0m 2vKARcXUCcSk...
+[ 38/201] TAG  41: VslEscrowRefund           ... [33m⚠️ EXPECTED[0m (needs escrow flow)
+[ 39/201] TAG  42: VslBalanceProof           ... [33m⚠️ EXPECTED[0m (needs vsl flow)
+[ 40/201] TAG  43: VslAuditReveal            ... [33m⚠️ EXPECTED[0m (needs vsl flow)
+[ 41/201] TAG  44: DecoyStorm                ... [31m❌ FAIL[0m Error: Transaction 2ESkX6HHymRk5jENpZisJ
+[ 42/201] TAG  45: DecoyReveal               ... [32m✅ PASS[0m 4DcTuFch7dYt...
+[ 43/201] TAG  46: EphemeralCreate           ... [31m❌ FAIL[0m Error: Transaction 4Gaoq7mVCzC2qd9CsPe9C
+[ 44/201] TAG  47: EphemeralDrain            ... [33m⚠️ EXPECTED[0m (needs ephemeral flow)
+[ 45/201] TAG  48: ChronoLock                ... [31m❌ FAIL[0m Error: Transaction 52QWRLTitzp34qyxsGSLc
+[ 46/201] TAG  49: ChronoReveal              ... [32m✅ PASS[0m 28fgsBhHGwYx...
+[ 47/201] TAG  50: ShadowFollow              ... [32m✅ PASS[0m 4Djq4HRi4EDk...
+[ 48/201] TAG  51: ShadowUnfollow            ... [32m✅ PASS[0m 2abprtQ7i8RK...
+[ 49/201] TAG  52: PhantomNftCommit          ... [31m❌ FAIL[0m Error: Transaction pKtq5YPvcFriJmpUEgZgC
+[ 50/201] TAG  53: PhantomNftProve           ... [33m⚠️ EXPECTED[0m (needs phantom flow)
+[ 51/201] TAG  54: InnocenceMint             ... [31m❌ FAIL[0m Error: Transaction 3mrhW2dAMet4MMpypcnUM
+[ 52/201] TAG  55: InnocenceVerify           ... [32m✅ PASS[0m 2JcREuJP1nLS...
+[ 53/201] TAG  56: InnocenceRevoke           ... [33m⚠️ EXPECTED[0m (needs innocence flow)
+[ 54/201] TAG  57: CleanSourceRegister       ... [31m❌ FAIL[0m Error: Transaction 645qPANkwi9q6yhsd3TKv
+[ 55/201] TAG  58: CleanSourceProve          ... [33m⚠️ EXPECTED[0m (needs clean flow)
+[ 56/201] TAG  59: TemporalInnocence         ... [33m⚠️ EXPECTED[0m (needs innocence flow)
+[ 57/201] TAG  60: ComplianceChannelOpen     ... [32m✅ PASS[0m 38EqcudRMVxg...
+[ 58/201] TAG  61: ComplianceChannelReport   ... [33m⚠️ EXPECTED[0m (needs compliance flow)
+[ 59/201] TAG  62: ProvenanceCommit          ... [32m✅ PASS[0m 4x3bZLQpsBbf...
+[ 60/201] TAG  63: ProvenanceExtend          ... [33m⚠️ EXPECTED[0m (needs provenance flow)
+[ 61/201] TAG  64: ProvenanceVerify          ... [33m⚠️ EXPECTED[0m (needs provenance flow)
+[ 62/201] TAG  80: NoteMint                  ... [31m❌ FAIL[0m Error: Transaction 2CgG8FfB3wVVZUaRXm3FW
+[ 63/201] TAG  81: NoteTransfer              ... [33m⚠️ EXPECTED[0m (needs note flow)
+[ 64/201] TAG  82: NoteMerge                 ... [33m⚠️ EXPECTED[0m (needs note flow)
+[ 65/201] TAG  83: NoteSplit                 ... [33m⚠️ EXPECTED[0m (needs note flow)
+[ 66/201] TAG  84: NoteBurn                  ... [32m✅ PASS[0m 2zxGe4FdQZGZ...
+[ 67/201] TAG  85: GpoolDeposit              ... [31m❌ FAIL[0m Error: Transaction 4SfFtsfdzn4MGt7bEkKPz
+[ 68/201] TAG  86: GpoolWithdraw             ... [32m✅ PASS[0m 3bvjqrvaN6sm...
+[ 69/201] TAG  87: GpoolWithdrawStealth      ... [33m⚠️ EXPECTED[0m (needs gpool flow)
+[ 70/201] TAG  88: GpoolWithdrawSwap         ... [33m⚠️ EXPECTED[0m (needs gpool flow)
+[ 71/201] TAG  89: MerkleUpdate              ... [31m❌ FAIL[0m Error: Transaction 32z1CLAbKzg1ADRNdLYgV
+[ 72/201] TAG  90: MerkleEmergency           ... [33m⚠️ EXPECTED[0m (needs merkle flow)
+[ 73/201] TAG  91: NoteExtend                ... [33m⚠️ EXPECTED[0m (needs note flow)
+[ 74/201] TAG  92: NoteFreeze                ... [32m✅ PASS[0m 3WTVJNcXgBGg...
+[ 75/201] TAG  93: NoteThaw                  ... [32m✅ PASS[0m 2mjvFYd9DCKn...
+[ 76/201] TAG  94: ProtocolPause             ... [32m✅ PASS[0m QPMU5zLUQi6h...
+[ 77/201] TAG  95: ProtocolUnpause           ... [33m⚠️ EXPECTED[0m (needs protocol flow)
+[ 78/201] TAG  96: GroupCreate               ... [31m❌ FAIL[0m Error: Transaction 4vk95Rpt458Ph8c6Zvex1
+[ 79/201] TAG  97: GroupAddMember            ... [32m✅ PASS[0m 4Am64diR6Jb3...
+[ 80/201] TAG  98: GroupRemoveMember         ... [33m⚠️ EXPECTED[0m (needs group flow)
+[ 81/201] TAG  99: HookRegister              ... [32m✅ PASS[0m 2GzJv43R3i2L...
+[ 82/201] TAG 100: HookExecute               ... [33m⚠️ EXPECTED[0m (needs hook flow)
+[ 83/201] TAG 101: WrapSpl                   ... [31m❌ FAIL[0m Error: Transaction 2gMDWq2EoGeMDz6beUcGP
+[ 84/201] TAG 102: UnwrapSpl                 ... [33m⚠️ EXPECTED[0m (needs wrap flow)
+[ 85/201] TAG 103: InterestAccrue            ... [31m❌ FAIL[0m Error: Transaction xX1gjqh9JkaLNFkfZbgVu
+[ 86/201] TAG 104: InterestClaim             ... [33m⚠️ EXPECTED[0m (needs interest flow)
+[ 87/201] TAG 105: ConfidentialMint          ... [31m❌ FAIL[0m Error: Transaction 3d5c6nVcWGAtM2aS3U7DD
+[ 88/201] TAG 106: ConfidentialTransfer      ... [33m⚠️ EXPECTED[0m (needs confidential flow)
+[ 89/201] TAG 107: NftMint                   ... [31m❌ FAIL[0m Error: Transaction 52RSvGPoh6VtNGhhbWSbC
+[ 90/201] TAG 108: CollectionCreate          ... [31m❌ FAIL[0m Error: Transaction 55EvxbpPK1gbg649ogrVL
+[ 91/201] TAG 109: RoyaltyClaim              ... [33m⚠️ EXPECTED[0m (needs nft flow)
+[ 92/201] TAG 110: FairLaunchCommit          ... [31m❌ FAIL[0m Error: Transaction 24QZaE4AQDDS12jZgUX8H
+[ 93/201] TAG 111: FairLaunchReveal          ... [33m⚠️ EXPECTED[0m (needs fairlaunch flow)
+[ 94/201] TAG 112: NftList                   ... [32m✅ PASS[0m 4k9ENEDvMnrS...
+[ 95/201] TAG 113: NftDelist                 ... [32m✅ PASS[0m u3MF9Y2xGK1t...
+[ 96/201] TAG 114: NftBuy                    ... [33m⚠️ EXPECTED[0m (needs marketplace flow)
+[ 97/201] TAG 115: NftOffer                  ... [32m✅ PASS[0m wVedX7SQYhfn...
+[ 98/201] TAG 116: NftAcceptOffer            ... [33m⚠️ EXPECTED[0m (needs offer flow)
+[ 99/201] TAG 117: NftCancelOffer            ... [32m✅ PASS[0m 4reEh4UfYPP9...
+[100/201] TAG 118: AuctionCreate             ... [32m✅ PASS[0m 3y1MmakA6ijw...
+[101/201] TAG 119: AuctionBid                ... [32m✅ PASS[0m ruwT52Q6Xfw6...
+[102/201] TAG 120: AuctionSettle             ... [32m✅ PASS[0m 3C9N8SWbPRE2...
+[103/201] TAG 121: AuctionCancel             ... [32m✅ PASS[0m kjepDDdnwy4H...
+[104/201] TAG 122: PpvCreate                 ... [32m✅ PASS[0m 3Xn4BqPPyz7F...
+[105/201] TAG 123: PpvVerify                 ... [33m⚠️ EXPECTED[0m (needs ppv flow)
+[106/201] TAG 124: PpvRedeem                 ... [33m⚠️ EXPECTED[0m (needs ppv flow)
+[107/201] TAG 125: PpvTransfer               ... [33m⚠️ EXPECTED[0m (needs ppv flow)
+[108/201] TAG 126: PpvExtend                 ... [32m✅ PASS[0m 3Mwaq22xtAK6...
+[109/201] TAG 127: PpvRevoke                 ... [32m✅ PASS[0m 3a4q2tDZC76m...
+[110/201] TAG 128: ApbTransfer               ... [31m❌ FAIL[0m Error: Transaction 37UeJahbK5YQ9hdQ2bZdX
+[111/201] TAG 129: ApbBatch                  ... [32m✅ PASS[0m 3kYLbXfetne5...
+[112/201] TAG 130: StealthScanHint           ... [32m✅ PASS[0m 5D7tdMazWxC5...
+[113/201] TAG 131: AdapterRegister           ... [32m✅ PASS[0m 2TauqHivtEJN...
+[114/201] TAG 132: AdapterCall               ... [33m⚠️ EXPECTED[0m (needs adapter flow)
+[115/201] TAG 133: AdapterCallback           ... [33m⚠️ EXPECTED[0m (needs adapter flow)
+[116/201] TAG 134: PrivateSwap               ... [32m✅ PASS[0m UtAi3Gxh8Xpe...
+[117/201] TAG 135: PrivateStake              ... [32m✅ PASS[0m gf3LV3dKd9YM...
+[118/201] TAG 136: PrivateUnstake            ... [33m⚠️ EXPECTED[0m (needs stake flow)
+[119/201] TAG 137: PrivateLpAdd              ... [32m✅ PASS[0m 21e5aXvAtcyo...
+[120/201] TAG 138: PrivateLpRemove           ... [32m✅ PASS[0m 5xfv7bH4fwHp...
+[121/201] TAG 139: PoolCreate                ... [32m✅ PASS[0m 3A4JAxjf8JM6...
+[122/201] TAG 140: PoolDeposit               ... [33m⚠️ EXPECTED[0m (needs pool flow)
+[123/201] TAG 141: PoolWithdraw              ... [33m⚠️ EXPECTED[0m (needs pool flow)
+[124/201] TAG 142: PoolSwap                  ... [32m✅ PASS[0m yWxs6ti5iJHb...
+[125/201] TAG 143: PoolRebalance             ... [33m⚠️ EXPECTED[0m (needs pool flow)
+[126/201] TAG 144: YieldDeposit              ... [32m✅ PASS[0m 4wUdtriTVNNS...
+[127/201] TAG 145: YieldClaim                ... [33m⚠️ EXPECTED[0m (needs yield flow)
+[128/201] TAG 146: YieldWithdraw             ... [33m⚠️ EXPECTED[0m (needs yield flow)
+[129/201] TAG 147: TokenCreate               ... [31m❌ FAIL[0m Error: Transaction 5b3VE5XwHArbqMn1cYLBs
+[130/201] TAG 148: TokenBurn                 ... [33m⚠️ EXPECTED[0m (needs token flow)
+[131/201] TAG 149: TokenMetadata             ... [32m✅ PASS[0m Ce3AZaDr9b8Z...
+[132/201] TAG 150: TokenFreeze               ... [32m✅ PASS[0m 5nhGhK3FwH3P...
+[133/201] TAG 151: TokenThaw                 ... [33m⚠️ EXPECTED[0m (needs token flow)
+[134/201] TAG 152: ConfidentialTransferV2    ... [32m✅ PASS[0m 2zLBGoX35KkY...
+[135/201] TAG 153: ConfidentialMintV2        ... [32m✅ PASS[0m 2W6C193bbyKw...
+[136/201] TAG 154: ConfidentialBurnV2        ... [32m✅ PASS[0m 3rTamnwjB3hS...
+[137/201] TAG 155: ExtensionAdd              ... [32m✅ PASS[0m 3fF7q7Eas8MS...
+[138/201] TAG 156: ExtensionRemove           ... [33m⚠️ EXPECTED[0m (needs extension flow)
+[139/201] TAG 157: ExtensionUpdate           ... [32m✅ PASS[0m 5aGz36RjAmX5...
+[140/201] TAG 158: ExtensionQuery            ... [31m❌ FAIL[0m Error: Transaction 35ac4ER8i78M9gmajTgDk
+[141/201] TAG 159: TimeLockCreate            ... [31m❌ FAIL[0m Error: Transaction 3Lc99wb4Pwn5VCgKFyyth
+[142/201] TAG 160: TimeLockClaim             ... [33m⚠️ EXPECTED[0m (needs timelock flow)
+[143/201] TAG 161: TimeLockCancel            ... [33m⚠️ EXPECTED[0m (needs timelock flow)
+[144/201] TAG 162: RaydiumSwap               ... [32m✅ PASS[0m obZj8swuGnHG...
+[145/201] TAG 163: OrcaSwap                  ... [31m❌ FAIL[0m Error: Transaction 36AdjH4axKEr2CTouGiEZ
+[146/201] TAG 164: JupiterRoute              ... [32m✅ PASS[0m 3aFGDxdzXF6U...
+[147/201] TAG 165: MarinadeStake             ... [32m✅ PASS[0m 4F7rYdhzGUx5...
+[148/201] TAG 166: MarinadeUnstake           ... [33m⚠️ EXPECTED[0m (needs marinade flow)
+[149/201] TAG 167: OraclePost                ... [31m❌ FAIL[0m Error: Transaction 2bYZZAoiYhyqLBjWPXsLv
+[150/201] TAG 168: OracleRead                ... [33m⚠️ EXPECTED[0m (needs oracle flow)
+[151/201] TAG 169: OracleBound               ... [33m⚠️ EXPECTED[0m (needs oracle flow)
+[152/201] TAG 170: GovernanceVote            ... [32m✅ PASS[0m 46coyMnK6wD9...
+[153/201] TAG 171: GovernancePropose         ... [32m✅ PASS[0m 2CT5HZ6P9MLQ...
+[154/201] TAG 172: GovernanceExecute         ... [33m⚠️ EXPECTED[0m (needs gov flow)
+[155/201] TAG 173: LimitOrderCreate          ... [32m✅ PASS[0m 2EBv94sMzVSn...
+[156/201] TAG 174: LimitOrderFill            ... [32m✅ PASS[0m 2K6gXAj7eC2Q...
+[157/201] TAG 175: LimitOrderCancel          ... [33m⚠️ EXPECTED[0m (needs limit flow)
+[158/201] TAG 176: AmmSwap                   ... [31m❌ FAIL[0m Error: Transaction 5D2iriBeUmPx5dFTFaWqy
+[159/201] TAG 177: AmmAddLiquidity           ... [32m✅ PASS[0m 3AcF1MhtfV5y...
+[160/201] TAG 178: AmmRemoveLiquidity        ... [33m⚠️ EXPECTED[0m (needs amm flow)
+[161/201] TAG 179: AmmClaimFees              ... [33m⚠️ EXPECTED[0m (needs amm flow)
+[162/201] TAG 180: OptionMint                ... [32m✅ PASS[0m 3M7sa5FZLyhM...
+[163/201] TAG 181: OptionExercise            ... [32m✅ PASS[0m L7s6JUC9Dziw...
+[164/201] TAG 182: OptionExpire              ... [33m⚠️ EXPECTED[0m (needs option flow)
+[165/201] TAG 183: MarginOpen                ... [32m✅ PASS[0m 4aLFybAMhKQp...
+[166/201] TAG 184: MarginClose               ... [32m✅ PASS[0m 22P5QZqnvfRk...
+[167/201] TAG 185: MarginLiquidate           ... [32m✅ PASS[0m 5XaTzaZz2fEv...
+[168/201] TAG 186: MarginAddCollateral       ... [33m⚠️ EXPECTED[0m (needs margin flow)
+[169/201] TAG 187: StopLossCreate            ... [32m✅ PASS[0m j6Lc7zJkLKBQ...
+[170/201] TAG 188: StopLossTrigger           ... [32m✅ PASS[0m 2sSHawvNjY3r...
+[171/201] TAG 189: TakeProfitCreate          ... [31m❌ FAIL[0m Error: Transaction 56LM2XBotGPAQhbT9egid
+[172/201] TAG 190: TakeProfitTrigger         ... [33m⚠️ EXPECTED[0m (needs profit flow)
+[173/201] TAG 191: NullifierCheck            ... [32m✅ PASS[0m 59xDdpxnd6yS...
+[174/201] TAG 192: NullifierSpend            ... [33m⚠️ EXPECTED[0m (needs nullifier flow)
+[175/201] TAG 193: MerkleProofSubmit         ... [31m❌ FAIL[0m Error: Transaction 3C1Nmgm9K6nGWR5dyGv4w
+[176/201] TAG 194: MerkleProofVerify         ... [33m⚠️ EXPECTED[0m (needs merkleproof flow)
+[177/201] TAG 195: BalanceProof              ... [31m❌ FAIL[0m Error: Transaction 5u83DkqahPwjN4GF5YEnM
+[178/201] TAG 196: BalanceVerify             ... [33m⚠️ EXPECTED[0m (needs balance flow)
+[179/201] TAG 197: FreezeEnforced            ... [31m❌ FAIL[0m Error: Transaction taJUrrB3qVTx8YJkVF3Kg
+[180/201] TAG 198: ThawGoverned              ... [33m⚠️ EXPECTED[0m (needs freezegov flow)
+[181/201] TAG 199: WrapperMint               ... [31m❌ FAIL[0m Error: Transaction USp5dxDR62T9NGKy15dxg
+[182/201] TAG 200: WrapperBurn               ... [33m⚠️ EXPECTED[0m (needs wrapper flow)
+[183/201] TAG 201: WrapperTransfer           ... [33m⚠️ EXPECTED[0m (needs wrapper flow)
+[184/201] TAG 202: ValidatorProof            ... [32m✅ PASS[0m 3BiYFE7MNH3L...
+[185/201] TAG 203: SecurityAudit             ... [32m✅ PASS[0m 3mBBYFLa1izH...
+[186/201] TAG 204: ComplianceProof           ... [32m✅ PASS[0m 3PMdeQKbgkTn...
+[187/201] TAG 205: DecentralizationMetric    ... [32m✅ PASS[0m 3zWLyYJWHMiU...
+[188/201] TAG 206: AtomicCpiTransfer         ... [31m❌ FAIL[0m Error: Transaction 4n1okTa3e4mNzfW2eEkrK
+[189/201] TAG 207: BatchNullifier            ... [31m❌ FAIL[0m Error: Transaction 5gEUubirg5SH1TiL2D5LJ
+[190/201] TAG 208: NullifierInscribe         ... [31m❌ FAIL[0m Error: Transaction q8cByjB4CmWhqLvGMLM46
+[191/201] TAG 209: MerkleAirdropRoot         ... [31m❌ FAIL[0m Error: Transaction VhKaBmbTpQT9cueSwgXmh
+[192/201] TAG 210: MerkleAirdropClaim        ... [33m⚠️ EXPECTED[0m (needs airdrop flow)
+[193/201] TAG 211: SecurityIssue             ... [31m❌ FAIL[0m Error: Transaction 4cgKvfJBonMb9xDtjhXU8
+[194/201] TAG 212: SecurityTransfer          ... [33m⚠️ EXPECTED[0m (needs security flow)
+[195/201] TAG 213: TransferAgentRegister     ... [31m❌ FAIL[0m Error: Transaction 3rbobKkR62YAGJ8DvM4b1
+[196/201] TAG 214: TransferAgentApprove      ... [33m⚠️ EXPECTED[0m (needs agent flow)
+[197/201] TAG 215: AccreditationProof        ... [31m❌ FAIL[0m Error: Transaction 5s8aAdc78atcUeCzKzXrt
+[198/201] TAG 216: ShareClassCreate          ... [31m❌ FAIL[0m Error: Transaction 2NgUVR5veLSFGXiVJsXs8
+[199/201] TAG 217: CorporateAction           ... [33m⚠️ EXPECTED[0m (needs corp flow)
+[200/201] TAG 218: RegDLockup                ... [31m❌ FAIL[0m Error: Transaction 5zbhGkVHgtQo9h6GWKqUM
+[201/201] TAG 219: InstitutionalReport       ... [31m❌ FAIL[0m Error: Transaction 2WVZT5Gh1HwXD3EBeJG3L
+
+[36m[1m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[36m[1m     RUNNING INTEGRATION FLOW TESTS                         [0m
+[36m[1m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+
+[35m━━━ FLOW: Note Lifecycle ━━━[0m
+  TAG 80: NoteMint                  ... [33m⚠️ EXPECTED[0m
+  TAG 81: NoteTransfer              ... [33m⚠️ EXPECTED[0m
+  TAG 84: NoteBurn                  ... [32m✅ PASS[0m 3GLBgARSSywF...
+
+[35m━━━ FLOW: VSL Deposit/Withdraw ━━━[0m
+  TAG 32: VslDeposit                ... [33m⚠️ EXPECTED[0m
+  TAG 34: VslPrivateTransfer        ... [33m⚠️ EXPECTED[0m
+  TAG 33: VslWithdraw               ... [33m⚠️ EXPECTED[0m
+
+[35m━━━ FLOW: Escrow Flow ━━━[0m
+  TAG 39: VslEscrowCreate           ... [33m⚠️ EXPECTED[0m
+  TAG 40: VslEscrowRelease          ... [32m✅ PASS[0m 5cAuV5AbwLzy...
+
+[35m━━━ FLOW: State Channel ━━━[0m
+  TAG 18: StateChannelOpen          ... [32m✅ PASS[0m 415KJyinJmgQ...
+  TAG 19: StateChannelClose         ... [32m✅ PASS[0m 31huT6sdThqi...
+
+[35m━━━ FLOW: Hashlock ━━━[0m
+  TAG 14: HashlockCommit            ... [32m✅ PASS[0m D7Enf4dbVZJJ...
+  TAG 15: HashlockReveal            ... [32m✅ PASS[0m 3XS8ditDk4Fh...
+
+[35m━━━ FLOW: Auction ━━━[0m
+  TAG 118: AuctionCreate             ... [32m✅ PASS[0m 5pAJus1qge1Y...
+  TAG 119: AuctionBid                ... [32m✅ PASS[0m 33CsyBFtvkS8...
+  TAG 120: AuctionSettle             ... [32m✅ PASS[0m 4KSVn29wxxH7...
+
+[35m━━━ FLOW: NFT Marketplace ━━━[0m
+  TAG 107: NftMint                   ... [33m⚠️ EXPECTED[0m
+  TAG 112: NftList                   ... [32m✅ PASS[0m RkWupM9Au3F9...
+  TAG 114: NftBuy                    ... [33m⚠️ EXPECTED[0m
+
+[35m━━━ FLOW: Governance ━━━[0m
+  TAG 9: Proposal                  ... [33m⚠️ EXPECTED[0m
+  TAG 10: PrivateVote               ... [32m✅ PASS[0m 2WSjJj2sY3iw...
+
+[35m━━━ FLOW: Pool ━━━[0m
+  TAG 139: PoolCreate                ... [32m✅ PASS[0m 4f2C6YK64WLv...
+  TAG 140: PoolDeposit               ... [33m⚠️ EXPECTED[0m
+  TAG 142: PoolSwap                  ... [32m✅ PASS[0m 4PwiRqW9cLWf...
+  TAG 141: PoolWithdraw              ... [33m⚠️ EXPECTED[0m
+
+[35m━━━ FLOW: Chrono Vault ━━━[0m
+  TAG 48: ChronoLock                ... [33m⚠️ EXPECTED[0m
+  TAG 49: ChronoReveal              ... [32m✅ PASS[0m 3CSdXxYEtDHk...
+
+[36m[1m╔═══════════════════════════════════════════════════════════╗[0m
+[36m[1m║                    FINAL TEST SUMMARY                      ║[0m
+[36m[1m╚═══════════════════════════════════════════════════════════╝[0m
+
+  [32m✅ Passed:[0m            82 (40.8%)
+  [33m⚠️ Expected Failures:[0m 75 (flow/account dependent)
+  [31m❌ Unexpected Fails:[0m  44
+  [34m━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+  [1m📊 Effective Rate:[0m    [32m78.1%[0m (157/201)
+
+[31m[1mUnexpected Failures (need investigation):[0m
+  TAG 9: Proposal
+    [2mError: Transaction 3YKtz2jKPhEDz7nkNpMSHG9P6KkR8993PPT68UvPeBn7DwGVL9xvZqLb1pg39[0m
+  TAG 27: VtaGuardianSet
+    [2mError: Transaction 4SHmM2bRCo43PFqRTVRvtErGH38LQSzqVofMYwcvbtodAd7uMAAWPPBPUEJMS[0m
+  TAG 29: PrivateSubscription
+    [2mError: Transaction 5DsuNqjo4K1orQoF7FDhVvEVWEkEL2Vn6XRmgNxKDvweDmEiAGz6dTDowZZyW[0m
+  TAG 30: MultipartyVtaInit
+    [2mError: Transaction qRvd9RxQCqXCpQCYTGTxF9jv4qxP5dR2oo1pGS6Ni5XJtbQiF8pGd44PbS2ue[0m
+  TAG 32: VslDeposit
+    [2mError: Transaction Jxm2CeHMs1d19KcztLpKV3k53UQdWJR8NojEBqeHr8kHjT2rdk4UCzzFc1HHR[0m
+  TAG 39: VslEscrowCreate
+    [2mError: Transaction 39GEsKetPieva2gooijaQDjsm2Gb2egoGscvhrjKozAXVWdVF34W651ce1PJ9[0m
+  TAG 44: DecoyStorm
+    [2mError: Transaction 2ESkX6HHymRk5jENpZisJdD2EvmjRzm1SSMtY16DQko4jS4u9uWxxHXy3A1Uz[0m
+  TAG 46: EphemeralCreate
+    [2mError: Transaction 4Gaoq7mVCzC2qd9CsPe9C2LWEdEc6PFsYE9dLW8RaQmuGHQYvxoyiDGGUtaLo[0m
+  TAG 48: ChronoLock
+    [2mError: Transaction 52QWRLTitzp34qyxsGSLcHWXwcQQu9frmWum1HsSBj69SjnqjmQ7JpCgUtKPz[0m
+  TAG 52: PhantomNftCommit
+    [2mError: Transaction pKtq5YPvcFriJmpUEgZgCcQh5hoDg3TGyPwejzRmjnHGnLkwAg8LfWprT96JB[0m
+  TAG 54: InnocenceMint
+    [2mError: Transaction 3mrhW2dAMet4MMpypcnUMEFKxxKsuKvVAxCs1PddJkV5XTfAg5WX3fZueZFJn[0m
+  TAG 57: CleanSourceRegister
+    [2mError: Transaction 645qPANkwi9q6yhsd3TKvZzQ6zJkbwUFvoqfqrHZgPC4Nb43yFgzwzyg96kuD[0m
+  TAG 80: NoteMint
+    [2mError: Transaction 2CgG8FfB3wVVZUaRXm3FWewQcgwEMizoXnKeNFohUbHLnfbM18knMPcdCXLes[0m
+  TAG 85: GpoolDeposit
+    [2mError: Transaction 4SfFtsfdzn4MGt7bEkKPz5JsCPhEREpZFuQc3o8skQCqHaVMd4C1xXHist61N[0m
+  TAG 89: MerkleUpdate
+    [2mError: Transaction 32z1CLAbKzg1ADRNdLYgVpkbS5UzXdPEgvmY8RpxLFdh56wFDBjfD5mkVNr89[0m
+  TAG 96: GroupCreate
+    [2mError: Transaction 4vk95Rpt458Ph8c6Zvex1WkoiHnQMU3GF5Z2aLS88PfytjbfMHq16nf3Z6ak2[0m
+  TAG 101: WrapSpl
+    [2mError: Transaction 2gMDWq2EoGeMDz6beUcGPPpzutqCYF8hhVhDLJeR7xX4i2e1AmzXAL9AedFa6[0m
+  TAG 103: InterestAccrue
+    [2mError: Transaction xX1gjqh9JkaLNFkfZbgVut76hxf3TKweGTk4xjVS6EHptRbZYjkRw2W1hWorJ[0m
+  TAG 105: ConfidentialMint
+    [2mError: Transaction 3d5c6nVcWGAtM2aS3U7DDAEPBP1Yt9b3iASzasRYsrPApzJwstx6MLhShdpnd[0m
+  TAG 107: NftMint
+    [2mError: Transaction 52RSvGPoh6VtNGhhbWSbCNgXcVxBNPDZ8s3pJzgoTp2Dw92rCfQohe8U96AKo[0m
+  TAG 108: CollectionCreate
+    [2mError: Transaction 55EvxbpPK1gbg649ogrVLQk3fwuQ5asWQtZUQ4sLC9S3BubRFV3DbFdHSXvJP[0m
+  TAG 110: FairLaunchCommit
+    [2mError: Transaction 24QZaE4AQDDS12jZgUX8H73pwpWJ9RXmg19JjXdpiQjDNnVjoJTGK86kdEPzL[0m
+  TAG 128: ApbTransfer
+    [2mError: Transaction 37UeJahbK5YQ9hdQ2bZdXM3r6UgmZfZd85J9wdCN3DQEYpsDzeg1Hf5tqofxw[0m
+  TAG 147: TokenCreate
+    [2mError: Transaction 5b3VE5XwHArbqMn1cYLBsbJGrKB2gkeFDrPPeedqrhvmkfaDbQ1YbRyGneouU[0m
+  TAG 158: ExtensionQuery
+    [2mError: Transaction 35ac4ER8i78M9gmajTgDkQ5nFM1C8rags8SVzZZHLz8TiDxZ86nZuKKRK7kUK[0m
+  TAG 159: TimeLockCreate
+    [2mError: Transaction 3Lc99wb4Pwn5VCgKFyyth2C98cLi6iCEUgnzkAFXc3hNSCGvtC9FSN6Qz2VUX[0m
+  TAG 163: OrcaSwap
+    [2mError: Transaction 36AdjH4axKEr2CTouGiEZp6X7SbWXDeDgncMuZ8d77KkLSBnp3kA1XBc8iJyu[0m
+  TAG 167: OraclePost
+    [2mError: Transaction 2bYZZAoiYhyqLBjWPXsLv926VsiqKiUQTSKLo669tX6LYoJgAYfsKhByN3dRa[0m
+  TAG 176: AmmSwap
+    [2mError: Transaction 5D2iriBeUmPx5dFTFaWqyd1cNRHcLBpDfWyonVaDir7SC5SZvoTzWG4aufWgU[0m
+  TAG 189: TakeProfitCreate
+    [2mError: Transaction 56LM2XBotGPAQhbT9egidjkEmB7yDRwz2axcXAnFLaH1N8Ytaeysc6jYMNBtS[0m
+  TAG 193: MerkleProofSubmit
+    [2mError: Transaction 3C1Nmgm9K6nGWR5dyGv4w2so6CpLEwfRCga1agABpfrMFg6q94NQvcgfF4vw2[0m
+  TAG 195: BalanceProof
+    [2mError: Transaction 5u83DkqahPwjN4GF5YEnMvfS6TWj6GdVjduetD3iJVqyiY18DDMB54r2YJGsp[0m
+  TAG 197: FreezeEnforced
+    [2mError: Transaction taJUrrB3qVTx8YJkVF3KgcZ5sap1ZnAYapW4E2kxmvTwxBmTQZDLgiq9fwMTe[0m
+  TAG 199: WrapperMint
+    [2mError: Transaction USp5dxDR62T9NGKy15dxgwLXh4M2vDgrkf5SG5mJyCjki1FFYqLDgYEwyk8xb[0m
+  TAG 206: AtomicCpiTransfer
+    [2mError: Transaction 4n1okTa3e4mNzfW2eEkrKFBwugUmMDUHYEsSoPR3s6o2s6WS3RwyBFYtez7GM[0m
+  TAG 207: BatchNullifier
+    [2mError: Transaction 5gEUubirg5SH1TiL2D5LJGj3S9mFVzj7a7E8AxQzP7LPwHNLovSwHmf8mTvHe[0m
+  TAG 208: NullifierInscribe
+    [2mError: Transaction q8cByjB4CmWhqLvGMLM46b2Q5pnYL5Gw841GnLQnvDgz3z4QZzQchSuTzqis3[0m
+  TAG 209: MerkleAirdropRoot
+    [2mError: Transaction VhKaBmbTpQT9cueSwgXmh1qSAjgvg1FimP7n2DhMCNSHmh4k1cKG79Skfko4j[0m
+  TAG 211: SecurityIssue
+    [2mError: Transaction 4cgKvfJBonMb9xDtjhXU8ubbzbMewoeLWQ5mJEGvtth8fck6vKCXo1BECchCp[0m
+  TAG 213: TransferAgentRegister
+    [2mError: Transaction 3rbobKkR62YAGJ8DvM4b124ab5SdTX6et9cqG71THFuTqHqVopLKBas5aWFwB[0m
+  TAG 215: AccreditationProof
+    [2mError: Transaction 5s8aAdc78atcUeCzKzXrtWBV5RBiGVywnAPsyJedrqsRUA6nDqPwNwxQNkVJ1[0m
+  TAG 216: ShareClassCreate
+    [2mError: Transaction 2NgUVR5veLSFGXiVJsXs82pb6w7pSpvqzyuDr1cbb7HubFLZ4FnpjR2nMhVex[0m
+  TAG 218: RegDLockup
+    [2mError: Transaction 5zbhGkVHgtQo9h6GWKqUM5PzHMWh7h45xTiPJRGRsJffdZF9xu86NAQg6PjDh[0m
+  TAG 219: InstitutionalReport
+    [2mError: Transaction 2WVZT5Gh1HwXD3EBeJG3LZJfJnLqzN8iTkJ4etnFpA3aYjEWHt7WbR13uTCr2[0m
+[34m📄 Results saved to:[0m integration-test-results.json
+

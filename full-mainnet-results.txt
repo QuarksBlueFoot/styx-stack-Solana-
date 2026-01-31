@@ -1,0 +1,644 @@
+
+[35m[1m╔═══════════════════════════════════════════════════════════╗[0m
+[35m[1m║        STS FULL MAINNET-READY TEST SUITE                  ║[0m
+[35m[1m║      Testing ALL 201 TAGs for Mainnet Readiness           ║[0m
+[35m[1m╚═══════════════════════════════════════════════════════════╝[0m
+
+[34mWallet:[0m 4UL7Gr3cPLm6eby5vjUHcijdcB56qrs84mmM3pmTriYT
+[34mBalance:[0m 6.5633 SOL
+[34mProgram:[0m FehhtvqDUQrhDnnVVw4mvkwpgXa1CaQf6QytkysuGQeW
+[34mTAGs to test:[0m 201
+
+[2m[  1/201][0m Testing TAG   3: PrivateMessage          ... [32m✅ PASS[0m [2m2tcVECXcdZXCjkTN3FdL...[0m
+[2m[  2/201][0m Testing TAG   4: RoutedMessage           ... [32m✅ PASS[0m [2m2tz7dxCBFrWsLr2wsCYf...[0m
+[2m[  3/201][0m Testing TAG   5: PrivateTransfer         ... [32m✅ PASS[0m [2m5h1sk6aihgt9Z4Fdjciy...[0m
+[2m[  4/201][0m Testing TAG   7: RatchetMessage          ... [32m✅ PASS[0m [2m5XDGaDYWFKExJGwWGnvd...[0m
+[2m[  5/201][0m Testing TAG   8: ComplianceReveal        ... [32m✅ PASS[0m [2mSviTQyipfv6qgrF2Tjz9...[0m
+[2m[  6/201][0m Testing TAG   9: Proposal                ... [32m✅ PASS[0m [2m5F6gat1raiT3z6xpnsqJ...[0m
+[2m[  7/201][0m Testing TAG  10: PrivateVote             ... [32m✅ PASS[0m [2m3rQYhWF7jerHini9rYYp...[0m
+[2m[  8/201][0m Testing TAG  11: VtaTransfer             ... [32m✅ PASS[0m [2m2rnf7GafwjuvPky45zZU...[0m
+[2m[  9/201][0m Testing TAG  12: ReferralRegister        ... [32m✅ PASS[0m [2m5wQGrRziJnrt1X1r4LSb...[0m
+[2m[ 10/201][0m Testing TAG  13: ReferralClaim           ... [31m❌ FAIL[0m [2mTransaction 2mMUnxxsk9ZmDsehjxCVeHStfmsxVQaWnLgy4geb8oJk43gq[0m
+[2m[ 11/201][0m Testing TAG  14: HashlockCommit          ... [32m✅ PASS[0m [2m56FR47QeiFDhx732FcgY...[0m
+[2m[ 12/201][0m Testing TAG  15: HashlockReveal          ... [32m✅ PASS[0m [2m3FKzyinuz4HnaHwecLX3...[0m
+[2m[ 13/201][0m Testing TAG  16: ConditionalCommit       ... [32m✅ PASS[0m [2m4Zif6ywjwxSLDaGBTrbR...[0m
+[2m[ 14/201][0m Testing TAG  17: BatchSettle             ... [32m✅ PASS[0m [2m3UJtQ8aV4SKGAPgtd9Lf...[0m
+[2m[ 15/201][0m Testing TAG  18: StateChannelOpen        ... [32m✅ PASS[0m [2mnzu693x7kegy4bwg4nVB...[0m
+[2m[ 16/201][0m Testing TAG  19: StateChannelClose       ... [32m✅ PASS[0m [2m5abJqrEvHtRQM4YhxRYa...[0m
+[2m[ 17/201][0m Testing TAG  20: TimeCapsule             ... [32m✅ PASS[0m [2m2ALz9zaJ3qScqxRebSvx...[0m
+[2m[ 18/201][0m Testing TAG  21: GhostPda                ... [32m✅ PASS[0m [2mkQJjWBWWQtrMuTcF4zh1...[0m
+[2m[ 19/201][0m Testing TAG  22: CpiInscribe             ... [32m✅ PASS[0m [2m4ZQsTHEEG2FS6XVfxcDX...[0m
+[2m[ 20/201][0m Testing TAG  23: VtaDelegate             ... [32m✅ PASS[0m [2m4Ee5n8GAJLDvBMAKcTam...[0m
+[2m[ 21/201][0m Testing TAG  24: VtaRevoke               ... [31m❌ FAIL[0m [2mTransaction 3J2hR6EcD872S63e3xTZVqtHKDwsiS3W226Pty7tcCe8a9mp[0m
+[2m[ 22/201][0m Testing TAG  25: StealthSwapInit         ... [32m✅ PASS[0m [2m2H44ejHawDgJSDnXDU5t...[0m
+[2m[ 23/201][0m Testing TAG  26: StealthSwapExec         ... [31m❌ FAIL[0m [2mTransaction 2oQ5ar3GKNiyTb561PcGvKXzacEMHxvQvjga9EMy3bZXHgeb[0m
+[2m[ 24/201][0m Testing TAG  27: VtaGuardianSet          ... [31m❌ FAIL[0m [2mTransaction TiACa3amSpdHqNed99Noi1WaH5kohnFDK8Drud4ADQ1fRjHW[0m
+[2m[ 25/201][0m Testing TAG  28: VtaGuardianRecover      ... [31m❌ FAIL[0m [2mTransaction 613YVJAoisfBq173QixoSwg9QbyF8nbw9WRcTzAbt4pkgML3[0m
+[2m[ 26/201][0m Testing TAG  29: PrivateSubscription     ... [31m❌ FAIL[0m [2mTransaction 3LEHw1KPBiNo89EkgqBfa3XUoRKnrXDHHyciFCK6umYXdrid[0m
+[2m[ 27/201][0m Testing TAG  30: MultipartyVtaInit       ... [31m❌ FAIL[0m [2mTransaction 3T66MnkPpa9VvmVgiXkTWVP5cNJL5AWsy5cKgjdNwuMPnpLT[0m
+[2m[ 28/201][0m Testing TAG  31: MultipartyVtaSign       ... [31m❌ FAIL[0m [2mTransaction hBMxTGjCj7kFaknuFJ6dhzALCwKS3FnRqvtzH4AV6ccXMpYk[0m
+[2m[ 29/201][0m Testing TAG  32: VslDeposit              ... [31m❌ FAIL[0m [2mTransaction E5EZFV5Have5273DWDBa7A2fyMmPDiY469LyP9xaeXTybqfj[0m
+[2m[ 30/201][0m Testing TAG  33: VslWithdraw             ... [31m❌ FAIL[0m [2mTransaction s4GxqZGmN9WgmVwaUASreZxNC4KcZFJKnswdpMNiXttd2qMV[0m
+[2m[ 31/201][0m Testing TAG  34: VslPrivateTransfer      ... [31m❌ FAIL[0m [2mTransaction PAchzwXxUTaDw5QuiopvJBeGvUS2Ayr19B9gFTxCf77YGr9F[0m
+[2m[ 32/201][0m Testing TAG  35: VslPrivateSwap          ... [31m❌ FAIL[0m [2mTransaction ky9tsB1G3bN7vawSBr87VDrEUAWZDkaDu95cTMLgrQuXjT3L[0m
+[2m[ 33/201][0m Testing TAG  36: VslShieldedSend         ... [31m❌ FAIL[0m [2mTransaction rgSztx4NxbHirJvxmTmK763mPsZM6KdWSDQc8zsTTeU9ErU7[0m
+[2m[ 34/201][0m Testing TAG  37: VslSplit                ... [31m❌ FAIL[0m [2mTransaction zZcKvou1Dojs7D6C9B8z6KibApyS5YzfT3KfnTWoMYagJTUv[0m
+[2m[ 35/201][0m Testing TAG  38: VslMerge                ... [31m❌ FAIL[0m [2mTransaction 2kRX3qJGKzD8xoHN4rP2mtqwSYnXm1zY5WAcPWvxZpkbABLn[0m
+[2m[ 36/201][0m Testing TAG  39: VslEscrowCreate         ... [31m❌ FAIL[0m [2mTransaction 4oUZs91ZCVwrKvC7kQ2XavUfuB7vQhFKSFEBnjWwJ6uJ96LR[0m
+[2m[ 37/201][0m Testing TAG  40: VslEscrowRelease        ... [32m✅ PASS[0m [2m4cENCRHFEy7eHb9QLa6U...[0m
+[2m[ 38/201][0m Testing TAG  41: VslEscrowRefund         ... [31m❌ FAIL[0m [2mTransaction 2SVxXUpEATWXMD1D3uvrqm456V34D2VppmT3xBwiCYkd18wJ[0m
+[2m[ 39/201][0m Testing TAG  42: VslBalanceProof         ... [31m❌ FAIL[0m [2mTransaction FTT6hPFmXsGA6SmCaCwgYvGowYzjxEkkKCrpoYyG23sjcfsu[0m
+[2m[ 40/201][0m Testing TAG  43: VslAuditReveal          ... [31m❌ FAIL[0m [2mTransaction 3npm6iwGfugugzqNQq6KM9pxqKtqqP22BFMQvVeGQtHB7Epq[0m
+[2m[ 41/201][0m Testing TAG  44: DecoyStorm              ... [31m❌ FAIL[0m [2mTransaction 5NfPCosai1xeyb3MWbSoHsjTJjGDL8F2qb7wPuYQoQE8EF7J[0m
+[2m[ 42/201][0m Testing TAG  45: DecoyReveal             ... [32m✅ PASS[0m [2m4zTT5hCuDCqsScgVkT6r...[0m
+[2m[ 43/201][0m Testing TAG  46: EphemeralCreate         ... [31m❌ FAIL[0m [2mTransaction 4qUmC4mswmFQnDcGuYkv3QWuaYkushLALKvDC7ZMAHAAVNqo[0m
+[2m[ 44/201][0m Testing TAG  47: EphemeralDrain          ... [31m❌ FAIL[0m [2mTransaction 5V7vSm7CW4GFwSfeQ7bQbRBmhTJs1aRmxZBBoAcxXDd9v1ZE[0m
+[2m[ 45/201][0m Testing TAG  48: ChronoLock              ... [31m❌ FAIL[0m [2mTransaction 48J9K4kEgv3kKY1vzUFt2mU9meACR1TTtPtcSs3g6aNdPUgc[0m
+[2m[ 46/201][0m Testing TAG  49: ChronoReveal            ... [32m✅ PASS[0m [2m647NsGo4tYxR12rMADpb...[0m
+[2m[ 47/201][0m Testing TAG  50: ShadowFollow            ... [32m✅ PASS[0m [2m49GByJfxpEBGXdyujs9U...[0m
+[2m[ 48/201][0m Testing TAG  51: ShadowUnfollow          ... [32m✅ PASS[0m [2m3A1maTsJgGWGM5veFTHt...[0m
+[2m[ 49/201][0m Testing TAG  52: PhantomNftCommit        ... [31m❌ FAIL[0m [2mTransaction YwuHRvoM7BVLyo3kYqsQNy3Zu9bC3avVGTpfDWEopi2W1Rdx[0m
+[2m[ 50/201][0m Testing TAG  53: PhantomNftProve         ... [31m❌ FAIL[0m [2mTransaction 2hUbJ1fvvdHtj4bbwMjrQMuTrZZ6avcUa7CW3L1dpBAKGJn9[0m
+[2m[ 51/201][0m Testing TAG  54: InnocenceMint           ... [31m❌ FAIL[0m [2mTransaction 3kZoSEtCkHaJXeMZH6TR3zNAdszvfYHWMC25jwgKbJtYjcFD[0m
+[2m[ 52/201][0m Testing TAG  55: InnocenceVerify         ... [32m✅ PASS[0m [2mZuDVdekZ656Rnpt96NJt...[0m
+[2m[ 53/201][0m Testing TAG  56: InnocenceRevoke         ... [31m❌ FAIL[0m [2mTransaction 5emBU9DRydS4EBKpoybmeBZ24VCw2g9osQrru9rAABFVDcM6[0m
+[2m[ 54/201][0m Testing TAG  57: CleanSourceRegister     ... [31m❌ FAIL[0m [2mTransaction 3Gx3VdxfUoaArkUkyjCebBMuRjhZdA92E6t5rb7boeh99dVY[0m
+[2m[ 55/201][0m Testing TAG  58: CleanSourceProve        ... [31m❌ FAIL[0m [2mTransaction 52cc89kQxCL17QjdPPe3U3JoR8LMbnMHoXPckmHSqBbbRUpC[0m
+[2m[ 56/201][0m Testing TAG  59: TemporalInnocence       ... [31m❌ FAIL[0m [2mTransaction 3ywWT8sGA1QQoJTkvVGiqLx3n4exosJxEe75GB4nEvjJwtbQ[0m
+[2m[ 57/201][0m Testing TAG  60: ComplianceChannelOpen   ... [32m✅ PASS[0m [2m44yKDvZL4QcdhZdCGgwM...[0m
+[2m[ 58/201][0m Testing TAG  61: ComplianceChannelReport ... [31m❌ FAIL[0m [2mTransaction 3X9whaqG7Sa2rWMp8EZXd5Q1mLCRRPqCZ87NVsTXPtTKtarM[0m
+[2m[ 59/201][0m Testing TAG  62: ProvenanceCommit        ... [32m✅ PASS[0m [2mPFoiFtFCuRMUuJXAcEFw...[0m
+[2m[ 60/201][0m Testing TAG  63: ProvenanceExtend        ... [31m❌ FAIL[0m [2mTransaction 5dWu6zCQy8gSMH4Zo4Zubh6WqUxgB1FrZisQAYvAgNMQXY2U[0m
+[2m[ 61/201][0m Testing TAG  64: ProvenanceVerify        ... [31m❌ FAIL[0m [2mTransaction Uks8MEtSjLudRW6g4LKhamPjXkQEjLDpXakL9bByfhRq1FWT[0m
+[2m[ 62/201][0m Testing TAG  80: NoteMint                ... [32m✅ PASS[0m [2mkKkaUN5UnizxSdADDECA...[0m
+[2m[ 63/201][0m Testing TAG  81: NoteTransfer            ... [32m✅ PASS[0m [2m4fvdU3No47WYePPxn57k...[0m
+[2m[ 64/201][0m Testing TAG  82: NoteMerge               ... [31m❌ FAIL[0m [2mTransaction 3xxHBkXq9PgQ3iuoyQ9doNh2pzmJaiZgVvPxv2JKRZ2BQ47v[0m
+[2m[ 65/201][0m Testing TAG  83: NoteSplit               ... [31m❌ FAIL[0m [2mTransaction 3N14SkYLfeU5x5JCNZtsuKE7R2dx6VtRMdafMJtZzY2oz48F[0m
+[2m[ 66/201][0m Testing TAG  84: NoteBurn                ... [32m✅ PASS[0m [2m22HJvy5oKz6kUWjKV3y4...[0m
+[2m[ 67/201][0m Testing TAG  85: GpoolDeposit            ... [31m❌ FAIL[0m [2mTransaction 28cno4TfrGGKJ5GTYJs8owDn5UyiczkQXAieedSdYvLjbgaH[0m
+[2m[ 68/201][0m Testing TAG  86: GpoolWithdraw           ... [32m✅ PASS[0m [2m5kvgB4X99B7Gzp6mQiLn...[0m
+[2m[ 69/201][0m Testing TAG  87: GpoolWithdrawStealth    ... [31m❌ FAIL[0m [2mTransaction 5hCyPagd6nu8tBRSHFSXQ1Njya5cwKL5KVFdLbssXojHH3rX[0m
+[2m[ 70/201][0m Testing TAG  88: GpoolWithdrawSwap       ... [31m❌ FAIL[0m [2mTransaction 5hUAstFRsgXyJFp81JwYswtUbuuNJAbsf2CnSLw9GBNKN5Y7[0m
+[2m[ 71/201][0m Testing TAG  89: MerkleUpdate            ... [31m❌ FAIL[0m [2mTransaction 61s85Zd1X6xXETUUU1wWi3qjpCbxWAsXeDRyETijwDehLE8m[0m
+[2m[ 72/201][0m Testing TAG  90: MerkleEmergency         ... [31m❌ FAIL[0m [2mTransaction 27CCpAEGugNHT9bMJiYSU1sZbYoLA5QkyRYpAm6LKTGj2kT5[0m
+[2m[ 73/201][0m Testing TAG  91: NoteExtend              ... [31m❌ FAIL[0m [2mTransaction 4nYjTbm2eAnS9FreX4TYkXszUHz79YffuvrZbNM8wKKhYcLf[0m
+[2m[ 74/201][0m Testing TAG  92: NoteFreeze              ... [32m✅ PASS[0m [2m5WH8zuhKuYsHRZPyh9uS...[0m
+[2m[ 75/201][0m Testing TAG  93: NoteThaw                ... [32m✅ PASS[0m [2m4m4AC2VaTAfhGJyA4bgE...[0m
+[2m[ 76/201][0m Testing TAG  94: ProtocolPause           ... [32m✅ PASS[0m [2mb3cvkJZmAPHLan6EJb91...[0m
+[2m[ 77/201][0m Testing TAG  95: ProtocolUnpause         ... [31m❌ FAIL[0m [2mTransaction f1wZAAPogXi43HbY1tMckapZSnC36QC3fUe5tjf7sbjvdf3E[0m
+[2m[ 78/201][0m Testing TAG  96: GroupCreate             ... [31m❌ FAIL[0m [2mTransaction 3LaWG8SvuY9KLRs14k7kWbizHCj2cxT9L6hKS6w4Bg6nWeNV[0m
+[2m[ 79/201][0m Testing TAG  97: GroupAddMember          ... [32m✅ PASS[0m [2m4yUiDWjUYDsGQvaXhsJm...[0m
+[2m[ 80/201][0m Testing TAG  98: GroupRemoveMember       ... [31m❌ FAIL[0m [2mTransaction Ba9SRN246AUtYcfq9YPoCGxxynFpR2zXtzfmDyGnb27BjPUo[0m
+[2m[ 81/201][0m Testing TAG  99: HookRegister            ... [32m✅ PASS[0m [2m2ZHkvuSyBkX2CgMfQnDo...[0m
+[2m[ 82/201][0m Testing TAG 100: HookExecute             ... [31m❌ FAIL[0m [2mTransaction 2tpzrj8hc6KPH3UM4BLtMy4WT83Pk1YZ86Jg9PKTuQo7FmgV[0m
+[2m[ 83/201][0m Testing TAG 101: WrapSpl                 ... [31m❌ FAIL[0m [2mTransaction 5ssWHBtqQ2qjk6rWhjuzuSZw5pZXQeS6E51k8yfYeEbyLTaV[0m
+[2m[ 84/201][0m Testing TAG 102: UnwrapSpl               ... [31m❌ FAIL[0m [2mTransaction 5YF98vHgDiNMrGNBU766VG4PQxD4ZPokrxEmoTqGJKLdCfYs[0m
+[2m[ 85/201][0m Testing TAG 103: InterestAccrue          ... [31m❌ FAIL[0m [2mTransaction 2fLqHf14gawrS8qbSouuHoT3fijzE6khto7BpjTSDy7YD41R[0m
+[2m[ 86/201][0m Testing TAG 104: InterestClaim           ... [31m❌ FAIL[0m [2mTransaction 47KfGPFUciED7icYRCDNQU8kHvcXunsHHaZSPjiZ2PYsBB2E[0m
+[2m[ 87/201][0m Testing TAG 105: ConfidentialMint        ... [31m❌ FAIL[0m [2mTransaction D58jFrTKqz2DTXkZqQcW7uJbniDhccjmP9wsKW8QfiqLAkKo[0m
+[2m[ 88/201][0m Testing TAG 106: ConfidentialTransfer    ... [31m❌ FAIL[0m [2mTransaction 33iw3Rzyj4TEFWL99S9BGkYAnKiiFU8guCT1Q98vkF7BxueE[0m
+[2m[ 89/201][0m Testing TAG 107: NftMint                 ... [31m❌ FAIL[0m [2mTransaction 3PLarkf3QBGLCmtoHyFzvUTPnJxm7zN5Y59HHurPPurvYB8A[0m
+[2m[ 90/201][0m Testing TAG 108: CollectionCreate        ... [31m❌ FAIL[0m [2mTransaction 3bXwiJYSYsVMAWSJcp19TKyRMf3K9ETjY7akFqSLVfJAUBNQ[0m
+[2m[ 91/201][0m Testing TAG 109: RoyaltyClaim            ... [31m❌ FAIL[0m [2mTransaction 4vGGh79ftP7udYuMcTk82HnsFP7dU32pEUWuxKY6akPhtjRq[0m
+[2m[ 92/201][0m Testing TAG 110: FairLaunchCommit        ... [31m❌ FAIL[0m [2mTransaction kMnfXCQX1uKdwszrhvVzwp5hVAroNNydk28GULLDK3X8xGmr[0m
+[2m[ 93/201][0m Testing TAG 111: FairLaunchReveal        ... [31m❌ FAIL[0m [2mTransaction 3PU8r7VcZHWAXkjADvVY8D8VnhZCxRsSt3T1AZiiRoGgNyyj[0m
+[2m[ 94/201][0m Testing TAG 112: NftList                 ... [32m✅ PASS[0m [2m3y5VLxQgSaYk6nA7UJTi...[0m
+[2m[ 95/201][0m Testing TAG 113: NftDelist               ... [32m✅ PASS[0m [2m33JKBziRuaW1VLhU63VX...[0m
+[2m[ 96/201][0m Testing TAG 114: NftBuy                  ... [31m❌ FAIL[0m [2mTransaction 5g4zkbuyPFKVzWpho2MJ6iK9YnpTrBtZNZuS3pjP2GejufjN[0m
+[2m[ 97/201][0m Testing TAG 115: NftOffer                ... [32m✅ PASS[0m [2m61KhzzR9i8WhuD1zfY6L...[0m
+[2m[ 98/201][0m Testing TAG 116: NftAcceptOffer          ... [31m❌ FAIL[0m [2mTransaction 4RMv1sCpAWRsR1qXGjUCZ9XSsB8th4ZGkw7nFNwVwN9qo2Sk[0m
+[2m[ 99/201][0m Testing TAG 117: NftCancelOffer          ... [32m✅ PASS[0m [2m5k7SXf5pmXvJdYjGBTaS...[0m
+[2m[100/201][0m Testing TAG 118: AuctionCreate           ... [32m✅ PASS[0m [2m3msfZeHyuArJh44cpfaA...[0m
+[2m[101/201][0m Testing TAG 119: AuctionBid              ... [32m✅ PASS[0m [2m3Xp9hy1wRHYWBjggyEzc...[0m
+[2m[102/201][0m Testing TAG 120: AuctionSettle           ... [32m✅ PASS[0m [2m3bny2quv2sFDVJ47UxZ1...[0m
+[2m[103/201][0m Testing TAG 121: AuctionCancel           ... [32m✅ PASS[0m [2m3SgXhpHykaRmQFscNZrx...[0m
+[2m[104/201][0m Testing TAG 122: PpvCreate               ... [32m✅ PASS[0m [2m3v5ETrtZ6QbgU4hFCSWV...[0m
+[2m[105/201][0m Testing TAG 123: PpvVerify               ... [31m❌ FAIL[0m [2mTransaction 3BGqLh2eVbZzRsUqn7j9cWxR35MNiq8jsazrZY2CLXGy8gJB[0m
+[2m[106/201][0m Testing TAG 124: PpvRedeem               ... [31m❌ FAIL[0m [2mTransaction 5AkzFdLJy4FczWE28uiAVb2onfgSCngWTN7L8dpG59qVfAiz[0m
+[2m[107/201][0m Testing TAG 125: PpvTransfer             ... [31m❌ FAIL[0m [2mTransaction 5htyzBL3EgZCjvWJrEXwWoE1EdB3vPuKw4yMaLc5biXADgua[0m
+[2m[108/201][0m Testing TAG 126: PpvExtend               ... [32m✅ PASS[0m [2m3pvmyff4di4qnnZ2jJkC...[0m
+[2m[109/201][0m Testing TAG 127: PpvRevoke               ... [32m✅ PASS[0m [2mkF1ziM2d81DGqzrRV2Ri...[0m
+[2m[110/201][0m Testing TAG 128: ApbTransfer             ... [31m❌ FAIL[0m [2mTransaction gQYtMesbGRbwGTozNvHyb9BbzHRxRjKtFivPzHhngPKnwZcn[0m
+[2m[111/201][0m Testing TAG 129: ApbBatch                ... [32m✅ PASS[0m [2m5wuQ7aiw98Tok6yV12Sh...[0m
+[2m[112/201][0m Testing TAG 130: StealthScanHint         ... [32m✅ PASS[0m [2mcsyBP1pJDWhNCSKda84L...[0m
+[2m[113/201][0m Testing TAG 131: AdapterRegister         ... [32m✅ PASS[0m [2m2HtndaXp8Bmoh1tTDczA...[0m
+[2m[114/201][0m Testing TAG 132: AdapterCall             ... [31m❌ FAIL[0m [2mTransaction 378D87ZyEbcPWDPL2nsUCqH39dqx2J5ounDYmdizFZR1cHsU[0m
+[2m[115/201][0m Testing TAG 133: AdapterCallback         ... [31m❌ FAIL[0m [2mTransaction 3t22asGm7SVCmQ8d7ZZPWKXS3TKpQYVmiJLsB2yJJT9UX7ZM[0m
+[2m[116/201][0m Testing TAG 134: PrivateSwap             ... [32m✅ PASS[0m [2m3SnudmGnSfjmvWRg8nTG...[0m
+[2m[117/201][0m Testing TAG 135: PrivateStake            ... [32m✅ PASS[0m [2m5RiR1qYPhYaUdZZ9Y7HF...[0m
+[2m[118/201][0m Testing TAG 136: PrivateUnstake          ... [31m❌ FAIL[0m [2mTransaction QJ8BoAB9WrLAaibWLyXfsykmdAcdfBeQunHfsYpZWcs6zjHE[0m
+[2m[119/201][0m Testing TAG 137: PrivateLpAdd            ... [32m✅ PASS[0m [2m5ioBNC8uQnaAv85NjP1M...[0m
+[2m[120/201][0m Testing TAG 138: PrivateLpRemove         ... [31m❌ FAIL[0m [2mTransaction 5cCy5xi4NMkdC8soGcNtWYPGPxZPP1kLVL1Ybano2pD8LbmA[0m
+[2m[121/201][0m Testing TAG 139: PoolCreate              ... [32m✅ PASS[0m [2m3r9zNtM3AqtfxgCarJEG...[0m
+[2m[122/201][0m Testing TAG 140: PoolDeposit             ... [32m✅ PASS[0m [2m3xjuioPdDv6mRwSsg1Ky...[0m
+[2m[123/201][0m Testing TAG 141: PoolWithdraw            ... [31m❌ FAIL[0m [2mTransaction 45bJduib41Gqwk2TTQ91wdnyVdQQ4JVXbr64G3FUQxSF625Q[0m
+[2m[124/201][0m Testing TAG 142: PoolDonate              ... [32m✅ PASS[0m [2m5SqUbMcM5LGA1fzt4UiF...[0m
+[2m[125/201][0m Testing TAG 143: YieldVaultCreate        ... [32m✅ PASS[0m [2m4TKWV5ps7sddCcqEkZoH...[0m
+[2m[126/201][0m Testing TAG 144: YieldDeposit            ... [32m✅ PASS[0m [2mkyYF2sCehFFb1A7u7CSz...[0m
+[2m[127/201][0m Testing TAG 145: YieldClaim              ... [31m❌ FAIL[0m [2mTransaction 3TNgnFerbjh1PxNC1pcQ5xakK2cjo6AFJTRKPBaFPmprpJcM[0m
+[2m[128/201][0m Testing TAG 146: YieldWithdraw           ... [31m❌ FAIL[0m [2mTransaction 4HiaSMPrKrT1iNjdHuY9KfzLuEUYZdpjgMzAxzq4qdMVSCeT[0m
+[2m[129/201][0m Testing TAG 147: TokenCreate             ... [31m❌ FAIL[0m [2mTransaction 5x1Tzr5481Zv4K7U9fhFMmDC3gzMRsP3dAKvQza6eniDUwEQ[0m
+[2m[130/201][0m Testing TAG 148: TokenSetAuthority       ... [31m❌ FAIL[0m [2mTransaction 4AWCtWqxesbFHrWsKAWLFu9oXy8zXKo6tkRordZagpKe3BxE[0m
+[2m[131/201][0m Testing TAG 149: TokenMetadataSet        ... [32m✅ PASS[0m [2m4Mpvqwj7M7TYDN9S1dFB...[0m
+[2m[132/201][0m Testing TAG 150: TokenMetadataUpdate     ... [32m✅ PASS[0m [2mLxHwYh9wpimfwzdsRGjw...[0m
+[2m[133/201][0m Testing TAG 151: HookExecuteReal         ... [31m❌ FAIL[0m [2mTransaction 3mEsFg5i6njtjKKGbr4gprbhmmfLQ7erPkPKZQfrpjwTXrJJ[0m
+[2m[134/201][0m Testing TAG 152: ConfidentialTransferV2  ... [31m❌ FAIL[0m [2mTransaction 3ppgNAJ7oU8xe6chcFqqjUPdQef4TdRhkkNTxuX7Hix2GX8o[0m
+[2m[135/201][0m Testing TAG 153: InterestClaimReal       ... [32m✅ PASS[0m [2m3cETGea6AtekF4ucRiSC...[0m
+[2m[136/201][0m Testing TAG 154: RoyaltyClaimReal        ... [31m❌ FAIL[0m [2mTransaction 3ZgEVHghLZre74qRbTjzqSAc9kiJa7sbsX8rTizyEx57NUpr[0m
+[2m[137/201][0m Testing TAG 155: BatchNoteOps            ... [32m✅ PASS[0m [2m5XniwjmYDKWTdUDyMDWV...[0m
+[2m[138/201][0m Testing TAG 156: ExchangeProof           ... [32m✅ PASS[0m [2m3Ruh29CYEuK5wvDc8ZZp...[0m
+[2m[139/201][0m Testing TAG 157: SelectiveDisclosure     ... [32m✅ PASS[0m [2m3cjhvYVBcshEev63FVB7...[0m
+[2m[140/201][0m Testing TAG 158: ConditionalTransfer     ... [31m❌ FAIL[0m [2mTransaction 4sfDAuZ6GZVbLnavffW6dkEu5VGcLFXUAvBk1Ju9dyjL83w9[0m
+[2m[141/201][0m Testing TAG 159: DelegationChain         ... [32m✅ PASS[0m [2m51LHciHXJnLcFM4jbRJA...[0m
+[2m[142/201][0m Testing TAG 160: TimeLockedReveal        ... [31m❌ FAIL[0m [2mTransaction 5ciQ8dWbuhDTVSRGAxGFrfe3xNgXqFgnQxhXdaKBFEZSfzJo[0m
+[2m[143/201][0m Testing TAG 161: CrossMintAtomic         ... [32m✅ PASS[0m [2m3gwrSTza11vi2Af2v1xh...[0m
+[2m[144/201][0m Testing TAG 162: SocialRecovery          ... [32m✅ PASS[0m [2m5Setx4FWrbmgEojd4FuK...[0m
+[2m[145/201][0m Testing TAG 163: JupiterRoute            ... [31m❌ FAIL[0m [2mTransaction TCeuCum3gnwa9QPwb3okhkABaBzCdTu42KKbvQJBPHGTnfdb[0m
+[2m[146/201][0m Testing TAG 164: MarinadeStake           ... [32m✅ PASS[0m [2m4mi8Rv1gFMCwuxTGwuDv...[0m
+[2m[147/201][0m Testing TAG 165: DriftPerp               ... [32m✅ PASS[0m [2m4yCBQhY7jrGDAjGvyYay...[0m
+[2m[148/201][0m Testing TAG 166: PrivateLending          ... [32m✅ PASS[0m [2md5bFbPBsupfvPRmX89B8...[0m
+[2m[149/201][0m Testing TAG 167: FlashLoan               ... [32m✅ PASS[0m [2mTbupoMMZ5JqTK8XuNEdA...[0m
+[2m[150/201][0m Testing TAG 168: OracleBound             ... [31m❌ FAIL[0m [2mTransaction 3bYsiAcKXrboX1k81zCcTzuC44N5e6idcTBLqW5yu6amZVSU[0m
+[2m[151/201][0m Testing TAG 169: VelocityLimit           ... [32m✅ PASS[0m [2m2D3NkdMCsPb3qqh28koC...[0m
+[2m[152/201][0m Testing TAG 170: GovernanceLock          ... [31m❌ FAIL[0m [2mTransaction 4qydU81KMiSxpLxUXEPQf6paR867AwbL6Tby3rSwh98KrMxE[0m
+[2m[153/201][0m Testing TAG 171: ReputationGate          ... [31m❌ FAIL[0m [2mTransaction 4EHJsfMuVNSwe1TVu5w218RXLirsNqrgFHTE6XMHFmjzZdrx[0m
+[2m[154/201][0m Testing TAG 172: GeoRestriction          ... [31m❌ FAIL[0m [2mTransaction 3xTo3UfuKk65wHa5rXaSzNQgLq9qhMgpPpmXWfJDY4oWSZYC[0m
+[2m[155/201][0m Testing TAG 173: TimeDecay               ... [32m✅ PASS[0m [2m5NXE91mqrk96HpcC8cNk...[0m
+[2m[156/201][0m Testing TAG 174: MultiSigNote            ... [32m✅ PASS[0m [2m4roE8Rhv7GKXBH7sNat8...[0m
+[2m[157/201][0m Testing TAG 175: RecoverableNote         ... [32m✅ PASS[0m [2m4rXd9GZuTRM2AgQHSWmU...[0m
+[2m[158/201][0m Testing TAG 176: AmmPoolCreate           ... [31m❌ FAIL[0m [2mTransaction 52aAYy5pAAhpRKeXBgXYwGvrBho624umj6KinyYdNsDrBVka[0m
+[2m[159/201][0m Testing TAG 177: AmmAddLiquidity         ... [32m✅ PASS[0m [2mq5Tdspa9oiCkpqqqW23Z...[0m
+[2m[160/201][0m Testing TAG 178: AmmRemoveLiquidity      ... [31m❌ FAIL[0m [2mTransaction 3gJFKwZVUY2EKgtBFSXSEpJL6v5crQmxQTqKj9g1auwyPJp6[0m
+[2m[161/201][0m Testing TAG 179: AmmSwap                 ... [32m✅ PASS[0m [2mxz2VjkPdkZwjLkTAy2M3...[0m
+[2m[162/201][0m Testing TAG 180: AmmQuote                ... [32m✅ PASS[0m [2m46R4xLk8Z8Be1ikaGa1L...[0m
+[2m[163/201][0m Testing TAG 181: AmmSync                 ... [32m✅ PASS[0m [2mnQn1ufyuPdi19jc9uKbU...[0m
+[2m[164/201][0m Testing TAG 182: LpNoteMint              ... [32m✅ PASS[0m [2m2u8A4byHqwA1eSENDBgq...[0m
+[2m[165/201][0m Testing TAG 183: LpNoteBurn              ... [32m✅ PASS[0m [2m2QvBRCSyMgHRUygA6uNn...[0m
+[2m[166/201][0m Testing TAG 184: RouterSwap              ... [32m✅ PASS[0m [2mLUK2zXsqVpiq4kL6Amro...[0m
+[2m[167/201][0m Testing TAG 185: RouterSplit             ... [32m✅ PASS[0m [2m2yKDBVSpFZBCRevBq4cD...[0m
+[2m[168/201][0m Testing TAG 186: LimitOrderPlace         ... [32m✅ PASS[0m [2m3EE8yWmf4qSXXJrLgy1w...[0m
+[2m[169/201][0m Testing TAG 187: LimitOrderFill          ... [31m❌ FAIL[0m [2mTransaction 484naWXsECiAxiGRVyM5qgEgKXnj4YNJHqHkggTneT8idS8V[0m
+[2m[170/201][0m Testing TAG 188: LimitOrderCancel        ... [32m✅ PASS[0m [2mpXyYY5cKz2FavYiKcZY7...[0m
+[2m[171/201][0m Testing TAG 189: TwapOrderStart          ... [32m✅ PASS[0m [2mYRgGkghxfX3jHDGQGmT7...[0m
+[2m[172/201][0m Testing TAG 190: TwapOrderFill           ... [32m✅ PASS[0m [2m62HFZoCF4HXNf9BzF8hF...[0m
+[2m[173/201][0m Testing TAG 191: ConcentratedLp          ... [32m✅ PASS[0m [2m2hqffrCaw6ACyZAYo4Cp...[0m
+[2m[174/201][0m Testing TAG 192: NullifierCreate         ... [31m❌ FAIL[0m [2mTransaction 5H2CUDEzmk7ZXvWLLZpdPqeo8VRQ5Eo6XGRi9GMGKSPC5ECB[0m
+[2m[175/201][0m Testing TAG 193: NullifierCheck          ... [31m❌ FAIL[0m [2mTransaction HaiERCaJiFzRjijYr4wD3e4VJvgxearMqqWekGHrjH8GpJno[0m
+[2m[176/201][0m Testing TAG 194: MerkleRootPublish       ... [31m❌ FAIL[0m [2mTransaction 4gBsaFEDvvT3E6KnrJebCWhEHm2eQrmvA5GWF2ikqzNKnAEt[0m
+[2m[177/201][0m Testing TAG 195: MerkleProofVerify       ... [31m❌ FAIL[0m [2mTransaction 4EXqms7nZSLwSVLY25bXmiVJwQVMBsbN28hGqT1iaZCa559M[0m
+[2m[178/201][0m Testing TAG 196: BalanceAttest           ... [31m❌ FAIL[0m [2mTransaction 2d22Y5S7w1rciFZBzf825qPX2cRj5yHTTG71j1bkFiJPSZkY[0m
+[2m[179/201][0m Testing TAG 197: BalanceVerify           ... [31m❌ FAIL[0m [2mTransaction uP9xzYuTYYrt6TUFD3USHkET5NTddbcx2P7EjTW1TUT2VHk2[0m
+[2m[180/201][0m Testing TAG 198: FreezeEnforced          ... [31m❌ FAIL[0m [2mTransaction pBwGtyhydsJgSURAf86BJ7tpMWDUhCmvijbotvgzwXYxZm5D[0m
+[2m[181/201][0m Testing TAG 199: ThawGoverned            ... [31m❌ FAIL[0m [2mTransaction 5gPxBnfHdAQPZHf9wCCswC7LH87VjhGAWN72x5bLuBH6ujRt[0m
+[2m[182/201][0m Testing TAG 200: WrapperMint             ... [31m❌ FAIL[0m [2mTransaction 5V16msdpgiiCaXnW4nuZPW1h3jC8kkAvhF1GQSKEGvSXXfLC[0m
+[2m[183/201][0m Testing TAG 201: WrapperBurn             ... [31m❌ FAIL[0m [2mTransaction 6PvYvW8H3wJjZUZeVhz6uRJpZwLzBYBMCtQWn3UuYyQ7ZuQu[0m
+[2m[184/201][0m Testing TAG 202: ValidatorProof          ... [32m✅ PASS[0m [2m3JXFmEg4uNDnGg3APHK8...[0m
+[2m[185/201][0m Testing TAG 203: SecurityAudit           ... [32m✅ PASS[0m [2mkbDJajSQCSLyYcbwHD9T...[0m
+[2m[186/201][0m Testing TAG 204: ComplianceProof         ... [32m✅ PASS[0m [2m5u1W9b3PT9vb1RsLrdJq...[0m
+[2m[187/201][0m Testing TAG 205: DecentralizationMetric  ... [32m✅ PASS[0m [2mWRQ5vaMkEo3wULMhFtht...[0m
+[2m[188/201][0m Testing TAG 206: AtomicCpiTransfer       ... [32m✅ PASS[0m [2m5vh5f59WxH2uS87Svso5...[0m
+[2m[189/201][0m Testing TAG 207: BatchNullifier          ... [32m✅ PASS[0m [2miwx867sBtDEmYBdeXuMu...[0m
+[2m[190/201][0m Testing TAG 208: NullifierInscribe       ... [31m❌ FAIL[0m [2mTransaction 48f46yRTm6C4d6ERkjmnzohWNbKbKrHC4wSVBvafs1oM5SYg[0m
+[2m[191/201][0m Testing TAG 209: MerkleAirdropRoot       ... [32m✅ PASS[0m [2m3pUacQW85R1HAAMiE7Pt...[0m
+[2m[192/201][0m Testing TAG 210: MerkleAirdropClaim      ... [31m❌ FAIL[0m [2mTransaction 2UhB5zNLwPEbx78rBpwaXbJmbvASPS6RzvsUj3Bor6JTJA9Q[0m
+[2m[193/201][0m Testing TAG 211: SecurityIssue           ... [31m❌ FAIL[0m [2mTransaction 5FUhHVeocoqQDF3D2MD4Tfu3Z1eUUdDzDwXA7LUqcaEeVM2d[0m
+[2m[194/201][0m Testing TAG 212: SecurityTransfer        ... [31m❌ FAIL[0m [2mTransaction 4RYxaYoiemek9rcLCdaK3zqCuNhZqDsxN9PQWBmj8TkuNU2M[0m
+[2m[195/201][0m Testing TAG 213: TransferAgentRegister   ... [31m❌ FAIL[0m [2mTransaction jJEr2TctR42KbwvUHyVraio72mVAZayg97ojNMZwCYBz7WQL[0m
+[2m[196/201][0m Testing TAG 214: TransferAgentApprove    ... [31m❌ FAIL[0m [2mTransaction 5TZE1MSsXGZBtqTqtQKo3NVuKdyLmRrpDGxMSCiGUVRVh8NJ[0m
+[2m[197/201][0m Testing TAG 215: AccreditationProof      ... [31m❌ FAIL[0m [2mTransaction hDqiag2apA17oVw1wGM5xeTXAJCghcaA7scNn8rq9135pQer[0m
+[2m[198/201][0m Testing TAG 216: ShareClassCreate        ... [31m❌ FAIL[0m [2mTransaction 2c987v8AqD6hawoDWYEagqVVsTAtxYE9Zs8rb65UmxASVT8s[0m
+[2m[199/201][0m Testing TAG 217: CorporateAction         ... [31m❌ FAIL[0m [2mTransaction 4mMuLrGB9kc1yjiPE1bszBUbyTWYP1BQeRkWE85M5Fr9AHRL[0m
+[2m[200/201][0m Testing TAG 218: RegDLockup              ... [31m❌ FAIL[0m [2mTransaction 2SDqBc25Fus8nnev21GS5kDedCgfCfGwruGhJcpUhcWMQ66y[0m
+[2m[201/201][0m Testing TAG 219: InstitutionalReport     ... [31m❌ FAIL[0m [2mTransaction 3JnGiJ5je4skpAR25zFzKMcuqJ1MT6gaAEFDZY4sd7CDd95h[0m
+
+[35m[1m╔═══════════════════════════════════════════════════════════╗[0m
+[35m[1m║               MAINNET READINESS SUMMARY                   ║[0m
+[35m[1m╚═══════════════════════════════════════════════════════════╝[0m
+
+  Total TAGs Tested: [1m201[0m
+  [32m✅ Passed (Mainnet Ready):[0m 96 (47.8%)
+  [31m❌ Failed:[0m 105
+
+[34m📄 Results saved to:[0m mainnet-test-results.json
+
+[31m[1mFailed TAGs:[0m
+  TAG 13: ReferralClaim
+    [2mTransaction 2mMUnxxsk9ZmDsehjxCVeHStfmsxVQaWnLgy4geb8oJk43gqtH5xEhSz9rCLEMosw5nXDMK6vvDNuLuBxG9hZuEC resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 24: VtaRevoke
+    [2mTransaction 3J2hR6EcD872S63e3xTZVqtHKDwsiS3W226Pty7tcCe8a9mpFBs2WqodLE9gecxiZxjVs3F8nqPWw2f8HxyQJ9cY resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"NotEnoughAccountKeys"]}}). 
+Catch th[0m
+  TAG 26: StealthSwapExec
+    [2mTransaction 2oQ5ar3GKNiyTb561PcGvKXzacEMHxvQvjga9EMy3bZXHgeb4PDLTJrDT6ryDaAudf6YTiwaGkQQJ3AW6s34LRAt resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"NotEnoughAccountKeys"]}}). 
+Catch th[0m
+  TAG 27: VtaGuardianSet
+    [2mTransaction TiACa3amSpdHqNed99Noi1WaH5kohnFDK8Drud4ADQ1fRjHWhL95uQ1qvf51oEY9VMsTemhnMfiz6WrJrobt6tu resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 28: VtaGuardianRecover
+    [2mTransaction 613YVJAoisfBq173QixoSwg9QbyF8nbw9WRcTzAbt4pkgML3Dw2QzyckZ9r1Kbr89p6jxDPkigUhBhcH2tEDmZxG resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 29: PrivateSubscription
+    [2mTransaction 3LEHw1KPBiNo89EkgqBfa3XUoRKnrXDHHyciFCK6umYXdridRuz3K23KLMtDhzKV4qG2FoLbBd35u4TkYhcA4eib resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 30: MultipartyVtaInit
+    [2mTransaction 3T66MnkPpa9VvmVgiXkTWVP5cNJL5AWsy5cKgjdNwuMPnpLTqJEim8RUsF6UuwHqeUFY7Wi45JNVGd97BbBGn2AW resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 31: MultipartyVtaSign
+    [2mTransaction hBMxTGjCj7kFaknuFJ6dhzALCwKS3FnRqvtzH4AV6ccXMpYkqZxNmtGMabfvuu53xX3tNTboWnR57KZemSzcTF5 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"NotEnoughAccountKeys"]}}). 
+Catch the[0m
+  TAG 32: VslDeposit
+    [2mTransaction E5EZFV5Have5273DWDBa7A2fyMmPDiY469LyP9xaeXTybqfjSrT7jaYBw2E2L3rQ9PXa8kkMN9XhSDU1KFig4Mg resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 33: VslWithdraw
+    [2mTransaction s4GxqZGmN9WgmVwaUASreZxNC4KcZFJKnswdpMNiXttd2qMVTSo5U4fRvfvNfxYjvCJ1ngSk9KL5ZThRhis3z5J resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 34: VslPrivateTransfer
+    [2mTransaction PAchzwXxUTaDw5QuiopvJBeGvUS2Ayr19B9gFTxCf77YGr9FXNAg66ahPmCD9JoppkXSdqx7AntCs1L1ZuYp6aL resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 35: VslPrivateSwap
+    [2mTransaction ky9tsB1G3bN7vawSBr87VDrEUAWZDkaDu95cTMLgrQuXjT3LhvWpKygGUPL1XFESxiXxAvzb1zk3ZMu4Zeo94NZ resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 36: VslShieldedSend
+    [2mTransaction rgSztx4NxbHirJvxmTmK763mPsZM6KdWSDQc8zsTTeU9ErU7oNaosgeBpcfm1cb3qoeDx9bwkkumpq2pJ5VWYKD resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 37: VslSplit
+    [2mTransaction zZcKvou1Dojs7D6C9B8z6KibApyS5YzfT3KfnTWoMYagJTUvZJhksZw2FE6KNpEN4yXprEHZjfD2o5pjo452LRW resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 38: VslMerge
+    [2mTransaction 2kRX3qJGKzD8xoHN4rP2mtqwSYnXm1zY5WAcPWvxZpkbABLn3awVgn6U2DPoXeiphkNGZNNqQ477mFtXxiFjagQE resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 39: VslEscrowCreate
+    [2mTransaction 4oUZs91ZCVwrKvC7kQ2XavUfuB7vQhFKSFEBnjWwJ6uJ96LR3hDBLgaH3vE4fqkUzQbpGKQG4G4rsWAWURbmLLpw resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 41: VslEscrowRefund
+    [2mTransaction 2SVxXUpEATWXMD1D3uvrqm456V34D2VppmT3xBwiCYkd18wJH3rU8SoTBYEZyJSoYaSyTg9oK86gSVkoNf91Xobm resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 42: VslBalanceProof
+    [2mTransaction FTT6hPFmXsGA6SmCaCwgYvGowYzjxEkkKCrpoYyG23sjcfsu1qPdKkcmRuPk88Wun5KYn5FUWohc5ErhxHMY2ca resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 43: VslAuditReveal
+    [2mTransaction 3npm6iwGfugugzqNQq6KM9pxqKtqqP22BFMQvVeGQtHB7EpqJXxtBmAfCCAVq1hynVVFQWhjyB4MEA3mSuYM4TWt resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 44: DecoyStorm
+    [2mTransaction 5NfPCosai1xeyb3MWbSoHsjTJjGDL8F2qb7wPuYQoQE8EF7JW1Ppi3CzCxkA3LyfuTCzUyDgXxmt92e6fLKgUFwo resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 46: EphemeralCreate
+    [2mTransaction 4qUmC4mswmFQnDcGuYkv3QWuaYkushLALKvDC7ZMAHAAVNqo5d3fmj5f9FZPwM9qPGs7jDETZibf4wyVGx7rXCpV resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 47: EphemeralDrain
+    [2mTransaction 5V7vSm7CW4GFwSfeQ7bQbRBmhTJs1aRmxZBBoAcxXDd9v1ZE9XGthQkB56LZ4QvPboDLt1CbQqwR6cRmjvsTnDAj resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"NotEnoughAccountKeys"]}}). 
+Catch th[0m
+  TAG 48: ChronoLock
+    [2mTransaction 48J9K4kEgv3kKY1vzUFt2mU9meACR1TTtPtcSs3g6aNdPUgc7Bjqw66khdZyz59SEzRxmLN2WSWE4Ja2RNG9vp5U resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 52: PhantomNftCommit
+    [2mTransaction YwuHRvoM7BVLyo3kYqsQNy3Zu9bC3avVGTpfDWEopi2W1Rdx9RepyzGzAMTM8dWunDZYubaZMCa6oGRXnkPauzk resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 53: PhantomNftProve
+    [2mTransaction 2hUbJ1fvvdHtj4bbwMjrQMuTrZZ6avcUa7CW3L1dpBAKGJn93Ljhuuk9Zg3HLEDwJdBeGaXKRTt8fAQH2QVCsw69 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 54: InnocenceMint
+    [2mTransaction 3kZoSEtCkHaJXeMZH6TR3zNAdszvfYHWMC25jwgKbJtYjcFDNZxMChcz8UpB4otvpNzAujPd3Rac9H3fTDPqufSe resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 56: InnocenceRevoke
+    [2mTransaction 5emBU9DRydS4EBKpoybmeBZ24VCw2g9osQrru9rAABFVDcM6ddysfYxSKAnPkYTD8C3KJJuATSfjSRwixJC8iLNf resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 57: CleanSourceRegister
+    [2mTransaction 3Gx3VdxfUoaArkUkyjCebBMuRjhZdA92E6t5rb7boeh99dVYQPC6VkxcneEw2zeQNJmaP7voV2p3Pe2pqNvRsjo8 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 58: CleanSourceProve
+    [2mTransaction 52cc89kQxCL17QjdPPe3U3JoR8LMbnMHoXPckmHSqBbbRUpCsVFf4JK3X5a6NUwdB6xwmK6t8XYSvGR4aABS6HZx resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 59: TemporalInnocence
+    [2mTransaction 3ywWT8sGA1QQoJTkvVGiqLx3n4exosJxEe75GB4nEvjJwtbQ1ebW17XeNDeVwfuozc1AmkpoJ6h4RwLJsbpV7fAL resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 61: ComplianceChannelReport
+    [2mTransaction 3X9whaqG7Sa2rWMp8EZXd5Q1mLCRRPqCZ87NVsTXPtTKtarMh2cpjRh4cPirsJZFstQ1bg6NuoDhx4oM2G9ZkmSy resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 63: ProvenanceExtend
+    [2mTransaction 5dWu6zCQy8gSMH4Zo4Zubh6WqUxgB1FrZisQAYvAgNMQXY2UZaqm6HJ799sJiYDFmSQykCej3qxtffatinWr2nt7 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 64: ProvenanceVerify
+    [2mTransaction Uks8MEtSjLudRW6g4LKhamPjXkQEjLDpXakL9bByfhRq1FWTAddcH3wjPRpfwNReAFDMY4BHz525xbjzn1wG5uv resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 82: NoteMerge
+    [2mTransaction 3xxHBkXq9PgQ3iuoyQ9doNh2pzmJaiZgVvPxv2JKRZ2BQ47vGRHT5ytiS6LyXDAPSHUBRprR87FcJQ2FEfpepiKm resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 83: NoteSplit
+    [2mTransaction 3N14SkYLfeU5x5JCNZtsuKE7R2dx6VtRMdafMJtZzY2oz48Ftn2nNgnYvzJ8T9Dw6yN2SJeLDbBbK8AaATEuXDZD resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 85: GpoolDeposit
+    [2mTransaction 28cno4TfrGGKJ5GTYJs8owDn5UyiczkQXAieedSdYvLjbgaH3wzcxEZqiBCEgyJPbjYWnYLHHmGTvLa28Uqi1dYW resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"MissingRequiredSignature"]}}). 
+Catc[0m
+  TAG 87: GpoolWithdrawStealth
+    [2mTransaction 5hCyPagd6nu8tBRSHFSXQ1Njya5cwKL5KVFdLbssXojHH3rXAV5C5ZxdjFQVg7K88cchEvRBsT1WupvnwZeLpPwD resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 88: GpoolWithdrawSwap
+    [2mTransaction 5hUAstFRsgXyJFp81JwYswtUbuuNJAbsf2CnSLw9GBNKN5Y7QGKh6Us7HTATPgEZvSgcZXmxsq6AN7RVB2QK6Xrr resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 89: MerkleUpdate
+    [2mTransaction 61s85Zd1X6xXETUUU1wWi3qjpCbxWAsXeDRyETijwDehLE8maPA4NjynQa8S66mzcoyKrVU1oQRrak5Y1yPFECXD resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 90: MerkleEmergency
+    [2mTransaction 27CCpAEGugNHT9bMJiYSU1sZbYoLA5QkyRYpAm6LKTGj2kT546VLgnmbzUGAsVCv13zKCjRK19wiAngoCBNqwwuP resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 91: NoteExtend
+    [2mTransaction 4nYjTbm2eAnS9FreX4TYkXszUHz79YffuvrZbNM8wKKhYcLfT9kh8DgEz3XLigXHpapTvjqhUAt7E9RzbCFgHNWM resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 95: ProtocolUnpause
+    [2mTransaction f1wZAAPogXi43HbY1tMckapZSnC36QC3fUe5tjf7sbjvdf3ENwYYzWFLa59YgL5EQa9eaMWpbtp8T4UBb3krn84 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 96: GroupCreate
+    [2mTransaction 3LaWG8SvuY9KLRs14k7kWbizHCj2cxT9L6hKS6w4Bg6nWeNVxmH8Xk6TKADPB4DDeNK4JAevAYQ9TC7KvsV5MYDR resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 98: GroupRemoveMember
+    [2mTransaction Ba9SRN246AUtYcfq9YPoCGxxynFpR2zXtzfmDyGnb27BjPUoQ9vXSF8Qmm4h3cFQxeyFwP4FHcCSQCADxvP5wof resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 100: HookExecute
+    [2mTransaction 2tpzrj8hc6KPH3UM4BLtMy4WT83Pk1YZ86Jg9PKTuQo7FmgVeUBX1hgkjdezjKS4FWzGKrvTTd3zfMAuKsoUuNc resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 101: WrapSpl
+    [2mTransaction 5ssWHBtqQ2qjk6rWhjuzuSZw5pZXQeS6E51k8yfYeEbyLTaVemyzn5FoYTqfC2yq9ahrTonApSa3HXjpQGjjvoAV resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 102: UnwrapSpl
+    [2mTransaction 5YF98vHgDiNMrGNBU766VG4PQxD4ZPokrxEmoTqGJKLdCfYsV53paoQrEHufyHrzzYA9o8iGmVLyTeCmJ4c3hRYb resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 103: InterestAccrue
+    [2mTransaction 2fLqHf14gawrS8qbSouuHoT3fijzE6khto7BpjTSDy7YD41RBs8bcSzBdj57BwRQXoQRZbnbFgxvVgo6uHaqZdQf resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 104: InterestClaim
+    [2mTransaction 47KfGPFUciED7icYRCDNQU8kHvcXunsHHaZSPjiZ2PYsBB2E8ntNSSa38Z47deMZA7Tbe98Q9vmN4bB7BpZpEU7f resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 105: ConfidentialMint
+    [2mTransaction D58jFrTKqz2DTXkZqQcW7uJbniDhccjmP9wsKW8QfiqLAkKoWFeUjCvTeYV568diNVckm2MW3xcjroRBW9ZHnz5 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 106: ConfidentialTransfer
+    [2mTransaction 33iw3Rzyj4TEFWL99S9BGkYAnKiiFU8guCT1Q98vkF7BxueESxdB1YY8xneUHNjTe47NSMiPwSZtvZ7u91GRJcjB resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 107: NftMint
+    [2mTransaction 3PLarkf3QBGLCmtoHyFzvUTPnJxm7zN5Y59HHurPPurvYB8AWVzBehk78Weh1eB1rtx63YoJD3BdEPFCVmbWaC6a resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 108: CollectionCreate
+    [2mTransaction 3bXwiJYSYsVMAWSJcp19TKyRMf3K9ETjY7akFqSLVfJAUBNQE64RFuGU7edt9KWKWfGUhyJMRYiytFT12uYMRM2X resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 109: RoyaltyClaim
+    [2mTransaction 4vGGh79ftP7udYuMcTk82HnsFP7dU32pEUWuxKY6akPhtjRqBRxZtWpS5XcMZYHRepoXX2oNdFQjEeYnFrgRFoFM resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 110: FairLaunchCommit
+    [2mTransaction kMnfXCQX1uKdwszrhvVzwp5hVAroNNydk28GULLDK3X8xGmrK9asPBMB6BaE4CVVpFDh2s5RdsEZTqYr9G9Ba7J resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 111: FairLaunchReveal
+    [2mTransaction 3PU8r7VcZHWAXkjADvVY8D8VnhZCxRsSt3T1AZiiRoGgNyyjahZDVWB3KZnJTgXUVpXJauzFmCx22g69Ac923y3G resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 114: NftBuy
+    [2mTransaction 5g4zkbuyPFKVzWpho2MJ6iK9YnpTrBtZNZuS3pjP2GejufjNSv6WKMjmFC2AUztJRnZUdTiJTVfQy1c4jCTVwMgu resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 116: NftAcceptOffer
+    [2mTransaction 4RMv1sCpAWRsR1qXGjUCZ9XSsB8th4ZGkw7nFNwVwN9qo2SkY5vdegiHqmTNcovS4hT9ahQvvN6gijEfKNdgmSR5 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 123: PpvVerify
+    [2mTransaction 3BGqLh2eVbZzRsUqn7j9cWxR35MNiq8jsazrZY2CLXGy8gJBuZGZ74Tr2iBuaNACHSMrzC7T7HEoqqAqDXg6dV6Y resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 124: PpvRedeem
+    [2mTransaction 5AkzFdLJy4FczWE28uiAVb2onfgSCngWTN7L8dpG59qVfAiz1HNVkfKoezJLj79Y8Pq1CcBpTcHfU4ZHMYCmK4G5 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 125: PpvTransfer
+    [2mTransaction 5htyzBL3EgZCjvWJrEXwWoE1EdB3vPuKw4yMaLc5biXADgua2hsuphgyCF15NKtbDDmEuggFTjjAxsxu9SY1eav2 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 128: ApbTransfer
+    [2mTransaction gQYtMesbGRbwGTozNvHyb9BbzHRxRjKtFivPzHhngPKnwZcnjriRwmrtKDLkiwLLUThbnRXsXnyNmC9euBJhVcM resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 132: AdapterCall
+    [2mTransaction 378D87ZyEbcPWDPL2nsUCqH39dqx2J5ounDYmdizFZR1cHsUrj2qddSxHu3p3WQFiP23Uz3WKkVLMpX2cuVqYwCQ resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 133: AdapterCallback
+    [2mTransaction 3t22asGm7SVCmQ8d7ZZPWKXS3TKpQYVmiJLsB2yJJT9UX7ZMGATvN5j21P1biE62d83xZYxwyKhoUV7A6pj5iYaG resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 136: PrivateUnstake
+    [2mTransaction QJ8BoAB9WrLAaibWLyXfsykmdAcdfBeQunHfsYpZWcs6zjHERLmsmLAHEaxZfDLnR9RJs1axzyg7B4a3VA5LyL6 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 138: PrivateLpRemove
+    [2mTransaction 5cCy5xi4NMkdC8soGcNtWYPGPxZPP1kLVL1Ybano2pD8LbmA3yQM6N7rsooXnt55StqZdSztxk2hou4Wv3M1u92B resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 141: PoolWithdraw
+    [2mTransaction 45bJduib41Gqwk2TTQ91wdnyVdQQ4JVXbr64G3FUQxSF625QJKnAXSmG6gW1awjFMneQ7wTRdVinVJVuEm6WWqQM resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 145: YieldClaim
+    [2mTransaction 3TNgnFerbjh1PxNC1pcQ5xakK2cjo6AFJTRKPBaFPmprpJcMXdhh6anpbKLZ6qv4jqPpCdL3zoGL4b8H8QJrVhq resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 146: YieldWithdraw
+    [2mTransaction 4HiaSMPrKrT1iNjdHuY9KfzLuEUYZdpjgMzAxzq4qdMVSCeTR2oGdMbktksBbaZzqV2moyfFdzY1K2zzv7Jxqo5P resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 147: TokenCreate
+    [2mTransaction 5x1Tzr5481Zv4K7U9fhFMmDC3gzMRsP3dAKvQza6eniDUwEQ8r1Th4Y5YrV1McFsxTYAJi6aj1uZR4nS72mXcuCa resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 148: TokenSetAuthority
+    [2mTransaction 4AWCtWqxesbFHrWsKAWLFu9oXy8zXKo6tkRordZagpKe3BxEjpjmsm6JGZHnpAP5br8ZoJDX2NPcbcXuXXPrVaD2 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 151: HookExecuteReal
+    [2mTransaction 3mEsFg5i6njtjKKGbr4gprbhmmfLQ7erPkPKZQfrpjwTXrJJ9YwMaymYKwCyFtZ42LispeDGgR6vzZTiKxPUdGhD resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 152: ConfidentialTransferV2
+    [2mTransaction 3ppgNAJ7oU8xe6chcFqqjUPdQef4TdRhkkNTxuX7Hix2GX8ofq3s8cqHwmiM1dRepw38MkNgUzYLNinMNf4Rutnm resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 154: RoyaltyClaimReal
+    [2mTransaction 3ZgEVHghLZre74qRbTjzqSAc9kiJa7sbsX8rTizyEx57NUprKUJgpGYLWJf4eFUxjFjXGQEs8K4MvnWaNtwX2km4 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 158: ConditionalTransfer
+    [2mTransaction 4sfDAuZ6GZVbLnavffW6dkEu5VGcLFXUAvBk1Ju9dyjL83w9yaHhrofEZ8bEK3xuRzuaMF3rHaPWAkUh6kuBXhFk resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 160: TimeLockedReveal
+    [2mTransaction 5ciQ8dWbuhDTVSRGAxGFrfe3xNgXqFgnQxhXdaKBFEZSfzJoDThht66xzctbLdz2kCTepZzneqH51V8w7rDwhb4m resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 163: JupiterRoute
+    [2mTransaction TCeuCum3gnwa9QPwb3okhkABaBzCdTu42KKbvQJBPHGTnfdbYdoXdUVX4TLRJesRzL2uRjNiWxoVLCPrwEKzs99 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 168: OracleBound
+    [2mTransaction 3bYsiAcKXrboX1k81zCcTzuC44N5e6idcTBLqW5yu6amZVSU6bcfXrXGxUCnAYxzVqoBJAAns6mPx7m6V8jYEyYp resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"ProgramFailedToComplete"]}}). 
+Catch[0m
+  TAG 170: GovernanceLock
+    [2mTransaction 4qydU81KMiSxpLxUXEPQf6paR867AwbL6Tby3rSwh98KrMxEsfrXuc2fCv2ujKu4hS9n71xPXfyvWRrLQMekaK5R resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 171: ReputationGate
+    [2mTransaction 4EHJsfMuVNSwe1TVu5w218RXLirsNqrgFHTE6XMHFmjzZdrxpTyWw9DaYbiynfPkANKFcYxZsc1A3tJUjRRpEB41 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 172: GeoRestriction
+    [2mTransaction 3xTo3UfuKk65wHa5rXaSzNQgLq9qhMgpPpmXWfJDY4oWSZYCpRd8TahCgdX5WmaMXXYM52hGESyD3pT5V5rBstNJ resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 176: AmmPoolCreate
+    [2mTransaction 52aAYy5pAAhpRKeXBgXYwGvrBho624umj6KinyYdNsDrBVkaWRioBo41QZBLjqDBxxw61MM8SiVbg6yj4vq51GgT resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 178: AmmRemoveLiquidity
+    [2mTransaction 3gJFKwZVUY2EKgtBFSXSEpJL6v5crQmxQTqKj9g1auwyPJp64rKZDCGFtApr8nCNYtGCg1CgzuqGcEXQpWJuqGpj resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 187: LimitOrderFill
+    [2mTransaction 484naWXsECiAxiGRVyM5qgEgKXnj4YNJHqHkggTneT8idS8VeBuCnxSCYuXUkwfyW9LniLKNdj7Vd8znhVz7XwWn resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 192: NullifierCreate
+    [2mTransaction 5H2CUDEzmk7ZXvWLLZpdPqeo8VRQ5Eo6XGRi9GMGKSPC5ECB6Dsjm478HH6MnwCnsGdRc6uCovn1gRPfnXZsfQHM resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 193: NullifierCheck
+    [2mTransaction HaiERCaJiFzRjijYr4wD3e4VJvgxearMqqWekGHrjH8GpJnoFQLcBBkxgsUrM7aauXWmLNfBGzS8wVY91CocgiG resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidSeeds"]}}). 
+Catch the `SendTr[0m
+  TAG 194: MerkleRootPublish
+    [2mTransaction 4gBsaFEDvvT3E6KnrJebCWhEHm2eQrmvA5GWF2ikqzNKnAEt7Ffo4Sxvss8k4DodJicEMtzjnrvcpchz1Ec7hCSH resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"NotEnoughAccountKeys"]}}). 
+Catch th[0m
+  TAG 195: MerkleProofVerify
+    [2mTransaction 4EXqms7nZSLwSVLY25bXmiVJwQVMBsbN28hGqT1iaZCa559MAjQEMvKPejFVKtM5NiYzpQ7GBtYFvc8xJ1vXy98S resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 196: BalanceAttest
+    [2mTransaction 2d22Y5S7w1rciFZBzf825qPX2cRj5yHTTG71j1bkFiJPSZkY65BeCdE3TRrzi7vM2nwvVVHSDDEE6BzuRK5wBPEE resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"NotEnoughAccountKeys"]}}). 
+Catch th[0m
+  TAG 197: BalanceVerify
+    [2mTransaction uP9xzYuTYYrt6TUFD3USHkET5NTddbcx2P7EjTW1TUT2VHk2bsqHt4CwnCea5GyziXXrJS6sEgrxxZq9yjphPRN resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 198: FreezeEnforced
+    [2mTransaction pBwGtyhydsJgSURAf86BJ7tpMWDUhCmvijbotvgzwXYxZm5DxTAzjYcRP91g9asmYxRLr5d41SVHruNwQehkT2H resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 199: ThawGoverned
+    [2mTransaction 5gPxBnfHdAQPZHf9wCCswC7LH87VjhGAWN72x5bLuBH6ujRtXpUTyaEms34foU6aa4CRk2doqgpVMdkiyLVC6sdb resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 200: WrapperMint
+    [2mTransaction 5V16msdpgiiCaXnW4nuZPW1h3jC8kkAvhF1GQSKEGvSXXfLCjqcTvr5KXqHoe3336nEKj1KGSCBuh1bNp7zRjvbt resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 201: WrapperBurn
+    [2mTransaction 6PvYvW8H3wJjZUZeVhz6uRJpZwLzBYBMCtQWn3UuYyQ7ZuQuUZH9sjNJD57Hi8rBkv7GNuGvbEQUBPo4vdfxmMR resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 208: NullifierInscribe
+    [2mTransaction 48f46yRTm6C4d6ERkjmnzohWNbKbKrHC4wSVBvafs1oM5SYgEhHhRRS4XCB9TvoiwdLmsWNcxvfQz2AYi7ncJ3N5 resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 210: MerkleAirdropClaim
+    [2mTransaction 2UhB5zNLwPEbx78rBpwaXbJmbvASPS6RzvsUj3Bor6JTJA9QQTYDv2X9opb7QAaxuYburotdnEM4hKxeLT34ocVj resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 211: SecurityIssue
+    [2mTransaction 5FUhHVeocoqQDF3D2MD4Tfu3Z1eUUdDzDwXA7LUqcaEeVM2d1HVaQeDfoBRvi7HZaMV41Drpi9c28MYn154uUn2Y resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 212: SecurityTransfer
+    [2mTransaction 4RYxaYoiemek9rcLCdaK3zqCuNhZqDsxN9PQWBmj8TkuNU2M1Jvug27tq4QCZTYQNnJRaT12wzHeNDrgHKYn7KXE resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 213: TransferAgentRegister
+    [2mTransaction jJEr2TctR42KbwvUHyVraio72mVAZayg97ojNMZwCYBz7WQLncyW5QDBtMxqGPoWBS5cwNGnisiGFrZJq9ZE4EZ resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 214: TransferAgentApprove
+    [2mTransaction 5TZE1MSsXGZBtqTqtQKo3NVuKdyLmRrpDGxMSCiGUVRVh8NJCk4j3cowBwqu4F5nHrLUZe712DTEhqop77SjLhfD resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 215: AccreditationProof
+    [2mTransaction hDqiag2apA17oVw1wGM5xeTXAJCghcaA7scNn8rq9135pQerSaYdSDqQeFrXokeBHNz1DJvedMWxs94QjtozBzF resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 216: ShareClassCreate
+    [2mTransaction 2c987v8AqD6hawoDWYEagqVVsTAtxYE9Zs8rb65UmxASVT8seaQeE9BLZ6zyYWV6oELEgVE8y3gbrzkx2a4CnsK resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch t[0m
+  TAG 217: CorporateAction
+    [2mTransaction 4mMuLrGB9kc1yjiPE1bszBUbyTWYP1BQeRkWE85M5Fr9AHRLEmsDzSKRkmEPrQgPSSsPsK5qTNPekoc3CyxmkMNc resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 218: RegDLockup
+    [2mTransaction 2SDqBc25Fus8nnev21GS5kDedCgfCfGwruGhJcpUhcWMQ66ykZTpTwL7741SdRTT9bxEu4QGHYCtbnchSGVTatUq resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m
+  TAG 219: InstitutionalReport
+    [2mTransaction 3JnGiJ5je4skpAR25zFzKMcuqJ1MT6gaAEFDZY4sd7CDd95h4e9Zk6aYu8Tv8hxvTnd7Pg33rBv7FjXVqhhfqFYb resulted in an error. 
+Status: ({"err":{"InstructionError":[0,"InvalidInstructionData"]}}). 
+Catch [0m

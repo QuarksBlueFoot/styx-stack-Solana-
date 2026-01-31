@@ -1,0 +1,18 @@
+[package]
+name = "whisperdrop_escrow_lite"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+solana-program = "1.18.26"
+borsh = "1.5.1"
+borsh-derive = "1.5.1"
+spl-token = { version = "4.0.0", features = ["no-entrypoint"] }
+spl-associated-token-account = { version = "2.3.0", features = ["no-entrypoint"] }
+
+[features]
+no-entrypoint = []

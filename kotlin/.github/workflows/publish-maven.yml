@@ -1,0 +1,253 @@
+name: Publish to Maven Central (Central Portal)
+
+on:
+  push:
+    tags:
+      - 'kotlin-v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 1.1.0)'
+        required: true
+        default: '1.1.0'
+      publishingType:
+        description: 'AUTOMATIC (auto-release) or USER_MANAGED (manual release)'
+        required: true
+        default: 'USER_MANAGED'
+        type: choice
+        options:
+          - USER_MANAGED
+          - AUTOMATIC
+
+env:
+  JAVA_VERSION: '17'
+  JAVA_DISTRIBUTION: 'temurin'
+
+jobs:
+  publish:
+    name: Build, Sign & Upload to Central Portal
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.VERSION }}
+      deployment_id: ${{ steps.upload.outputs.DEPLOYMENT_ID }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+        working-directory: kotlin
+
+      - name: Decode GPG Key
+        run: |
+          echo "${{ secrets.GPG_SIGNING_KEY }}" | base64 -d > secring.gpg
+        working-directory: kotlin
+
+      - name: Extract version from tag or input
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            VERSION=${GITHUB_REF#refs/tags/kotlin-v}
+            echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          fi
+
+      # ── Stage all modules to local directories ─────────────────────────
+
+      - name: Stage styx-android
+        working-directory: kotlin
+        env:
+          SIGNING_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          SIGNING_PASSWORD: ${{ secrets.GPG_PASSPHRASE }}
+          SIGNING_SECRET_KEY_RING_FILE: ${{ github.workspace }}/kotlin/secring.gpg
+        run: |
+          ./gradlew :styx-android:publishReleasePublicationToLocalStagingRepository \
+            -Pversion=${{ steps.version.outputs.VERSION }} \
+            -PlocalStagingDir=${{ github.workspace }}/staging/styx-android \
+            -Psigning.keyId=$SIGNING_KEY_ID \
+            -Psigning.password=$SIGNING_PASSWORD \
+            -Psigning.secretKeyRingFile=$SIGNING_SECRET_KEY_RING_FILE
+
+      - name: Stage styx-app-kit
+        working-directory: kotlin
+        env:
+          SIGNING_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          SIGNING_PASSWORD: ${{ secrets.GPG_PASSPHRASE }}
+          SIGNING_SECRET_KEY_RING_FILE: ${{ github.workspace }}/kotlin/secring.gpg
+        run: |
+          ./gradlew :styx-app-kit:publishReleasePublicationToLocalStagingRepository \
+            -Pversion=${{ steps.version.outputs.VERSION }} \
+            -PlocalStagingDir=${{ github.workspace }}/staging/styx-app-kit \
+            -Psigning.keyId=$SIGNING_KEY_ID \
+            -Psigning.password=$SIGNING_PASSWORD \
+            -Psigning.secretKeyRingFile=$SIGNING_SECRET_KEY_RING_FILE
+
+      - name: Stage styx-envelope
+        working-directory: kotlin
+        env:
+          SIGNING_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          SIGNING_PASSWORD: ${{ secrets.GPG_PASSPHRASE }}
+          SIGNING_SECRET_KEY_RING_FILE: ${{ github.workspace }}/kotlin/secring.gpg
+        run: |
+          ./gradlew :styx-envelope:publishAllPublicationsToLocalStagingRepository \
+            -Pversion=${{ steps.version.outputs.VERSION }} \
+            -PlocalStagingDir=${{ github.workspace }}/staging/styx-envelope \
+            -Psigning.keyId=$SIGNING_KEY_ID \
+            -Psigning.password=$SIGNING_PASSWORD \
+            -Psigning.secretKeyRingFile=$SIGNING_SECRET_KEY_RING_FILE
+
+      - name: Stage styx-android-kit KMP modules
+        working-directory: kotlin/styx-android-kit
+        env:
+          SIGNING_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          SIGNING_PASSWORD: ${{ secrets.GPG_PASSPHRASE }}
+          SIGNING_SECRET_KEY_RING_FILE: ${{ github.workspace }}/kotlin/secring.gpg
+        run: |
+          chmod +x ./gradlew
+          ./gradlew publishAllPublicationsToLocalStagingRepository \
+            -Pversion=${{ steps.version.outputs.VERSION }} \
+            -PlocalStagingDir=${{ github.workspace }}/staging/styx-android-kit \
+            -Psigning.keyId=$SIGNING_KEY_ID \
+            -Psigning.password=$SIGNING_PASSWORD \
+            -Psigning.secretKeyRingFile=$SIGNING_SECRET_KEY_RING_FILE
+
+      # ── Bundle & Upload to Central Portal ──────────────────────────────
+
+      - name: Create deployment bundle
+        run: |
+          echo "📦 Merging all staged artifacts..."
+          mkdir -p ${{ github.workspace }}/bundle-root
+          # Copy all staged artifacts into one tree (they're all under nexus/styx/*)
+          for dir in staging/styx-android staging/styx-app-kit staging/styx-envelope staging/styx-android-kit; do
+            if [ -d "${{ github.workspace }}/$dir" ]; then
+              cp -r "${{ github.workspace }}/$dir"/* "${{ github.workspace }}/bundle-root/" 2>/dev/null || true
+            fi
+          done
+          echo "📋 Bundle contents:"
+          find ${{ github.workspace }}/bundle-root -type f | head -50
+          echo "📦 Creating bundle ZIP..."
+          cd ${{ github.workspace }}/bundle-root
+          jar -cvf ${{ github.workspace }}/bundle.zip .
+
+      - name: Upload bundle to Central Portal
+        id: upload
+        env:
+          CENTRAL_PORTAL_TOKEN: ${{ secrets.CENTRAL_PORTAL_TOKEN }}
+          PUBLISHING_TYPE: ${{ github.event.inputs.publishingType || 'USER_MANAGED' }}
+        run: |
+          echo "🚀 Uploading to Sonatype Central Portal..."
+          RESPONSE=$(curl -s -w "\n%{http_code}" \
+            -X POST "https://central.sonatype.com/api/v1/publisher/upload?publishingType=${PUBLISHING_TYPE}&name=nexus.styx-${{ steps.version.outputs.VERSION }}" \
+            -H "Authorization: Bearer ${CENTRAL_PORTAL_TOKEN}" \
+            -F "bundle=@${{ github.workspace }}/bundle.zip")
+          
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+          
+          echo "HTTP Status: $HTTP_CODE"
+          echo "Response: $BODY"
+          
+          if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
+            echo "✅ Upload successful!"
+            echo "DEPLOYMENT_ID=$BODY" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Upload failed with HTTP $HTTP_CODE"
+            echo "$BODY"
+            exit 1
+          fi
+
+      - name: Check deployment status
+        env:
+          CENTRAL_PORTAL_TOKEN: ${{ secrets.CENTRAL_PORTAL_TOKEN }}
+          DEPLOYMENT_ID: ${{ steps.upload.outputs.DEPLOYMENT_ID }}
+        run: |
+          echo "⏳ Checking deployment status..."
+          for i in $(seq 1 12); do
+            RESPONSE=$(curl -s \
+              -X POST "https://central.sonatype.com/api/v1/publisher/status?id=${DEPLOYMENT_ID}" \
+              -H "Authorization: Bearer ${CENTRAL_PORTAL_TOKEN}")
+            
+            STATE=$(echo "$RESPONSE" | jq -r '.deploymentState // empty' 2>/dev/null || echo "$RESPONSE")
+            echo "  Attempt $i/12: $STATE"
+            
+            case "$STATE" in
+              VALIDATED|PUBLISHED)
+                echo "✅ Deployment $STATE!"
+                break
+                ;;
+              FAILED)
+                echo "❌ Deployment FAILED"
+                echo "$RESPONSE" | jq '.' 2>/dev/null || echo "$RESPONSE"
+                exit 1
+                ;;
+              *)
+                sleep 30
+                ;;
+            esac
+          done
+
+      - name: Cleanup GPG key
+        if: always()
+        run: rm -f kotlin/secring.gpg
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Kotlin ${{ steps.version.outputs.VERSION }}
+          body: |
+            ## Kotlin Modules v${{ steps.version.outputs.VERSION }}
+            
+            ### Maven Central (via Central Portal)
+            ```gradle
+            implementation("nexus.styx:styx-android:${{ steps.version.outputs.VERSION }}")
+            implementation("nexus.styx:styx-app-kit:${{ steps.version.outputs.VERSION }}")
+            implementation("nexus.styx:styx-envelope:${{ steps.version.outputs.VERSION }}")
+            // KMP modules (styx-android-kit)
+            implementation("nexus.styx:styx-core:${{ steps.version.outputs.VERSION }}")
+            implementation("nexus.styx:styx-sps:${{ steps.version.outputs.VERSION }}")
+            implementation("nexus.styx:styx-crypto:${{ steps.version.outputs.VERSION }}")
+            implementation("nexus.styx:styx-client:${{ steps.version.outputs.VERSION }}")
+            ```
+            
+            ### Changes
+            See [CHANGELOG.md](CHANGELOG.md) for details.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  verify:
+    name: Verify Publication
+    needs: publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Wait for Maven Central sync
+        run: sleep 300  # Wait 5 minutes for sync
+
+      - name: Verify styx-android on Maven Central
+        run: |
+          VERSION=${{ needs.publish.outputs.version }}
+          curl -f "https://repo1.maven.org/maven2/nexus/styx/styx-android/$VERSION/styx-android-$VERSION.pom" || echo "Note: May take up to 2 hours to sync to Maven Central"

@@ -1,0 +1,7 @@
+packages:
+  - 'packages/*'
+  - 'cli/*'
+  - 'apps/*'
+  - 'services/*'
+  - 'services/*/client'
+  - '.infrastructure/web'

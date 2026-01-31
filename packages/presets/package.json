@@ -1,0 +1,23 @@
+{
+  "name": "@styx/presets",
+  "version": "0.2.4",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {
+    "@styx/mobile-toolkit": "workspace:*",
+    "@styx/onchain-messaging": "workspace:*",
+    "@styx/tx-tooling": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "jest": "^29.7.0",
+    "typescript": "^5.3.3"
+  }
+}

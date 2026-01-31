@@ -1,0 +1,21 @@
+[package]
+name = "styx-private-memo-program"
+version = "0.1.0"
+edition = "2021"
+description = "Styx Private Memo Program (PMP): minimal on-chain relay for encrypted envelope bytes"
+license = "Apache-2.0"
+resolver = "2"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+# Use 2.0.3 which has compatible dependencies
+solana-program = "=2.0.3"
+
+# Cryptography for on-chain encryption (compatible versions)
+chacha20poly1305 = "0.9"
+sha2 = "0.10"
+
+[features]
+default = []

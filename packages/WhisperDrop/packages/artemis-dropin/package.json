@@ -1,0 +1,17 @@
+{
+  "name": "@styx/artemis-dropin",
+  "version": "0.0.45",
+  "description": "Clean-room compatibility layer/spec for integrating Styx Stack with Artemis Kotlin Solana SDK + Solana Mobile patterns.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@styx/mobile-outbox": "workspace:*",
+    "@styx/solana-mobile-dropin": "workspace:*",
+    "@styx/onchain-messaging": "workspace:*",
+    "@styx/inbox-store": "workspace:*"
+  }
+}

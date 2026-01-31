@@ -1,0 +1,26 @@
+{
+  "name": "@styx/onchain-messaging",
+  "version": "0.2.4",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.95.0",
+    "@styx/crypto-core": "workspace:*",
+    "@styx/memo": "workspace:*",
+    "@styx/key-registry": "workspace:*",
+    "@styx/secure-storage": "workspace:*",
+    "@styx/private-memo-program-client": "workspace:*",
+    "@styx/inbox-store": "workspace:*",
+    "tweetnacl": "^1.0.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "jest": "^29.7.0",
+    "@types/node": "^20.0.0"
+  }
+}

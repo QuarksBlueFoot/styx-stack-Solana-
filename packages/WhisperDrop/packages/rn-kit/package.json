@@ -1,0 +1,27 @@
+{
+  "name": "@styx/rn-kit",
+  "version": "0.2.3",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.95.0",
+    "@styx/crypto-core": "workspace:*",
+    "@styx/secure-storage": "workspace:*",
+    "@styx/memo": "workspace:*",
+    "@styx/key-registry": "workspace:*",
+    "@styx/wallet-adapters": "workspace:*",
+    "@styx/onchain-messaging": "workspace:*",
+    "@styx/solana-mobile-dropin": "workspace:*",
+    "tweetnacl": "^1.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.3",
+    "jest": "^29.7.0"
+  }
+}

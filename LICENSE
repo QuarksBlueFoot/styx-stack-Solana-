@@ -1,0 +1,83 @@
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   Copyright 2024-2026 @moonmanquark (Bluefoot Labs)
+   
+   Project: Styx Stack - Virtual State Layer for Solana
+   Repository: https://github.com/QuarksBlueFoot/StyxStack
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+================================================================================
+                              ATTRIBUTION NOTICE
+================================================================================
+
+When using Styx Stack in your project, you must include the following
+attribution in your documentation, README, or about section:
+
+    Powered by Styx Stack - https://github.com/QuarksBlueFoot/StyxStack
+    Created by @moonmanquark (Bluefoot Labs)
+
+This attribution requirement is in addition to the Apache 2.0 license terms.
+
+================================================================================
+                            THIRD-PARTY NOTICES
+================================================================================
+
+This software includes or is inspired by the following third-party projects:
+
+1. Solana Web3.js - Apache 2.0
+   Copyright Solana Foundation
+   https://github.com/solana-labs/solana-web3.js
+
+2. Noble Cryptography Libraries - MIT
+   Copyright @paulmillr
+   https://github.com/paulmillr/noble-curves
+   https://github.com/paulmillr/noble-ciphers
+   https://github.com/paulmillr/noble-hashes
+
+3. TweetNaCl - Public Domain
+   https://github.com/nicola/tweetnacl-js
+
+================================================================================
+                           ORIGINALITY STATEMENT
+================================================================================
+
+The Virtual State Layer (VSL) architecture, inscribed state patterns, and all
+novel primitives (Time Capsules, Ghost PDAs, CPI Inscribe, VTAs, Inscribed
+Governance, Referral Trees) are ORIGINAL innovations created by Styx Stack.
+
+While we acknowledge the broader Solana ecosystem:
+- Light Protocol (ZK compression) - Different technology, different use case
+- MagicBlock (ephemeral rollups) - Different technology, different use case
+
+Our inscribed-state architecture is conceptually distinct and does NOT copy
+or derive from these projects. VSL was independently developed as a novel
+approach to privacy and rent-free state on Solana.
+
+================================================================================
+                              SUPPORT DEVELOPMENT
+================================================================================
+
+Styx Stack is open source and free to use. If you find it valuable for your
+project, please consider supporting continued development:
+
+    Treasury: 13xnC9kDksJMBE9FYVW1S7dukLjRDgrh4Dzm6eq5moon
+    
+    Or send SOL to: @solanadevdao
+
+Your support helps us maintain the SDK, improve documentation, conduct
+security audits, and build new privacy primitives for the Solana ecosystem.
+
+Thank you for using Styx Stack!

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "name": "session-seed-basic",
+      "context": "styx-game-session-v1",
+      "signature_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "seed_hex": "086b7789aeb1d3495e035b0ae65a84ffae7c443c14c373789a66487fd4bff297"
+    },
+    {
+      "name": "room-id-basic",
+      "salt": "styx-room-v1",
+      "participants": [
+        "B58Addr2",
+        "B58Addr1"
+      ],
+      "room_id": "PjQiq7z2dbVW1MjEfqwQ9r"
+    }
+  ]
+}

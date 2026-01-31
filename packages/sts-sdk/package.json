@@ -1,0 +1,94 @@
+{
+  "name": "@styxstack/sts-sdk",
+  "version": "2.3.0",
+  "description": "TypeScript SDK for the Styx Token Standard (STS) on Solana - Privacy-preserving event-sourced tokens with provable superiority over Token-22",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "solana",
+    "privacy",
+    "messaging",
+    "encryption",
+    "styx",
+    "web3",
+    "blockchain",
+    "crypto",
+    "virtual-state-layer",
+    "vsl",
+    "governance",
+    "dao",
+    "voting",
+    "referrals",
+    "time-capsule",
+    "ghost-pda",
+    "zero-knowledge",
+    "mobile",
+    "react-native",
+    "token-2022",
+    "nft-marketplace",
+    "ppv",
+    "atomic-privacy-bridge",
+    "defi-adapter",
+    "yield"
+  ],
+  "author": "@moonmanquark <Bluefoot Labs>",
+  "license": "Apache-2.0",
+  "funding": {
+    "type": "custom",
+    "url": "https://github.com/QuarksBlueFoot/StyxStack-Solana/blob/main/FUNDING.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QuarksBlueFoot/StyxStack-Solana.git",
+    "directory": "packages/sts-sdk"
+  },
+  "homepage": "https://github.com/QuarksBlueFoot/StyxStack-Solana/tree/main/packages/sts-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/QuarksBlueFoot/StyxStack-Solana/issues"
+  },
+  "peerDependencies": {
+    "@solana/web3.js": "^1.87.0 || ^2.0.0",
+    "react-native": ">=0.70.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@noble/ciphers": "^1.0.0",
+    "@noble/curves": "^1.6.0",
+    "@noble/hashes": "^1.5.0"
+  },
+  "devDependencies": {
+    "@solana/web3.js": "^1.98.0",
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

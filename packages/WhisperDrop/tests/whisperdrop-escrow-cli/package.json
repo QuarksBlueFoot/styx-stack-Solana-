@@ -1,0 +1,16 @@
+{
+  "name": "whisperdrop-escrow-cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "wd:init": "node src/cli.js init",
+    "wd:deposit": "node src/cli.js deposit",
+    "wd:claim": "node src/cli.js claim"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "0.30.1",
+    "@solana/web3.js": "1.98.0",
+    "yargs": "17.7.2"
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "name": "@styxstack/app-kit",
+  "version": "1.0.0",
+  "description": "Styx Stack App Kit - Build Privacy-First Solana Mobile Apps",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./core": {
+      "import": "./dist/core/index.mjs",
+      "require": "./dist/core/index.js",
+      "types": "./dist/core/index.d.ts"
+    },
+    "./messaging": {
+      "import": "./dist/modules/messaging/index.mjs",
+      "require": "./dist/modules/messaging/index.js",
+      "types": "./dist/modules/messaging/index.d.ts"
+    },
+    "./payments": {
+      "import": "./dist/modules/payments/index.mjs",
+      "require": "./dist/modules/payments/index.js",
+      "types": "./dist/modules/payments/index.d.ts"
+    },
+    "./governance": {
+      "import": "./dist/modules/governance/index.mjs",
+      "require": "./dist/modules/governance/index.js",
+      "types": "./dist/modules/governance/index.d.ts"
+    },
+    "./swaps": {
+      "import": "./dist/modules/swaps/index.mjs",
+      "require": "./dist/modules/swaps/index.js",
+      "types": "./dist/modules/swaps/index.d.ts"
+    },
+    "./nft": {
+      "import": "./dist/modules/nft/index.mjs",
+      "require": "./dist/modules/nft/index.js",
+      "types": "./dist/modules/nft/index.d.ts"
+    },
+    "./social": {
+      "import": "./dist/modules/social/index.mjs",
+      "require": "./dist/modules/social/index.js",
+      "types": "./dist/modules/social/index.d.ts"
+    },
+    "./airdrop": {
+      "import": "./dist/modules/airdrop/index.mjs",
+      "require": "./dist/modules/airdrop/index.js",
+      "types": "./dist/modules/airdrop/index.d.ts"
+    },
+    "./hooks": {
+      "import": "./dist/hooks/index.mjs",
+      "require": "./dist/hooks/index.js",
+      "types": "./dist/hooks/index.d.ts"
+    },
+    "./providers": {
+      "import": "./dist/providers/index.mjs",
+      "require": "./dist/providers/index.js",
+      "types": "./dist/providers/index.d.ts"
+    },
+    "./components": {
+      "import": "./dist/components/index.mjs",
+      "require": "./dist/components/index.js",
+      "types": "./dist/components/index.d.ts"
+    },
+    "./compression": {
+      "import": "./dist/modules/compression/index.mjs",
+      "require": "./dist/modules/compression/index.js",
+      "types": "./dist/modules/compression/index.d.ts"
+    },
+    "./resolver": {
+      "import": "./dist/modules/resolver/index.mjs",
+      "require": "./dist/modules/resolver/index.js",
+      "types": "./dist/modules/resolver/index.d.ts"
+    },
+    "./sdk": {
+      "import": "./dist/modules/sdk/index.mjs",
+      "require": "./dist/modules/sdk/index.js",
+      "types": "./dist/modules/sdk/index.d.ts"
+    },
+    "./native": {
+      "import": "./dist/native/index.mjs",
+      "require": "./dist/native/index.js",
+      "types": "./dist/native/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint src/",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm build"
+  },
+  "peerDependencies": {
+    "@solana/web3.js": "^1.74.0 || ^2.0.0",
+    "react": "^18.0.0",
+    "react-native": ">=0.70.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@noble/ciphers": "^0.6.0",
+    "@noble/curves": "^1.4.0",
+    "@noble/hashes": "^1.4.0",
+    "@solana/spl-token": "^0.4.0",
+    "bs58": "^5.0.0",
+    "buffer": "^6.0.3",
+    "tweetnacl": "^1.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "eslint": "^8.57.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.0.0"
+  },
+  "keywords": [
+    "solana",
+    "mobile",
+    "privacy",
+    "styx",
+    "crypto",
+    "web3",
+    "react-native",
+    "seeker",
+    "wallet",
+    "encrypted",
+    "messaging",
+    "payments",
+    "governance",
+    "swaps",
+    "nft",
+    "airdrop"
+  ],
+  "author": "Bluefoot Labs <dev@styx.chat>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QuarksBlueFoot/StyxStack"
+  },
+  "license": "Apache-2.0"
+}

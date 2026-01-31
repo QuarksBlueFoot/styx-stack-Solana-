@@ -1,0 +1,16 @@
+[package]
+name = "styx_relay_program"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+borsh = "1.5.1"
+solana-program = "^1.18"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

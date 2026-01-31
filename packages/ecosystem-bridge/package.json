@@ -1,0 +1,50 @@
+{
+  "name": "@styxstack/ecosystem-bridge",
+  "version": "1.0.0",
+  "description": "Ecosystem Bridge: Jupiter, Magic Eden, Tensor, and Raydium integration for STS tokens and ANONFTs",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./wrapper": "./dist/wrapper.js",
+    "./anonft": "./dist/anonft.js",
+    "./dex": "./dist/dex.js",
+    "./mobile": "./dist/mobile.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "solana",
+    "token-22",
+    "jupiter",
+    "magic-eden",
+    "tensor",
+    "raydium",
+    "nft",
+    "privacy",
+    "styx",
+    "cnft",
+    "bubblegum"
+  ],
+  "author": "@moonmanquark",
+  "license": "BSL-1.1",
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.29.0",
+    "@metaplex-foundation/mpl-bubblegum": "^4.0.0",
+    "@metaplex-foundation/umi": "^0.9.0",
+    "@noble/curves": "^1.4.0",
+    "@noble/hashes": "^1.4.0",
+    "@solana/spl-token": "^0.4.0",
+    "@solana/web3.js": "^1.91.0",
+    "@solana-mobile/mobile-wallet-adapter-protocol": "^2.0.0",
+    "@solana-mobile/wallet-adapter-mobile": "^2.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vitest": "^2.0.0"
+  }
+}

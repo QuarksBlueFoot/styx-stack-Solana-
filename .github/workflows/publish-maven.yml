@@ -1,0 +1,159 @@
+name: Publish Styx SDK to Maven Central
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 1.0.0)'
+        required: true
+        default: '1.0.0'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+        
+    - name: Grant execute permission for scripts
+      run: chmod +x gradlew
+      working-directory: kotlin
+    
+    - name: Import GPG Key
+      uses: crazy-max/ghaction-import-gpg@v6
+      with:
+        gpg_private_key: ${{ secrets.GPG_SIGNING_KEY }}
+        passphrase: ${{ secrets.GPG_PASSPHRASE }}
+        
+    - name: Create secring.gpg for Gradle
+      run: |
+        gpg --list-secret-keys --keyid-format LONG
+        gpg --batch --yes --pinentry-mode loopback --passphrase "${{ secrets.GPG_PASSPHRASE }}" \
+            --export-secret-keys > $HOME/.gnupg/secring.gpg
+        echo "GPG key imported successfully"
+
+    - name: Set version
+      id: version
+      run: |
+        VERSION="${{ github.event.inputs.version || '1.0.0' }}"
+        echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+        echo "Publishing version: $VERSION"
+
+    - name: Build all modules
+      working-directory: kotlin
+      run: ./gradlew build
+
+    - name: Create staging directory
+      run: mkdir -p kotlin/build/central-staging
+
+    - name: Publish styx-android to local staging
+      working-directory: kotlin
+      run: |
+        ./gradlew :styx-android:publishReleasePublicationToLocalStagingRepository \
+          -Pversion=${{ steps.version.outputs.VERSION }} \
+          -Psigning.keyId=${{ secrets.GPG_KEY_ID }} \
+          -Psigning.password=${{ secrets.GPG_PASSPHRASE }} \
+          -Psigning.secretKeyRingFile=$HOME/.gnupg/secring.gpg \
+          -PlocalStagingDir=$(pwd)/build/central-staging
+
+    - name: Publish styx-app-kit to local staging
+      working-directory: kotlin
+      run: |
+        ./gradlew :styx-app-kit:publishReleasePublicationToLocalStagingRepository \
+          -Pversion=${{ steps.version.outputs.VERSION }} \
+          -Psigning.keyId=${{ secrets.GPG_KEY_ID }} \
+          -Psigning.password=${{ secrets.GPG_PASSPHRASE }} \
+          -Psigning.secretKeyRingFile=$HOME/.gnupg/secring.gpg \
+          -PlocalStagingDir=$(pwd)/build/central-staging
+
+    - name: Publish styx-envelope to local staging
+      working-directory: kotlin
+      run: |
+        ./gradlew :styx-envelope:publishMavenPublicationToLocalStagingRepository \
+          -Pversion=${{ steps.version.outputs.VERSION }} \
+          -Psigning.keyId=${{ secrets.GPG_KEY_ID }} \
+          -Psigning.password=${{ secrets.GPG_PASSPHRASE }} \
+          -Psigning.secretKeyRingFile=$HOME/.gnupg/secring.gpg \
+          -PlocalStagingDir=$(pwd)/build/central-staging
+
+    - name: List staging contents
+      working-directory: kotlin
+      run: |
+        echo "=== Staging directory contents ==="
+        find build/central-staging -type f | head -50
+
+    - name: Create bundle ZIP
+      working-directory: kotlin/build/central-staging
+      run: |
+        zip -r ../styx-bundle-${{ steps.version.outputs.VERSION }}.zip .
+        echo "Bundle created: styx-bundle-${{ steps.version.outputs.VERSION }}.zip"
+        ls -la ../styx-bundle-*.zip
+
+    - name: Upload to Central Portal
+      working-directory: kotlin/build
+      env:
+        CENTRAL_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+        CENTRAL_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+      run: |
+        BUNDLE_FILE="styx-bundle-${{ steps.version.outputs.VERSION }}.zip"
+        
+        echo "Uploading $BUNDLE_FILE to Central Portal..."
+        
+        # Create auth token from username:password
+        AUTH_TOKEN=$(echo -n "${CENTRAL_USERNAME}:${CENTRAL_PASSWORD}" | base64)
+        
+        RESPONSE=$(curl -s -w "\n%{http_code}" \
+          -X POST "https://central.sonatype.com/api/v1/publisher/upload?name=styx-${{ steps.version.outputs.VERSION }}&publishingType=AUTOMATIC" \
+          -H "Authorization: UserToken $AUTH_TOKEN" \
+          -F "bundle=@$BUNDLE_FILE")
+        
+        HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+        BODY=$(echo "$RESPONSE" | sed '$d')
+        
+        echo "HTTP Status: $HTTP_CODE"
+        echo "Response: $BODY"
+        
+        if [ "$HTTP_CODE" -eq 201 ] || [ "$HTTP_CODE" -eq 200 ]; then
+          echo "✅ Bundle uploaded successfully!"
+          echo "DEPLOYMENT_ID=$BODY" >> $GITHUB_OUTPUT
+        else
+          echo "❌ Upload failed"
+          exit 1
+        fi
+
+    - name: Upload bundle as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: styx-bundle-${{ steps.version.outputs.VERSION }}
+        path: kotlin/build/styx-bundle-*.zip
+
+    - name: Cleanup GPG key
+      if: always()
+      run: rm -f $HOME/.gnupg/secring.gpg
+
+    - name: Summary
+      run: |
+        echo "## Styx SDK v${{ steps.version.outputs.VERSION }} Published! 🎉" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Maven Central" >> $GITHUB_STEP_SUMMARY
+        echo '```gradle' >> $GITHUB_STEP_SUMMARY
+        echo 'implementation("nexus.styx:styx-android:${{ steps.version.outputs.VERSION }}")' >> $GITHUB_STEP_SUMMARY
+        echo 'implementation("nexus.styx:styx-app-kit:${{ steps.version.outputs.VERSION }}")' >> $GITHUB_STEP_SUMMARY
+        echo 'implementation("nexus.styx:styx-envelope:${{ steps.version.outputs.VERSION }}")' >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Check deployment status at: https://central.sonatype.com" >> $GITHUB_STEP_SUMMARY

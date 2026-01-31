@@ -1,0 +1,25 @@
+{
+  "name": "@styx/cli",
+  "version": "0.2.6",
+  "bin": {
+    "styx": "dist/index.js"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "@styx/tx-tooling": "workspace:*",
+    "@styx/memo": "workspace:*",
+    "@styx/onchain-messaging": "workspace:*",
+    "@styx/crypto-core": "workspace:*",
+    "@styx/whisperdrop-kit": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.0.0",
+    "jest": "^29.7.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "jest --passWithNoTests"
+  }
+}

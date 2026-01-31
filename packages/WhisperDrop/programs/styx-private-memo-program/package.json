@@ -1,0 +1,20 @@
+{
+  "name": "styx-pmp-test-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Test client for Styx Private Memo Program (deployed on devnet)",
+  "scripts": {
+    "test": "echo 'Usage: DEVNET_WALLET_SEED=<base58_seed> NODE_PATH=../../node_modules/.pnpm/node_modules node test-client.cjs' && exit 1",
+    "test:help": "cat README.md"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.95.0",
+    "@styx/private-memo-program-client": "workspace:*",
+    "bs58": "^5.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}

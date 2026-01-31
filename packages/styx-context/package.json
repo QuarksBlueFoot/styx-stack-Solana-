@@ -1,0 +1,21 @@
+{
+  "name": "@styx/styx-context",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@styx/onchain-messaging": "workspace:*",
+    "@styx/tx-tooling": "workspace:*",
+    "@styx/mobile-outbox": "workspace:*",
+    "@styx/inbox-store": "workspace:*",
+    "@styx/presets": "workspace:*",
+    "@styx/crypto-core": "workspace:*",
+    "@solana/web3.js": "^1.95.0"
+  }
+}

@@ -1,0 +1,14 @@
+/workspaces/StyxStack/programs/styx-private-memo-program/target/release/deps/libserde-17242bb2f2083494.rmeta: /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/lib.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/integer128.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/private/mod.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/private/de.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/private/ser.rs /workspaces/StyxStack/programs/styx-private-memo-program/target/release/build/serde-99c88bf1d5413f38/out/private.rs
+
+/workspaces/StyxStack/programs/styx-private-memo-program/target/release/deps/libserde-17242bb2f2083494.rlib: /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/lib.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/integer128.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/private/mod.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/private/de.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/private/ser.rs /workspaces/StyxStack/programs/styx-private-memo-program/target/release/build/serde-99c88bf1d5413f38/out/private.rs
+
+/workspaces/StyxStack/programs/styx-private-memo-program/target/release/deps/serde-17242bb2f2083494.d: /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/lib.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/integer128.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/private/mod.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/private/de.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/private/ser.rs /workspaces/StyxStack/programs/styx-private-memo-program/target/release/build/serde-99c88bf1d5413f38/out/private.rs
+
+/home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/lib.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/integer128.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/private/mod.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/private/de.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.228/src/private/ser.rs:
+/workspaces/StyxStack/programs/styx-private-memo-program/target/release/build/serde-99c88bf1d5413f38/out/private.rs:
+
+# env-dep:OUT_DIR=/workspaces/StyxStack/programs/styx-private-memo-program/target/release/build/serde-99c88bf1d5413f38/out

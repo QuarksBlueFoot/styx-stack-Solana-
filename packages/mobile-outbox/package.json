@@ -1,0 +1,19 @@
+{
+  "name": "@styx/mobile-outbox",
+  "version": "0.1.0",
+  "description": "Mobile-first outbox (queue) for pending Styx transactions/messages. Tooling-only.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "jest --passWithNoTests",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@styx/secure-storage": "workspace:*",
+    "@styx/mobile-toolkit": "workspace:*"
+  }
+}

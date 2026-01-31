@@ -1,0 +1,22 @@
+{
+  "name": "@styx/secure-storage",
+  "version": "0.2.2",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.21.0"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.70.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "jest": "^29.7.0",
+    "typescript": "^5.3.3"
+  }
+}
