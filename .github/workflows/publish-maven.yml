@@ -118,7 +118,7 @@ jobs:
           SIGNING_PASSWORD: ${{ secrets.GPG_PASSPHRASE }}
           SIGNING_SECRET_KEY_RING_FILE: ${{ github.workspace }}/kotlin/secring.gpg
         run: |
-          ./gradlew :styx-envelope:publishAllPublicationsToLocalStagingRepository \
+          ./gradlew :styx-envelope:publishMavenPublicationToLocalStagingRepository \
             -Pversion=${{ steps.version.outputs.VERSION }} \
             -PlocalStagingDir=${{ github.workspace }}/staging/styx-envelope \
             -Psigning.keyId=$SIGNING_KEY_ID \

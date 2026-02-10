@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "nexus.styx"
-version = "0.2.4"
+version = findProperty("version") as String? ?: "1.1.0"
 
 repositories {
     mavenCentral()
@@ -18,12 +18,6 @@ kotlin {
             kotlinOptions.jvmTarget = "17"
         }
     }
-    
-    androidNativeArm64()
-    androidNativeX64()
-    iosArm64()
-    iosX64()
-    iosSimulatorArm64()
     
     sourceSets {
         val commonMain by getting {
