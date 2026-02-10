@@ -141,7 +141,7 @@ jobs:
           find ${{ github.workspace }}/bundle-root -type f | head -50
           echo "📦 Creating bundle ZIP..."
           cd ${{ github.workspace }}/bundle-root
-          jar -cvf ${{ github.workspace }}/bundle.zip .
+          zip -r ${{ github.workspace }}/bundle.zip .
 
       - name: Upload bundle to Central Portal
         id: upload
