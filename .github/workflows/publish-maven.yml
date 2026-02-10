@@ -58,10 +58,18 @@ jobs:
         run: chmod +x ./gradlew
         working-directory: kotlin
 
-      - name: Decode GPG Key
+      - name: Import GPG Key
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_SIGNING_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: Export secring.gpg for Gradle signing
         run: |
-          echo "${{ secrets.GPG_SIGNING_KEY }}" | base64 -d > secring.gpg
-        working-directory: kotlin
+          gpg --batch --yes --pinentry-mode loopback \
+            --passphrase "${{ secrets.GPG_PASSPHRASE }}" \
+            --export-secret-keys > kotlin/secring.gpg
+          echo "✅ secring.gpg created ($(wc -c < kotlin/secring.gpg) bytes)"
 
       - name: Extract version from tag or input
         id: version
