@@ -125,21 +125,6 @@ jobs:
             -Psigning.password=$SIGNING_PASSWORD \
             -Psigning.secretKeyRingFile=$SIGNING_SECRET_KEY_RING_FILE
 
-      - name: Stage styx-android-kit KMP modules
-        working-directory: kotlin/styx-android-kit
-        env:
-          SIGNING_KEY_ID: ${{ secrets.GPG_KEY_ID }}
-          SIGNING_PASSWORD: ${{ secrets.GPG_PASSPHRASE }}
-          SIGNING_SECRET_KEY_RING_FILE: ${{ github.workspace }}/kotlin/secring.gpg
-        run: |
-          chmod +x ./gradlew
-          ./gradlew publishAllPublicationsToLocalStagingRepository \
-            -Pversion=${{ steps.version.outputs.VERSION }} \
-            -PlocalStagingDir=${{ github.workspace }}/staging/styx-android-kit \
-            -Psigning.keyId=$SIGNING_KEY_ID \
-            -Psigning.password=$SIGNING_PASSWORD \
-            -Psigning.secretKeyRingFile=$SIGNING_SECRET_KEY_RING_FILE
-
       # ── Bundle & Upload to Central Portal ──────────────────────────────
 
       - name: Create deployment bundle
@@ -147,7 +132,7 @@ jobs:
           echo "📦 Merging all staged artifacts..."
           mkdir -p ${{ github.workspace }}/bundle-root
           # Copy all staged artifacts into one tree (they're all under nexus/styx/*)
-          for dir in staging/styx-android staging/styx-app-kit staging/styx-envelope staging/styx-android-kit; do
+          for dir in staging/styx-android staging/styx-app-kit staging/styx-envelope; do
             if [ -d "${{ github.workspace }}/$dir" ]; then
               cp -r "${{ github.workspace }}/$dir"/* "${{ github.workspace }}/bundle-root/" 2>/dev/null || true
             fi
@@ -167,7 +152,7 @@ jobs:
           echo "🚀 Uploading to Sonatype Central Portal..."
           RESPONSE=$(curl -s -w "\n%{http_code}" \
             -X POST "https://central.sonatype.com/api/v1/publisher/upload?publishingType=${PUBLISHING_TYPE}&name=nexus.styx-${{ steps.version.outputs.VERSION }}" \
-            -H "Authorization: Bearer ${CENTRAL_PORTAL_TOKEN}" \
+            -H "Authorization: UserToken ${CENTRAL_PORTAL_TOKEN}" \
             -F "bundle=@${{ github.workspace }}/bundle.zip")
           
           HTTP_CODE=$(echo "$RESPONSE" | tail -1)
@@ -194,7 +179,7 @@ jobs:
           for i in $(seq 1 12); do
             RESPONSE=$(curl -s \
               -X POST "https://central.sonatype.com/api/v1/publisher/status?id=${DEPLOYMENT_ID}" \
-              -H "Authorization: Bearer ${CENTRAL_PORTAL_TOKEN}")
+              -H "Authorization: UserToken ${CENTRAL_PORTAL_TOKEN}")
             
             STATE=$(echo "$RESPONSE" | jq -r '.deploymentState // empty' 2>/dev/null || echo "$RESPONSE")
             echo "  Attempt $i/12: $STATE"
@@ -232,11 +217,6 @@ jobs:
             implementation("nexus.styx:styx-android:${{ steps.version.outputs.VERSION }}")
             implementation("nexus.styx:styx-app-kit:${{ steps.version.outputs.VERSION }}")
             implementation("nexus.styx:styx-envelope:${{ steps.version.outputs.VERSION }}")
-            // KMP modules (styx-android-kit)
-            implementation("nexus.styx:styx-core:${{ steps.version.outputs.VERSION }}")
-            implementation("nexus.styx:styx-sps:${{ steps.version.outputs.VERSION }}")
-            implementation("nexus.styx:styx-crypto:${{ steps.version.outputs.VERSION }}")
-            implementation("nexus.styx:styx-client:${{ steps.version.outputs.VERSION }}")
             ```
             
             ### Changes
