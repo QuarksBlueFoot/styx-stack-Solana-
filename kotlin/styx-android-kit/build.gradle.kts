@@ -47,7 +47,7 @@ subprojects {
                 publications.withType<MavenPublication>().configureEach {
                     pom {
                         name.set("Styx ${project.name}")
-                        description.set("Styx Privacy Standard SDK — ${project.name}")
+                        description.set("Styx Privacy Standard SDK \u2014 ${project.name}")
                         url.set("https://github.com/QuarksBlueFoot/StyxStack")
                         licenses {
                             license {

@@ -73,13 +73,17 @@ val ix = SpsInstructions.stsShieldWithInit(
 styx.close()
 ```
 
+## Android Integration Guide
+
+See [packages/styx-android-kit/ANDROID_INTEGRATION_GUIDE.md](packages/styx-android-kit/ANDROID_INTEGRATION_GUIDE.md) for full Kotlin setup instructions covering Signal-style messaging (X3DH + Double Ratchet), private transfers, and on-chain rail selection.
+
 ## Modules
 
 ### styx-core
 Foundation types shared by all modules:
 - `PublicKey` (inline value class with Base58)
 - `StyxConstants` (all program IDs, RPC URLs)
-- `SpsDomains` (20 domain constants + active/inactive sets)
+- `SpsDomains` (20 domain constants + ACTIVE/DEAD sets)
 - `StyxResult<T>` sealed class for error handling
 
 ### styx-crypto

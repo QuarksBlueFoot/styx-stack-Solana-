@@ -5,8 +5,8 @@ plugins {
 }
 
 android {
-    namespace = "com.styx.android"
-    compileSdk = 35
+    namespace = "nexus.styx.android"
+    compileSdk = 34
     defaultConfig {
         minSdk = 26
     }
@@ -49,17 +49,14 @@ kotlin {
             dependencies {
                 // Jetpack Compose
                 implementation("androidx.compose.ui:ui:1.7.6")
-                implementation("androidx.compose.foundation:foundation:1.7.6")
                 implementation("androidx.compose.material3:material3:1.3.1")
                 implementation("androidx.compose.runtime:runtime:1.7.6")
                 implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
                 implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
                 // Security
                 implementation("androidx.security:security-crypto:1.1.0-alpha06")
-                // Solana Mobile MWA 2.1
+                // Solana Mobile
                 implementation("com.solanamobile:mobile-wallet-adapter-clientlib-ktx:2.1.0")
-                // Serialization (PSIN1 payloads, outbox persistence)
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
             }
         }
         val jvmMain by getting
