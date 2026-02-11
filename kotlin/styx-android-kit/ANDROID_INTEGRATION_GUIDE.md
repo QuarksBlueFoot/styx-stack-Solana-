@@ -1,5 +1,7 @@
 # Android Kotlin Integration Guide — Mainnet
 
+> **📱 For Wallet Developers:** See [SOLANA_WALLET_INTEGRATION.md](./SOLANA_WALLET_INTEGRATION.md) for a wallet-focused guide with MWA integration, UI patterns, and the complete send/receive flow.
+
 This guide covers **mainnet-only** usage of the Styx KMP SDK:
 1) Forward-secret Signal-style messaging (X3DH + Double Ratchet) via `styx-messaging`.
 2) Private SOL & SPL transfers (IAP-enforced) via `styx-privacy` + `styx-sps`.
@@ -30,15 +32,15 @@ repositories {
 }
 
 dependencies {
-    // From Maven Central (nexus.styx group, v1.1.0+)
-    implementation("nexus.styx:styx-core:1.1.0")
-    implementation("nexus.styx:styx-crypto:1.1.0")
-    implementation("nexus.styx:styx-messaging:1.1.0")
-    implementation("nexus.styx:styx-privacy:1.1.0")
-    implementation("nexus.styx:styx-sps:1.1.0")
-    implementation("nexus.styx:styx-client:1.1.0")
+    // From Maven Central (nexus.styx group, v1.2.0)
+    implementation("nexus.styx:styx-core:1.2.0")
+    implementation("nexus.styx:styx-crypto:1.2.0")
+    implementation("nexus.styx:styx-messaging:1.2.0")
+    implementation("nexus.styx:styx-privacy:1.2.0")
+    implementation("nexus.styx:styx-sps:1.2.0")
+    implementation("nexus.styx:styx-client:1.2.0")
     // Android-specific (Compose + MWA)
-    implementation("nexus.styx:styx-android:1.1.0")
+    implementation("nexus.styx:styx-android:1.2.0")
 }
 ```
 
@@ -677,7 +679,7 @@ See [SPS_DOMAIN_ROUTER_AUDIT.md](../../SPS_DOMAIN_ROUTER_AUDIT.md) for the autho
 | Setting | Value |
 |---------|-------|
 | Maven group | `nexus.styx` (NOT `com.styx.sdk`) |
-| Maven version | `1.1.0` |
+| Maven version | `1.2.0` |
 | Program ID | `StyxConstants.SPS_PROGRAM_ID` — never the devnet ID |
 | RPC endpoint | `https://api.mainnet-beta.solana.com` (or your dedicated RPC) |
 | Transfer mode | **IAP only** (`StsOps.IAP_TRANSFER`, 0x1C) |
@@ -737,8 +739,8 @@ Search your codebase for these strings and **delete every occurrence**:
 - implementation("com.styx.sdk:styx-core:1.0.0")
 - implementation("com.styx.sdk:styx-sps:1.0.0")
 
-+ implementation("nexus.styx:styx-core:1.1.0")
-+ implementation("nexus.styx:styx-sps:1.1.0")
++ implementation("nexus.styx:styx-core:1.2.0")
++ implementation("nexus.styx:styx-sps:1.2.0")
 ```
 
 Also remove any `maven { url = "..." }` repository entries pointing to the old
