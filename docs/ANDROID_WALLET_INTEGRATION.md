@@ -1,10 +1,10 @@
-# Android Wallet Integration Guide — Styx Privacy SDK
+﻿# Android Wallet Integration Guide â€” Styx Privacy SDK
 
 ## Complete Guide for Building Privacy-Enabled Solana Wallets on Android
 
 This is the **definitive integration guide** for Android wallet developers who want to add Solana privacy features. It covers all **LIVE mainnet capabilities** including private transfers, encrypted messaging, token compression, and shielded pools.
 
-> **Maven Coordinates:** `nexus.styx:styx-android:1.2.0`  
+> **Maven Coordinates:** `nexus.styx:styx-android:1.3.0`  
 > **Program ID:** `STYXbZeL1wcNigy1WAMFbUQ7PNzJpPYV557H7foNyY5`  
 > **Network:** Solana Mainnet-Beta  
 > **Minimum Android:** API 24 (Android 7.0)
@@ -47,14 +47,14 @@ android {
 }
 
 dependencies {
-    // Styx Privacy SDK — single import for all privacy features
-    implementation("nexus.styx:styx-android:1.2.0")
+    // Styx Privacy SDK â€” single import for all privacy features
+    implementation("nexus.styx:styx-android:1.3.0")
     
-    // Styx App Kit — UI components for privacy features
-    implementation("nexus.styx:styx-app-kit:1.2.0")
+    // Styx App Kit â€” UI components for privacy features
+    implementation("nexus.styx:styx-app-kit:1.3.0")
     
-    // Styx Envelope — encrypted message format
-    implementation("nexus.styx:styx-envelope:1.2.0")
+    // Styx Envelope â€” encrypted message format
+    implementation("nexus.styx:styx-envelope:1.3.0")
     
     // Solana Mobile Wallet Adapter
     implementation("com.solanamobile:mobile-wallet-adapter-clientlib-ktx:2.1.0")
@@ -98,28 +98,28 @@ The Styx Protocol uses a **domain-based instruction encoding** system. Here are 
 
 | Domain | Code | Description | Status |
 |--------|------|-------------|--------|
-| **STS** | `0x01` | Token Standard — shield, unshield, private swap, AMM | ✅ LIVE |
-| **MESSAGING** | `0x02` | Private messages, X3DH key exchange, ratchet | ✅ LIVE |
-| **ACCOUNT** | `0x03` | VTA, delegation, guardians, APB transfers | ✅ LIVE |
-| **VSL** | `0x04` | Virtual Shielded Ledger — deposits, withdrawals, escrow | ✅ LIVE |
-| **NOTES** | `0x05` | UTXO primitives, pools, Merkle trees, confidential mint | ✅ LIVE |
-| **COMPLIANCE** | `0x06` | POI, innocence proofs, provenance | ✅ LIVE |
-| **PRIVACY** | `0x07` | Decoys, ephemeral accounts, chrono-locks, hashlock | ✅ LIVE |
-| **DEFI** | `0x08` | Private AMM, staking, lending, Jupiter routes | ✅ LIVE |
-| **NFT** | `0x09` | Private NFT marketplace, auctions, fair launch | ✅ LIVE |
-| **DAM** | `0x0E` | Deferred Account Materialization — zero-rent tokens | ✅ LIVE |
-| **IC** | `0x0F` | Inscription Compression — compressed SPL tokens | ✅ LIVE |
+| **STS** | `0x01` | Token Standard â€” shield, unshield, private swap, AMM | âœ… LIVE |
+| **MESSAGING** | `0x02` | Private messages, X3DH key exchange, ratchet | âœ… LIVE |
+| **ACCOUNT** | `0x03` | VTA, delegation, guardians, APB transfers | âœ… LIVE |
+| **VSL** | `0x04` | Virtual Shielded Ledger â€” deposits, withdrawals, escrow | âœ… LIVE |
+| **NOTES** | `0x05` | UTXO primitives, pools, Merkle trees, confidential mint | âœ… LIVE |
+| **COMPLIANCE** | `0x06` | POI, innocence proofs, provenance | âœ… LIVE |
+| **PRIVACY** | `0x07` | Decoys, ephemeral accounts, chrono-locks, hashlock | âœ… LIVE |
+| **DEFI** | `0x08` | Private AMM, staking, lending, Jupiter routes | âœ… LIVE |
+| **NFT** | `0x09` | Private NFT marketplace, auctions, fair launch | âœ… LIVE |
+| **DAM** | `0x0E` | Deferred Account Materialization â€” zero-rent tokens | âœ… LIVE |
+| **IC** | `0x0F` | Inscription Compression â€” compressed SPL tokens | âœ… LIVE |
 
 ### Deprecated/Archived Domains (NOT on Mainnet)
 
 | Domain | Code | Status |
 |--------|------|--------|
-| DERIVATIVES | `0x0A` | ⚠️ Moved to StyxFi program |
-| BRIDGE | `0x0B` | ⚠️ Rejected on mainnet |
-| SECURITIES | `0x0C` | ⚠️ Rejected on mainnet |
-| GOVERNANCE | `0x0D` | ⚠️ Archived, needs feature flag |
-| SWAP | `0x10` | ⚠️ Archived, coming back in v5.0 |
-| EASYPAY | `0x11` | ⚠️ Moved to WhisperDrop program |
+| DERIVATIVES | `0x0A` | âš ï¸ Moved to StyxFi program |
+| BRIDGE | `0x0B` | âš ï¸ Rejected on mainnet |
+| SECURITIES | `0x0C` | âš ï¸ Rejected on mainnet |
+| GOVERNANCE | `0x0D` | âš ï¸ Archived, needs feature flag |
+| SWAP | `0x10` | âš ï¸ Archived, coming back in v5.0 |
+| EASYPAY | `0x11` | âš ï¸ Moved to WhisperDrop program |
 
 ---
 
@@ -169,9 +169,9 @@ class WalletActivity : ComponentActivity() {
 
 ## Private SOL Transfers
 
-Send SOL privately using the **STS Domain** (shield → transfer → unshield):
+Send SOL privately using the **STS Domain** (shield â†’ transfer â†’ unshield):
 
-### Shield SOL (Public → Private)
+### Shield SOL (Public â†’ Private)
 
 ```kotlin
 import nexus.styx.mobile.instructions.StsInstructions
@@ -201,7 +201,7 @@ private fun generateCommitmentSeed(): ByteArray {
 }
 ```
 
-### Private Transfer (Shielded → Shielded)
+### Private Transfer (Shielded â†’ Shielded)
 
 ```kotlin
 import nexus.styx.mobile.instructions.VslInstructions
@@ -226,7 +226,7 @@ suspend fun privateTransfer(
 }
 ```
 
-### Unshield SOL (Private → Public)
+### Unshield SOL (Private â†’ Public)
 
 ```kotlin
 // Unshield from privacy pool back to public wallet
@@ -317,7 +317,7 @@ suspend fun shieldWithInit(
 ```kotlin
 import nexus.styx.mobile.instructions.DefiInstructions
 
-// Swap USDC → SOL privately (amounts hidden)
+// Swap USDC â†’ SOL privately (amounts hidden)
 suspend fun privateSwap(
     inputMint: PublicKey,
     outputMint: PublicKey,
@@ -361,7 +361,7 @@ suspend fun compressTokens(
     // 1. Get or initialize the state tree for this mint
     val stateTree = styx.getOrCreateStateTree(mint)
     
-    // 2. Compress SPL tokens → tree leaf (burns SPL, creates commitment)
+    // 2. Compress SPL tokens â†’ tree leaf (burns SPL, creates commitment)
     val ix = IcInstructions.compress(
         mint = mint,
         owner = wallet,
@@ -442,7 +442,7 @@ suspend fun transferCompressed(
 ### Private Compressed Transfer (Amounts Hidden)
 
 ```kotlin
-// Private compressed transfer — sender, recipient, and amount all hidden!
+// Private compressed transfer â€” sender, recipient, and amount all hidden!
 suspend fun privateCompressedTransfer(
     mint: PublicKey,
     encryptedAmount: ByteArray,
@@ -466,7 +466,7 @@ suspend fun privateCompressedTransfer(
 ### Re-compress After DEX Trade
 
 ```kotlin
-// Swap on DEX → immediately re-compress to save rent
+// Swap on DEX â†’ immediately re-compress to save rent
 suspend fun swapAndRecompress(
     inputMint: PublicKey,
     outputMint: PublicKey,
@@ -474,7 +474,7 @@ suspend fun swapAndRecompress(
     inputLeafIndex: Int,
     inputProof: List<ByteArray>,
 ): Result<String> {
-    // ⚠️ DEVNET ONLY — Mainnet uses 2-step process
+    // âš ï¸ DEVNET ONLY â€” Mainnet uses 2-step process
     val ix = IcInstructions.swapAndRecompress(
         inputMint = inputMint,
         outputMint = outputMint,
@@ -493,7 +493,7 @@ suspend fun swapAndRecompress(
 
 ## Deferred Account Materialization (DAM)
 
-**DAM** is the world's first bidirectional Virtual ↔ Real token architecture. Users hold tokens virtually (zero rent!) and only materialize when needed for DeFi.
+**DAM** is the world's first bidirectional Virtual â†” Real token architecture. Users hold tokens virtually (zero rent!) and only materialize when needed for DeFi.
 
 ### Virtual Balance Operations
 
@@ -529,7 +529,7 @@ suspend fun virtualTransfer(
 }
 ```
 
-### Materialize (Virtual → Real SPL)
+### Materialize (Virtual â†’ Real SPL)
 
 ```kotlin
 // Materialize virtual balance to real SPL token account
@@ -563,11 +563,11 @@ suspend fun materializeWithInit(mint: PublicKey, amount: Long): Result<String> {
 }
 ```
 
-### De-Materialize (Real SPL → Virtual, Reclaim Rent!)
+### De-Materialize (Real SPL â†’ Virtual, Reclaim Rent!)
 
 ```kotlin
 // Return tokens to pool, close account, RECLAIM ~0.002 SOL rent!
-// This is UNIQUE to SPS — no other protocol supports this!
+// This is UNIQUE to SPS â€” no other protocol supports this!
 suspend fun dematerialize(
     mint: PublicKey,
     amount: Long,
@@ -586,7 +586,7 @@ suspend fun dematerialize(
 ### Swap and De-Materialize
 
 ```kotlin
-// DEX swap → immediately return to virtual (reclaim rent)
+// DEX swap â†’ immediately return to virtual (reclaim rent)
 suspend fun swapAndDematerialize(
     inputMint: PublicKey,
     outputMint: PublicKey,
@@ -858,7 +858,7 @@ fun generateStealthAddress(
 ): Pair<PublicKey, ByteArray> {
     val ephemeral = styx.crypto.generateX25519KeyPair()
     
-    // ECDH: ephemeralPrivate × recipientViewingPublic
+    // ECDH: ephemeralPrivate Ã— recipientViewingPublic
     val sharedSecret = styx.crypto.x25519(
         ephemeral.privateKey,
         recipientMeta.viewingPublic,
@@ -1218,8 +1218,8 @@ fun PrivacyWalletScreen(styx: StyxClient) {
 val secureStorage = StyxSecureStorage(context)
 
 // Never log or expose private keys
-// ❌ DON'T: Log.d("Key", privateKey.toHex())
-// ✅ DO: Store in secure storage only
+// âŒ DON'T: Log.d("Key", privateKey.toHex())
+// âœ… DO: Store in secure storage only
 secureStorage.storePrivateKey("identity", privateKey)
 ```
 
@@ -1293,7 +1293,7 @@ val config = StyxConfig(
 
 | Component | Version |
 |-----------|---------|
-| Styx Android SDK | 1.2.0 |
+| Styx Android SDK | 1.3.0 |
 | Kotlin | 2.1.0 (K2) |
 | Android Gradle Plugin | 8.7.3 |
 | Compile SDK | 35 (Android 15) |
@@ -1311,10 +1311,10 @@ val config = StyxConfig(
 ## Support & Resources
 
 - **Program ID (Mainnet):** `STYXbZeL1wcNigy1WAMFbUQ7PNzJpPYV557H7foNyY5`
-- **Maven Central:** `nexus.styx:styx-android:1.2.0`
+- **Maven Central:** `nexus.styx:styx-android:1.3.0`
 - **GitHub:** [github.com/QuarksBlueFoot/StyxStack](https://github.com/QuarksBlueFoot/StyxStack)
 - **Docs:** [docs.styx.nexus](https://docs.styx.nexus)
 
 ---
 
-*Last updated: February 2026 · Styx Privacy SDK v1.2.0 · Bluefoot Labs*
+*Last updated: February 2026 Â· Styx Privacy SDK v1.3.0 Â· Bluefoot Labs*

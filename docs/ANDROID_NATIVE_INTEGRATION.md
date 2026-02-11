@@ -1,8 +1,8 @@
-# Android Native Integration — Styx KMP SDK
+﻿# Android Native Integration â€” Styx KMP SDK
 
 ## Kotlin Multiplatform SDK for Solana Privacy on Android
 
-This guide covers integrating the **Styx Android Kit** — a Kotlin Multiplatform SDK targeting Android (Jetpack Compose) and JVM. It provides full Solana Mobile MWA 2.1 integration, privacy-preserving transactions, encrypted messaging, and an offline-first transaction outbox.
+This guide covers integrating the **Styx Android Kit** â€” a Kotlin Multiplatform SDK targeting Android (Jetpack Compose) and JVM. It provides full Solana Mobile MWA 2.1 integration, privacy-preserving transactions, encrypted messaging, and an offline-first transaction outbox.
 
 > **SDK Group:** `nexus.styx`  
 > **Kotlin:** 2.1.0 (K2 compiler)  
@@ -46,14 +46,14 @@ android {
 }
 
 dependencies {
-    // Styx KMP SDK — single dependency pulls in all modules
-    implementation("nexus.styx:styx-android:1.2.0")
+    // Styx KMP SDK â€” single dependency pulls in all modules
+    implementation("nexus.styx:styx-android:1.3.0")
     
-    // App Kit — UI components and presets
-    implementation("nexus.styx:styx-app-kit:1.2.0")
+    // App Kit â€” UI components and presets
+    implementation("nexus.styx:styx-app-kit:1.3.0")
     
-    // Envelope — encrypted message format
-    implementation("nexus.styx:styx-envelope:1.2.0")
+    // Envelope â€” encrypted message format
+    implementation("nexus.styx:styx-envelope:1.3.0")
 }
 ```
 
@@ -88,13 +88,13 @@ The SDK is organized as 7 Kotlin Multiplatform modules:
 
 ```
 styx-android-kit/
-├── styx-core        — PublicKey, Keypair, StyxResult, Base58, type system
-├── styx-crypto      — X25519, Ed25519, XChaCha20, SHA-256, X3DH, Double Ratchet
-├── styx-messaging   — PrivateMessagingClient, encrypted messaging protocol
-├── styx-privacy     — ShieldedPool, StealthAddress, commitment/nullifier math
-├── styx-sps         — SPS instruction codec, 16 compact domains + 3 special modes
-├── styx-client      — Solana RPC + SPS indexer client with retry/backoff
-└── styx-android     — Android-specific: MWA 2.1, Compose UI, Secure Storage, Outbox
+â”œâ”€â”€ styx-core        â€” PublicKey, Keypair, StyxResult, Base58, type system
+â”œâ”€â”€ styx-crypto      â€” X25519, Ed25519, XChaCha20, SHA-256, X3DH, Double Ratchet
+â”œâ”€â”€ styx-messaging   â€” PrivateMessagingClient, encrypted messaging protocol
+â”œâ”€â”€ styx-privacy     â€” ShieldedPool, StealthAddress, commitment/nullifier math
+â”œâ”€â”€ styx-sps         â€” SPS instruction codec, 16 compact domains + 3 special modes
+â”œâ”€â”€ styx-client      â€” Solana RPC + SPS indexer client with retry/backoff
+â””â”€â”€ styx-android     â€” Android-specific: MWA 2.1, Compose UI, Secure Storage, Outbox
 ```
 
 | Module | Target | Description |
@@ -176,7 +176,7 @@ mwa.signTransactions(sender, txs).onSuccess { result ->
 
 ## Privacy Sign-In (PSIN1)
 
-PSIN1 is the Styx privacy attestation protocol — wire-compatible with the TypeScript `@styx/solana-mobile-dropin/mwaSignIn`:
+PSIN1 is the Styx privacy attestation protocol â€” wire-compatible with the TypeScript `@styx/solana-mobile-dropin/mwaSignIn`:
 
 ```kotlin
 // One-liner via StyxKit
@@ -211,7 +211,7 @@ styx.mwa.signMessages(sender, listOf(message))
 // Build your transaction (shield, message, transfer, etc.)
 val serializedTx: ByteArray = buildShieldTransaction(...)
 
-// Sign + send via wallet (preferred — single approval)
+// Sign + send via wallet (preferred â€” single approval)
 styx.signAndSend(sender, serializedTx).onSuccess { sig ->
     Log.d("Styx", "Confirmed: $sig")
 }
@@ -361,14 +361,14 @@ Uses `MasterKey.Builder` with `AES256_GCM` key scheme (non-deprecated API).
 The SDK uses Maven group ID `nexus.styx` (the namespace we own on Maven Central):
 
 | Artifact | Maven Coordinates |
-| styx-android | `nexus.styx:styx-android:1.2.0` |
-| styx-app-kit | `nexus.styx:styx-app-kit:1.2.0` |
-| styx-envelope | `nexus.styx:styx-envelope:1.2.0` |
+| styx-android | `nexus.styx:styx-android:1.3.0` |
+| styx-app-kit | `nexus.styx:styx-app-kit:1.3.0` |
+| styx-envelope | `nexus.styx:styx-envelope:1.3.0` |
 
 ### Version History
 | Version | Changes |
 |---------|--------|
-| 1.2.0 | Current release, full mainnet support |
+| 1.3.0 | Current release, full mainnet support |
 | 1.1.0 | Initial Maven Central release |
 
 ### Code Changes
@@ -396,21 +396,21 @@ The Kotlin KMP SDK maintains feature parity with the TypeScript monorepo:
 
 | TypeScript Package | Kotlin Module | Status |
 |--------------------|---------------|--------|
-| `@styx/crypto-core` | `styx-crypto` | ✅ Full parity |
-| `@styx/onchain-messaging` | `styx-messaging` + `styx-sps` | ✅ Full parity |
-| `@styx/solana-mobile-dropin` | `styx-android` (StyxMwaClient) | ✅ Full parity |
-| `@styx/wallet-adapters` | `styx-android` (StyxKit) | ✅ Full parity |
-| `@styx/mobile-outbox` | `styx-android` (StyxOutbox) | ✅ Full parity |
-| `@styx/styx-context` | `styx-android` (StyxKit) | ✅ Full parity |
-| `@styx/presets` | `styx-android` (StyxKit) | ✅ Full parity |
-| `@styx/styx-pmp-sdk` | `styx-sps` | ✅ Full parity |
-| `@styx/key-registry` | `styx-messaging` | ✅ Full parity |
-| `@styx/tx-tooling` | `styx-client` | ✅ Full parity |
-| `@styx/privacy-diagnostics` | — | 🔜 Planned |
-| `@styx/policy-kit` | — | 🔜 Planned |
-| `@styx/game-privacy` | — | 🔜 Planned |
-| `@styx/confidential-tokens` | — | 🔜 Planned |
-| `@styx/social-privacy` | — | 🔜 Planned |
+| `@styx/crypto-core` | `styx-crypto` | âœ… Full parity |
+| `@styx/onchain-messaging` | `styx-messaging` + `styx-sps` | âœ… Full parity |
+| `@styx/solana-mobile-dropin` | `styx-android` (StyxMwaClient) | âœ… Full parity |
+| `@styx/wallet-adapters` | `styx-android` (StyxKit) | âœ… Full parity |
+| `@styx/mobile-outbox` | `styx-android` (StyxOutbox) | âœ… Full parity |
+| `@styx/styx-context` | `styx-android` (StyxKit) | âœ… Full parity |
+| `@styx/presets` | `styx-android` (StyxKit) | âœ… Full parity |
+| `@styx/styx-pmp-sdk` | `styx-sps` | âœ… Full parity |
+| `@styx/key-registry` | `styx-messaging` | âœ… Full parity |
+| `@styx/tx-tooling` | `styx-client` | âœ… Full parity |
+| `@styx/privacy-diagnostics` | â€” | ðŸ”œ Planned |
+| `@styx/policy-kit` | â€” | ðŸ”œ Planned |
+| `@styx/game-privacy` | â€” | ðŸ”œ Planned |
+| `@styx/confidential-tokens` | â€” | ðŸ”œ Planned |
+| `@styx/social-privacy` | â€” | ðŸ”œ Planned |
 
 ---
 
@@ -433,4 +433,4 @@ The Kotlin KMP SDK maintains feature parity with the TypeScript monorepo:
 
 ---
 
-*Last updated: 2025 · Styx Privacy SDK · Bluefoot Labs*
+*Last updated: 2025 Â· Styx Privacy SDK Â· Bluefoot Labs*

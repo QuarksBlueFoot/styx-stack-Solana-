@@ -1,10 +1,10 @@
-# Solana Wallet Integration Guide — Android
+﻿# Solana Wallet Integration Guide â€” Android
 
 ## Privacy-Enabled Wallet Development with Styx KMP SDK
 
 This guide is for **Solana wallet developers** integrating privacy features into Android wallet apps. It covers the complete wallet integration flow from MWA connection to private transactions.
 
-> **Maven:** `nexus.styx:styx-android:1.2.0`  
+> **Maven:** `nexus.styx:styx-android:1.3.0`  
 > **Program ID:** `STYXbZeL1wcNigy1WAMFbUQ7PNzJpPYV557H7foNyY5`  
 > **Network:** Mainnet-Beta  
 > **Min SDK:** 24 (Android 7.0)
@@ -13,33 +13,33 @@ This guide is for **Solana wallet developers** integrating privacy features into
 
 ## Table of Contents
 
-### Part I — Wallet Setup
+### Part I â€” Wallet Setup
 1. [Dependencies](#1-dependencies)
 2. [Wallet Initialization](#2-wallet-initialization)
 3. [MWA Connection (Solana Mobile)](#3-mwa-connection)
 4. [Key Management](#4-key-management)
 5. [Secure Storage](#5-secure-storage)
 
-### Part II — Core Wallet Features
+### Part II â€” Core Wallet Features
 6. [Send SOL Privately](#6-send-sol-privately)
 7. [Send SPL Tokens Privately](#7-send-spl-tokens-privately)
 8. [Private Swaps (DEX)](#8-private-swaps)
 9. [Receive with Stealth Addresses](#9-stealth-addresses)
 
-### Part III — Advanced Features
+### Part III â€” Advanced Features
 10. [Token Compression (IC)](#10-token-compression)
 11. [Virtual Balances (DAM)](#11-virtual-balances-dam)
 12. [Encrypted Messaging](#12-encrypted-messaging)
 13. [Shielded Pools (VSL)](#13-shielded-pools-vsl)
 
-### Part IV — Reference
+### Part IV â€” Reference
 14. [Active Mainnet Domains](#14-active-mainnet-domains)
 15. [Production Checklist](#15-production-checklist)
 16. [Migration Guide](#16-migration-guide)
 
 ---
 
-# Part I — Wallet Setup
+# Part I â€” Wallet Setup
 
 ## 1) Dependencies
 
@@ -62,35 +62,35 @@ repositories {
 }
 
 dependencies {
-    // ═══════════════════════════════════════════════════════════════════
+    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
     // STYX PRIVACY SDK (nexus.styx namespace)
-    // ═══════════════════════════════════════════════════════════════════
+    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
     
     // All-in-one Android SDK (includes MWA, Compose UI, Secure Storage)
-    implementation("nexus.styx:styx-android:1.2.0")
+    implementation("nexus.styx:styx-android:1.3.0")
     
     // Optional: Individual modules for fine-grained control
-    // implementation("nexus.styx:styx-core:1.2.0")      // PublicKey, constants
-    // implementation("nexus.styx:styx-crypto:1.2.0")    // X25519, Ed25519, ratchet
-    // implementation("nexus.styx:styx-messaging:1.2.0") // Encrypted messaging
-    // implementation("nexus.styx:styx-privacy:1.2.0")   // Shielded pool, stealth
-    // implementation("nexus.styx:styx-sps:1.2.0")       // Instruction builders
-    // implementation("nexus.styx:styx-client:1.2.0")    // RPC client
+    // implementation("nexus.styx:styx-core:1.3.0")      // PublicKey, constants
+    // implementation("nexus.styx:styx-crypto:1.3.0")    // X25519, Ed25519, ratchet
+    // implementation("nexus.styx:styx-messaging:1.3.0") // Encrypted messaging
+    // implementation("nexus.styx:styx-privacy:1.3.0")   // Shielded pool, stealth
+    // implementation("nexus.styx:styx-sps:1.3.0")       // Instruction builders
+    // implementation("nexus.styx:styx-client:1.3.0")    // RPC client
     
-    // ═══════════════════════════════════════════════════════════════════
+    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
     // SOLANA MOBILE (MWA 2.1)
-    // ═══════════════════════════════════════════════════════════════════
+    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
     implementation("com.solanamobile:mobile-wallet-adapter-clientlib-ktx:2.1.0")
     
-    // ═══════════════════════════════════════════════════════════════════
+    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
     // COMPOSE UI (optional, for UI components)
-    // ═══════════════════════════════════════════════════════════════════
+    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
     implementation("androidx.compose.material3:material3:1.3.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 }
 ```
 
-> ⚠️ **Important:** Use `nexus.styx` (NOT `com.styx.sdk`). The old namespace is retired.
+> âš ï¸ **Important:** Use `nexus.styx` (NOT `com.styx.sdk`). The old namespace is retired.
 
 ### Module Reference
 
@@ -190,7 +190,7 @@ fun ConnectButton() {
 ### 3.3 Sign and Send Transactions
 
 ```kotlin
-// Sign + send in one step (preferred — single user approval)
+// Sign + send in one step (preferred â€” single user approval)
 suspend fun sendTransaction(txBytes: ByteArray): Result<String> {
     return styx.mwa.signAndSendTransaction(
         sender = activityResultSender,
@@ -247,8 +247,8 @@ import nexus.styx.crypto.X25519
 
 // Generate X25519 keypair for encrypted messaging
 val encryptionKeypair = X25519.generateKeyPair()
-// encryptionKeypair.secretKey — 32 bytes, store securely!
-// encryptionKeypair.publicKey — 32 bytes, can be shared
+// encryptionKeypair.secretKey â€” 32 bytes, store securely!
+// encryptionKeypair.publicKey â€” 32 bytes, can be shared
 
 // Derive X25519 from Ed25519 seed (for deterministic key)
 val x25519FromEd = X25519.fromEd25519Seed(ed25519SeedBytes)
@@ -296,11 +296,11 @@ fun logout() {
 
 ---
 
-# Part II — Core Wallet Features
+# Part II â€” Core Wallet Features
 
 ## 6) Send SOL Privately
 
-### 6.1 Shield SOL (Public → Private)
+### 6.1 Shield SOL (Public â†’ Private)
 
 Convert public SOL into a private shielded note:
 
@@ -314,8 +314,8 @@ val note = ShieldedPool.createShieldedNote(
     amount = 1_000_000_000L,  // 1 SOL in lamports
     ownerPubkey = walletPubkeyBytes,
 )
-// note.commitment — publish on-chain (public)
-// note.randomness — keep secret! Needed to spend later
+// note.commitment â€” publish on-chain (public)
+// note.randomness â€” keep secret! Needed to spend later
 
 // 2. Build shield instruction
 val shieldIx = SpsInstructions.stsShield(
@@ -343,7 +343,7 @@ storage.putBytes("note_${note.commitment}",
 )
 ```
 
-### 6.2 Private Transfer (Shielded → Shielded)
+### 6.2 Private Transfer (Shielded â†’ Shielded)
 
 Transfer between private balances without revealing amounts:
 
@@ -351,11 +351,11 @@ Transfer between private balances without revealing amounts:
 import nexus.styx.sps.StsOps
 import nexus.styx.core.SpsDomains
 
-// ⚠️ Mainnet requires IAP_TRANSFER (0x1C), NOT plain TRANSFER (0x06)
+// âš ï¸ Mainnet requires IAP_TRANSFER (0x1C), NOT plain TRANSFER (0x06)
 
 // 1. Derive nullifier from your note (proves ownership)
 val spentNote = ShieldedPool.deriveNullifier(note, ownerSecretKeyBytes)
-// spentNote.nullifier — prevents double-spend
+// spentNote.nullifier â€” prevents double-spend
 
 // 2. Create new commitment for recipient
 val recipientNote = ShieldedPool.createShieldedNote(
@@ -380,7 +380,7 @@ val tx = styx.buildTransaction(listOf(transferIx), walletPubkey)
 styx.mwa.signAndSendTransaction(activityResultSender, tx)
 ```
 
-### 6.3 Unshield SOL (Private → Public)
+### 6.3 Unshield SOL (Private â†’ Public)
 
 Withdraw from private pool back to a public address:
 
@@ -446,7 +446,7 @@ val shieldIx = SpsInstructions.stsShield(
     commitment = note.commitment.hexToBytes(),
 )
 
-// Transfer and unshield work identically — mint is bound to commitment
+// Transfer and unshield work identically â€” mint is bound to commitment
 ```
 
 ### Popular Token Mints
@@ -465,7 +465,7 @@ val shieldIx = SpsInstructions.stsShield(
 
 Swap tokens **without leaving the shielded pool**. Both input and output remain private.
 
-### 8.1 Execute Private Swap (e.g., SOL → BONK)
+### 8.1 Execute Private Swap (e.g., SOL â†’ BONK)
 
 ```kotlin
 import nexus.styx.sps.StsOps
@@ -553,9 +553,9 @@ val result = StealthAddress.generate(
     recipientViewPubkey = recipientMeta.viewPublic,
     recipientSpendPubkey = recipientMeta.spendPublic,
 )
-// result.stealthPubkey    — send funds HERE
-// result.ephemeralPubkey  — publish on-chain for recipient scanning
-// result.sharedSecret     — internal
+// result.stealthPubkey    â€” send funds HERE
+// result.ephemeralPubkey  â€” publish on-chain for recipient scanning
+// result.sharedSecret     â€” internal
 
 // Announce on-chain
 val announceIx = SpsInstructions.buildCompact(
@@ -599,14 +599,14 @@ suspend fun scanStealthPayments(fromSlot: Long): List<StealthPayment> {
 
 ---
 
-# Part III — Advanced Features
+# Part III â€” Advanced Features
 
 ## 10) Token Compression
 
-**Inscription Compression (IC)** — ZK-free compressed tokens using Merkle trees.
+**Inscription Compression (IC)** â€” ZK-free compressed tokens using Merkle trees.
 20x cheaper than Groth16 verification!
 
-### 10.1 Compress Tokens (SPL → Compressed)
+### 10.1 Compress Tokens (SPL â†’ Compressed)
 
 ```kotlin
 import nexus.styx.sps.IcOps
@@ -641,7 +641,7 @@ val transferIx = SpsInstructions.icTransfer(
 // Wire: [0x0F][0x13][tree:32][nullifier:32][amount:8][new_commit:32][proof:96]
 ```
 
-### 10.3 Decompress (Compressed → SPL)
+### 10.3 Decompress (Compressed â†’ SPL)
 
 ```kotlin
 val decompressIx = SpsInstructions.icDecompress(
@@ -673,7 +673,7 @@ val privateIx = SpsInstructions.buildCompact(
 
 ## 11) Virtual Balances (DAM)
 
-**Deferred Account Materialization** — hold tokens without paying rent. Only create SPL accounts when needed!
+**Deferred Account Materialization** â€” hold tokens without paying rent. Only create SPL accounts when needed!
 
 ### 11.1 Virtual Mint
 
@@ -699,7 +699,7 @@ val transferIx = SpsInstructions.damVirtualTransfer(
 // Wire: [0x0E][0x11][nullifier:32][amount:8][new_commit:32][proof:96]
 ```
 
-### 11.3 Materialize (Virtual → Real SPL)
+### 11.3 Materialize (Virtual â†’ Real SPL)
 
 ```kotlin
 // When you need real tokens (e.g., for DeFi)
@@ -713,7 +713,7 @@ val materializeIx = SpsInstructions.damMaterialize(
 // Wire: [0x0E][0x20][nullifier:32][proof_len:1][proof:32*n][recipient:32][amount:8][schnorr:96]
 ```
 
-### 11.4 Dematerialize (Real → Virtual, Reclaim Rent!)
+### 11.4 Dematerialize (Real â†’ Virtual, Reclaim Rent!)
 
 ```kotlin
 // Return tokens to virtual, close account, get rent back!
@@ -816,7 +816,7 @@ chunks.forEach { chunk ->
 
 ## 13) Shielded Pools (VSL)
 
-Virtual Shielded Ledger — deposit, withdraw, escrow with 15 live handlers:
+Virtual Shielded Ledger â€” deposit, withdraw, escrow with 15 live handlers:
 
 ### 13.1 Deposit
 
@@ -874,24 +874,24 @@ val refundIx = SpsInstructions.buildCompact(
 
 ---
 
-# Part IV — Reference
+# Part IV â€” Reference
 
 ## 14) Active Mainnet Domains
 
-### ✅ Fully Active (all ops live)
+### âœ… Fully Active (all ops live)
 
 | Byte | Domain | Description |
 |------|--------|-------------|
-| `0x01` | **STS** | Token standard — shield, unshield, IAP transfers, AMM, private swap |
+| `0x01` | **STS** | Token standard â€” shield, unshield, IAP transfers, AMM, private swap |
 | `0x02` | **MESSAGING** | Private messages, ratchet, prekey bundles |
 | `0x03` | **ACCOUNT** | VTA, delegation, guardians, stealth scan hints |
-| `0x04` | **VSL** | Virtual Shielded Ledger — 15 handlers |
+| `0x04` | **VSL** | Virtual Shielded Ledger â€” 15 handlers |
 | `0x05` | **NOTES** | On-chain encrypted notes |
 | `0x06` | **COMPLIANCE** | Auditor reveals, proof-of-innocence |
-| `0x0E` | **DAM** | Deferred Account Materialization — 21 handlers |
-| `0x0F` | **IC** | Inscription Compression — 22 handlers |
+| `0x0E` | **DAM** | Deferred Account Materialization â€” 21 handlers |
+| `0x0F` | **IC** | Inscription Compression â€” 22 handlers |
 
-### ⚠️ Partially Active (some ops archived)
+### âš ï¸ Partially Active (some ops archived)
 
 | Byte | Domain | Live Ops | Archived |
 |------|--------|----------|----------|
@@ -899,7 +899,7 @@ val refundIx = SpsInstructions.buildCompact(
 | `0x08` | **DEFI** | `CROSS_MINT_ATOMIC`, `ATOMIC_CPI_TRANSFER` | Private swap/stake/LP moved to StyxFi |
 | `0x09` | **NFT** | `MINT`, `COLLECTION_CREATE`, `FAIR_LAUNCH_*`, `MERKLE_AIRDROP_*` | Marketplace, auctions |
 
-### ❌ Dead Domains (always return `Err`)
+### âŒ Dead Domains (always return `Err`)
 
 | Byte | Domain | Reason |
 |------|--------|--------|
@@ -907,7 +907,7 @@ val refundIx = SpsInstructions.buildCompact(
 | `0x0B` | BRIDGE | Deprecated |
 | `0x0C` | SECURITIES | Deprecated |
 | `0x0D` | GOVERNANCE | Moved to StyxFi v24 |
-| `0x10` | SWAP | Archived — use STS AMM |
+| `0x10` | SWAP | Archived â€” use STS AMM |
 | `0x11` | EASYPAY | Moved to WhisperDrop |
 
 ### Domain Guard
@@ -930,10 +930,10 @@ fun requireActiveDomain(domain: Byte) {
 | Item | Required Value |
 |------|----------------|
 | Maven group | `nexus.styx` |
-| Version | `1.2.0` |
+| Version | `1.3.0` |
 | Program ID | `STYXbZeL1wcNigy1WAMFbUQ7PNzJpPYV557H7foNyY5` |
 | RPC | `https://api.mainnet-beta.solana.com` (or dedicated) |
-| Transfer mode | `StsOps.IAP_TRANSFER` (0x1C) — NOT plain TRANSFER |
+| Transfer mode | `StsOps.IAP_TRANSFER` (0x1C) â€” NOT plain TRANSFER |
 | Messaging rail | `RailPreference.AUTO` |
 | Domain guard | Check `SpsDomains.DEAD` before every instruction |
 
@@ -941,10 +941,10 @@ fun requireActiveDomain(domain: Byte) {
 import nexus.styx.core.StyxConstants
 import nexus.styx.core.SpsDomains
 
-// ✅ Correct
+// âœ… Correct
 val programId = StyxConstants.SPS_PROGRAM_ID
 
-// ❌ NEVER use devnet program
+// âŒ NEVER use devnet program
 // val programId = StyxConstants.SPS_DEVNET_PROGRAM_ID
 ```
 
@@ -954,12 +954,12 @@ val programId = StyxConstants.SPS_PROGRAM_ID
 
 > **New integration?** Skip this section.
 
-### From `com.styx.sdk` → `nexus.styx`
+### From `com.styx.sdk` â†’ `nexus.styx`
 
 ```diff
 // Gradle
 - implementation("com.styx.sdk:styx-core:1.0.0")
-+ implementation("nexus.styx:styx-android:1.2.0")
++ implementation("nexus.styx:styx-android:1.3.0")
 
 // Imports
 - import com.styx.core.PublicKey
@@ -999,7 +999,7 @@ grep -rn "com\.styx\." . --include="*.kt"
 
 | Component | Version |
 |-----------|---------|
-| Styx SDK | 1.2.0 |
+| Styx SDK | 1.3.0 |
 | Kotlin | 2.1.0 (K2) |
 | MWA clientlib-ktx | 2.1.0 |
 | Compose UI | 1.7.6 |
@@ -1011,4 +1011,4 @@ grep -rn "com\.styx\." . --include="*.kt"
 
 ---
 
-*Last updated: February 2026 · Styx Privacy SDK v1.2.0 · Bluefoot Labs*
+*Last updated: February 2026 Â· Styx Privacy SDK v1.3.0 Â· Bluefoot Labs*

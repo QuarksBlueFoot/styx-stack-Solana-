@@ -1,22 +1,22 @@
-# Android Kotlin Integration Guide — Mainnet
+﻿# Android Kotlin Integration Guide â€” Mainnet
 
-> **📱 For Wallet Developers:** See [SOLANA_WALLET_INTEGRATION.md](./SOLANA_WALLET_INTEGRATION.md) for a wallet-focused guide with MWA integration, UI patterns, and the complete send/receive flow.
+> **ðŸ“± For Wallet Developers:** See [SOLANA_WALLET_INTEGRATION.md](./SOLANA_WALLET_INTEGRATION.md) for a wallet-focused guide with MWA integration, UI patterns, and the complete send/receive flow.
 
 This guide covers **mainnet-only** usage of the Styx KMP SDK:
 1) Forward-secret Signal-style messaging (X3DH + Double Ratchet) via `styx-messaging`.
 2) Private SOL & SPL transfers (IAP-enforced) via `styx-privacy` + `styx-sps`.
-3) Private swaps (e.g. SOL → BONK without unshielding) via STS AMM.
-4) Token compression (IC) — ZK-free compressed tokens.
-5) Virtual balances (DAM) — deferred account materialization.
-6) Shielded pools (VSL) — deposit, withdraw, escrow.
-7) Stealth addresses — unlinkable payments.
+3) Private swaps (e.g. SOL â†’ BONK without unshielding) via STS AMM.
+4) Token compression (IC) â€” ZK-free compressed tokens.
+5) Virtual balances (DAM) â€” deferred account materialization.
+6) Shielded pools (VSL) â€” deposit, withdraw, escrow.
+7) Stealth addresses â€” unlinkable payments.
 8) Active vs dead domain reference (verified against on-chain `lib.rs`).
-9) Migration checklist — removing old program IDs, deprecated APIs, and devnet artifacts.
+9) Migration checklist â€” removing old program IDs, deprecated APIs, and devnet artifacts.
 
 Applies to the Kotlin Multiplatform SDK in [packages/styx-android-kit](packages/styx-android-kit).  
 Mainnet program: `STYXbZeL1wcNigy1WAMFbUQ7PNzJpPYV557H7foNyY5`
 
-> **First release?** Skip straight to Sections 1–9. Section 12 (Migration) is only
+> **First release?** Skip straight to Sections 1â€“9. Section 12 (Migration) is only
 > relevant if you previously integrated an older SDK version or devnet builds.
 
 ---
@@ -32,15 +32,15 @@ repositories {
 }
 
 dependencies {
-    // From Maven Central (nexus.styx group, v1.2.0)
-    implementation("nexus.styx:styx-core:1.2.0")
-    implementation("nexus.styx:styx-crypto:1.2.0")
-    implementation("nexus.styx:styx-messaging:1.2.0")
-    implementation("nexus.styx:styx-privacy:1.2.0")
-    implementation("nexus.styx:styx-sps:1.2.0")
-    implementation("nexus.styx:styx-client:1.2.0")
+    // From Maven Central (nexus.styx group, v1.3.0)
+    implementation("nexus.styx:styx-core:1.3.0")
+    implementation("nexus.styx:styx-crypto:1.3.0")
+    implementation("nexus.styx:styx-messaging:1.3.0")
+    implementation("nexus.styx:styx-privacy:1.3.0")
+    implementation("nexus.styx:styx-sps:1.3.0")
+    implementation("nexus.styx:styx-client:1.3.0")
     // Android-specific (Compose + MWA)
-    implementation("nexus.styx:styx-android:1.2.0")
+    implementation("nexus.styx:styx-android:1.3.0")
 }
 ```
 
@@ -57,7 +57,7 @@ dependencies {
 }
 ```
 
-> ⚠️ **Do NOT use the old `com.styx.sdk` Maven group or `com.styx.*` package imports.**
+> âš ï¸ **Do NOT use the old `com.styx.sdk` Maven group or `com.styx.*` package imports.**
 > Both are retired. Maven group and Kotlin packages are now both `nexus.styx`.
 
 ### Import Reference
@@ -72,7 +72,7 @@ dependencies {
 | `nexus.styx:styx-client` | `nexus.styx.client` | `StyxHttpClient` |
 | `nexus.styx:styx-android` | `nexus.styx.android` | `StyxKit`, `StyxMwaClient`, `StyxSecureStorage` |
 
-The Maven group and Kotlin package namespace are both `nexus.styx` — no mismatch to worry about.
+The Maven group and Kotlin package namespace are both `nexus.styx` â€” no mismatch to worry about.
 
 ---
 
@@ -228,7 +228,7 @@ val shieldData = SpsInstructions.stsShieldWithInit(
 // Wire: [0x01][0x1F][mint:32][amount:8][commitment:32]
 ```
 
-### 4.3 Private transfer (shield → shield, no unshield)
+### 4.3 Private transfer (shield â†’ shield, no unshield)
 
 Mainnet requires **IAP** proofs for private transfers.  
 The on-chain program enforces `STS_OP_IAP_TRANSFER` (0x1C); plain `TRANSFER` (0x06) is **not routed on mainnet**.
@@ -281,7 +281,7 @@ val data = SpsInstructions.buildCompact(
 
 ## 5) Private SPL Token Transfers
 
-The same shield/transfer/unshield flow works for **any SPL token** — not just SOL.
+The same shield/transfer/unshield flow works for **any SPL token** â€” not just SOL.
 Pass the SPL token's mint address instead of the native SOL mint.
 
 ```kotlin
@@ -296,20 +296,20 @@ val shieldData = SpsInstructions.stsShield(
 )
 ```
 
-After shielding, the private transfer and unshield instructions are identical —
+After shielding, the private transfer and unshield instructions are identical â€”
 the mint is bound to the commitment, so the pool tracks which token you deposited.
 
 ---
 
-## 6) Private Swaps (SOL → BONK without unshielding)
+## 6) Private Swaps (SOL â†’ BONK without unshielding)
 
-This is the **key privacy innovation** — swap tokens without ever leaving the shielded pool.
+This is the **key privacy innovation** â€” swap tokens without ever leaving the shielded pool.
 Both input and output remain private. Uses constant-product AMM pools.
 
 On-chain handlers (all live on mainnet):
-- `process_sts_create_amm_pool` (L10976) — `StsOps.CREATE_AMM_POOL` (0x18)
-- `process_sts_add_liquidity` (L11180) — `StsOps.ADD_LIQUIDITY` (0x19)
-- `process_sts_private_swap` (L11059) — `StsOps.PRIVATE_SWAP` (0x17)
+- `process_sts_create_amm_pool` (L10976) â€” `StsOps.CREATE_AMM_POOL` (0x18)
+- `process_sts_add_liquidity` (L11180) â€” `StsOps.ADD_LIQUIDITY` (0x19)
+- `process_sts_private_swap` (L11059) â€” `StsOps.PRIVATE_SWAP` (0x17)
 
 ### 6.1 Create an AMM pool
 
@@ -353,7 +353,7 @@ val addLiqData = SpsInstructions.buildCompact(
 // Account metas: [signer, nullifier_a_pda, nullifier_b_pda, system_program]
 ```
 
-### 6.3 Private swap (e.g. SOL → BONK)
+### 6.3 Private swap (e.g. SOL â†’ BONK)
 
 ```kotlin
 val swapData = SpsInstructions.buildCompact(
@@ -376,9 +376,9 @@ val swapData = SpsInstructions.buildCompact(
 
 **Flow summary:**
 1. You have a shielded SOL note (from a previous `stsShield`)
-2. `PRIVATE_SWAP` spends it (nullifier → double-spend prevention)
+2. `PRIVATE_SWAP` spends it (nullifier â†’ double-spend prevention)
 3. AMM applies constant-product formula, creates a new BONK commitment
-4. You now have a private BONK note — never unshielded, never visible on-chain
+4. You now have a private BONK note â€” never unshielded, never visible on-chain
 
 > **Slippage:** Set `minOutput` to protect against front-running. If the pool
 > can't satisfy `minOutput`, the transaction fails.
@@ -387,14 +387,14 @@ val swapData = SpsInstructions.buildCompact(
 
 ## 7) Token Compression (IC Domain)
 
-Inscription Compression provides **ZK-free** compressed tokens — cheaper storage
+Inscription Compression provides **ZK-free** compressed tokens â€” cheaper storage
 via Merkle trees with privacy-preserving transfers.
 
 On-chain handlers (all live):
-- `process_ic_compress` (L13752) — `IcOps.COMPRESS` (0x11)
-- `process_ic_decompress` (L13863) — `IcOps.DECOMPRESS` (0x12)
-- `process_ic_transfer` (L14012) — `IcOps.TRANSFER` (0x13)
-- `process_ic_private_transfer` (L14266) — `IcOps.PRIVATE_TRANSFER` (0x21)
+- `process_ic_compress` (L13752) â€” `IcOps.COMPRESS` (0x11)
+- `process_ic_decompress` (L13863) â€” `IcOps.DECOMPRESS` (0x12)
+- `process_ic_transfer` (L14012) â€” `IcOps.TRANSFER` (0x13)
+- `process_ic_private_transfer` (L14266) â€” `IcOps.PRIVATE_TRANSFER` (0x21)
 
 ### 7.1 Initialize a compression tree
 
@@ -409,7 +409,7 @@ val treeData = SpsInstructions.icTreeInit(
 // Wire: [0x0F][0x01][mint:32][height:1][config:8]
 ```
 
-### 7.2 Compress tokens (SPL → compressed)
+### 7.2 Compress tokens (SPL â†’ compressed)
 
 ```kotlin
 val compressData = SpsInstructions.icCompress(
@@ -433,7 +433,7 @@ val transferData = SpsInstructions.icTransfer(
 // Wire: [0x0F][0x13][tree:32][nullifier:32][amount:8][new_commit:32][proof:96]
 ```
 
-### 7.4 Decompress tokens (compressed → SPL)
+### 7.4 Decompress tokens (compressed â†’ SPL)
 
 ```kotlin
 val decompressData = SpsInstructions.icDecompress(
@@ -458,12 +458,12 @@ val privateData = SpsInstructions.buildCompact(
 
 ---
 
-## 8) DAM — Deferred Account Materialization
+## 8) DAM â€” Deferred Account Materialization
 
 DAM enables **virtual token balances** that only create real SPL accounts when needed.
 Users trade, transfer, and hold tokens without paying rent for token accounts.
 
-On-chain: 21 live handlers at L11478–L12928.
+On-chain: 21 live handlers at L11478â€“L12928.
 
 ### 8.1 Create a virtual balance
 
@@ -490,14 +490,14 @@ val transferData = SpsInstructions.damVirtualTransfer(
 // Wire: [0x0E][0x11][nullifier:32][amount:8][new_commit:32][proof:96]
 ```
 
-### 8.3 Materialize (virtual → real SPL token account)
+### 8.3 Materialize (virtual â†’ real SPL token account)
 
 When you need the tokens on-chain (e.g., to interact with DeFi protocols):
 
 ```kotlin
 val materializeData = SpsInstructions.damMaterialize(
     nullifier = nullifierBytes,
-    merkleProof = proofHashes,         // List<ByteArray> — Merkle path
+    merkleProof = proofHashes,         // List<ByteArray> â€” Merkle path
     recipient = recipientPubkeyBytes,
     amount = 50_000_000L,
     schnorr = schnorrProof96
@@ -505,7 +505,7 @@ val materializeData = SpsInstructions.damMaterialize(
 // Wire: [0x0E][0x20][nullifier:32][proof_len:1][proof:32*n][recipient:32][amount:8][schnorr:96]
 ```
 
-### 8.4 Dematerialize (real → virtual, reclaim rent)
+### 8.4 Dematerialize (real â†’ virtual, reclaim rent)
 
 ```kotlin
 val dematerializeData = SpsInstructions.damDematerialize(
@@ -520,9 +520,9 @@ val dematerializeData = SpsInstructions.damDematerialize(
 
 ## 9) Shielded Pools (VSL), Stealth Addresses & More
 
-### 9.1 VSL — Virtual Shielded Ledger
+### 9.1 VSL â€” Virtual Shielded Ledger
 
-VSL provides deposit/withdraw/escrow with 15 live handlers (L3538–L4361):
+VSL provides deposit/withdraw/escrow with 15 live handlers (L3538â€“L4361):
 
 ```kotlin
 import nexus.styx.sps.SpsInstructions
@@ -570,9 +570,9 @@ val result = StealthAddress.generate(
     recipientViewPubkey = recipientViewKey,   // X25519 view key
     recipientSpendPubkey = recipientSpendKey  // Ed25519 spend key
 )
-// result.stealthPubkey    — one-time address to send to
-// result.ephemeralPubkey  — publish on-chain for recipient scanning
-// result.sharedSecret     — used internally
+// result.stealthPubkey    â€” one-time address to send to
+// result.ephemeralPubkey  â€” publish on-chain for recipient scanning
+// result.sharedSecret     â€” used internally
 
 // Announce on-chain via GENERATE_STEALTH (0x1B in STS domain)
 val announceData = SpsInstructions.buildCompact(
@@ -624,14 +624,14 @@ val valid = ShieldedPool.verifyCommitment(
 
 | Byte | Domain | Notes |
 |------|--------|-------|
-| 0x01 | **STS** | Token standard core — shield, unshield, IAP transfers, AMM, private swap |
+| 0x01 | **STS** | Token standard core â€” shield, unshield, IAP transfers, AMM, private swap |
 | 0x02 | **MESSAGING** | Private messages, ratchet, prekey bundles |
 | 0x03 | **ACCOUNT** | VTA, delegation, guardians, stealth scan hints |
-| 0x04 | **VSL** | Virtual Shielded Ledger — deposit, withdraw, escrow, 15 handlers |
+| 0x04 | **VSL** | Virtual Shielded Ledger â€” deposit, withdraw, escrow, 15 handlers |
 | 0x05 | **NOTES** | On-chain encrypted notes |
 | 0x06 | **COMPLIANCE** | Auditor reveals, proof-of-innocence |
-| 0x0E | **DAM** | Deferred Account Materialization — virtual ↔ real tokens, 21 handlers |
-| 0x0F | **IC** | Inscription Compression — ZK-free compressed tokens, 22 handlers |
+| 0x0E | **DAM** | Deferred Account Materialization â€” virtual â†” real tokens, 21 handlers |
+| 0x0F | **IC** | Inscription Compression â€” ZK-free compressed tokens, 22 handlers |
 
 ### Partially Active Domains (routed, but most ops archived)
 
@@ -640,9 +640,9 @@ for program size optimization. Only the specific ops listed below are live on ma
 
 | Byte | Domain | Live Ops | Archived Ops |
 |------|--------|----------|-------------|
-| 0x07 | **PRIVACY** | `PHANTOM_NFT_COMMIT`, `PHANTOM_NFT_PROVE`, `STATE_CHANNEL_OPEN/CLOSE`, `CPI_INSCRIBE` | Decoys, ephemeral, chrono, shadow — all commented out |
+| 0x07 | **PRIVACY** | `PHANTOM_NFT_COMMIT`, `PHANTOM_NFT_PROVE`, `STATE_CHANNEL_OPEN/CLOSE`, `CPI_INSCRIBE` | Decoys, ephemeral, chrono, shadow â€” all commented out |
 | 0x08 | **DEFI** | `CROSS_MINT_ATOMIC`, `ATOMIC_CPI_TRANSFER` | Private swap/stake/LP are `#[cfg(feature = "devnet")]` only; rest moved to StyxFi |
-| 0x09 | **NFT** | `MINT`, `COLLECTION_CREATE`, `FAIR_LAUNCH_COMMIT/REVEAL`, `MERKLE_AIRDROP_ROOT/CLAIM` | Marketplace, auctions, royalties — archived |
+| 0x09 | **NFT** | `MINT`, `COLLECTION_CREATE`, `FAIR_LAUNCH_COMMIT/REVEAL`, `MERKLE_AIRDROP_ROOT/CLAIM` | Marketplace, auctions, royalties â€” archived |
 
 Programmatic check: `SpsDomains.ACTIVE`
 
@@ -654,7 +654,7 @@ Programmatic check: `SpsDomains.ACTIVE`
 | 0x0B | **BRIDGE** | Deprecated |
 | 0x0C | **SECURITIES** | Deprecated |
 | 0x0D | **GOVERNANCE** | Moved to StyxFi v24 |
-| 0x10 | **SWAP** | Archived — use STS AMM ops instead |
+| 0x10 | **SWAP** | Archived â€” use STS AMM ops instead |
 | 0x11 | **EASYPAY** | Moved to WhisperDrop as RESOLV |
 
 Programmatic check: `SpsDomains.DEAD`
@@ -663,9 +663,9 @@ Programmatic check: `SpsDomains.DEAD`
 
 | Byte | Mode | Notes |
 |------|------|-------|
-| 0x00 | **EXTENDED** | 8-byte sighash — reserved, always `Err` |
-| 0xFE | **TLV** | Token-22 extension mode — reserved, always `Err` |
-| 0xFF | **SCHEMA** | Inscription schema — reserved, always `Err` |
+| 0x00 | **EXTENDED** | 8-byte sighash â€” reserved, always `Err` |
+| 0xFE | **TLV** | Token-22 extension mode â€” reserved, always `Err` |
+| 0xFF | **SCHEMA** | Inscription schema â€” reserved, always `Err` |
 
 > **Guard your calls:** Always check `SpsDomains.DEAD.contains(domain)` before building
 > instructions. Dead domains cost compute budget and always fail.
@@ -679,8 +679,8 @@ See [SPS_DOMAIN_ROUTER_AUDIT.md](../../SPS_DOMAIN_ROUTER_AUDIT.md) for the autho
 | Setting | Value |
 |---------|-------|
 | Maven group | `nexus.styx` (NOT `com.styx.sdk`) |
-| Maven version | `1.2.0` |
-| Program ID | `StyxConstants.SPS_PROGRAM_ID` — never the devnet ID |
+| Maven version | `1.3.0` |
+| Program ID | `StyxConstants.SPS_PROGRAM_ID` â€” never the devnet ID |
 | RPC endpoint | `https://api.mainnet-beta.solana.com` (or your dedicated RPC) |
 | Transfer mode | **IAP only** (`StsOps.IAP_TRANSFER`, 0x1C) |
 | Messaging rail | `RailSelect.AUTO` (MEMO < 566 bytes, PMP otherwise) |
@@ -704,7 +704,7 @@ fun requireActiveDomain(domain: Byte) {
 
 ---
 
-## 12) Migration Checklist — Removing Old / Devnet Artifacts
+## 12) Migration Checklist â€” Removing Old / Devnet Artifacts
 
 If this is your **first integration**, you can skip this section. For anyone upgrading
 from a pre-1.1.0 SDK or a devnet prototype, **complete every item below** before shipping.
@@ -739,8 +739,8 @@ Search your codebase for these strings and **delete every occurrence**:
 - implementation("com.styx.sdk:styx-core:1.0.0")
 - implementation("com.styx.sdk:styx-sps:1.0.0")
 
-+ implementation("nexus.styx:styx-core:1.2.0")
-+ implementation("nexus.styx:styx-sps:1.2.0")
++ implementation("nexus.styx:styx-core:1.3.0")
++ implementation("nexus.styx:styx-sps:1.3.0")
 ```
 
 Also remove any `maven { url = "..." }` repository entries pointing to the old
@@ -749,7 +749,7 @@ Also remove any `maven { url = "..." }` repository entries pointing to the old
 ### 12.3 Replace old `com.styx.*` package imports
 
 The SDK package namespace was renamed from `com.styx.*` to `nexus.styx.*` in v1.1.0.
-Using `com.styx.*` implied ownership of `styx.com`, which is not ours — the correct
+Using `com.styx.*` implied ownership of `styx.com`, which is not ours â€” the correct
 reverse-domain for our `styx.nexus` domain is `nexus.styx`.
 
 ```diff
@@ -764,7 +764,7 @@ reverse-domain for our `styx.nexus` domain is `nexus.styx`.
 + import nexus.styx.messaging.PrivateMessagingClient
 ```
 
-Every `com.styx.` import in your code must become `nexus.styx.` — a simple find-and-replace
+Every `com.styx.` import in your code must become `nexus.styx.` â€” a simple find-and-replace
 handles it. The class names themselves are unchanged.
 
 ### 12.4 Remove deprecated API references
@@ -780,16 +780,16 @@ handles it. The class names themselves are unchanged.
 | All `DOMAIN_*` prefixed constants | Plain name (e.g., `SpsDomains.MESSAGING`) |
 | `SpsDomains.INACTIVE` | `SpsDomains.DEAD` |
 | `AccountOps.VTA_REGISTRY_INIT_V2` at `0x30` | Now at `0x11` (paged bitset v7.1) |
-| `StsOps.TRANSFER` (0x06) for private xfer | `StsOps.IAP_TRANSFER` (0x1C) — IAP enforced on mainnet |
+| `StsOps.TRANSFER` (0x06) for private xfer | `StsOps.IAP_TRANSFER` (0x1C) â€” IAP enforced on mainnet |
 
 ### 12.5 Remove dead domain instruction builders
 
 If you wrote custom builders for any dead domain, remove them entirely:
 
-- **Governance** (0x0D) — all 6 ops return `Err`
-- **EasyPay** (0x11) — all 19 ops return `Err`, moved to WhisperDrop
-- **Swap** (0x10) — archived, use STS AMM ops (`CREATE_AMM_POOL`, `ADD_LIQUIDITY`, etc.)
-- **Derivatives** (0x0A), **Bridge** (0x0B), **Securities** (0x0C) — deprecated
+- **Governance** (0x0D) â€” all 6 ops return `Err`
+- **EasyPay** (0x11) â€” all 19 ops return `Err`, moved to WhisperDrop
+- **Swap** (0x10) â€” archived, use STS AMM ops (`CREATE_AMM_POOL`, `ADD_LIQUIDITY`, etc.)
+- **Derivatives** (0x0A), **Bridge** (0x0B), **Securities** (0x0C) â€” deprecated
 
 ### 12.6 Grep audit
 

@@ -29,7 +29,7 @@ object StyxConstants {
     const val DEFAULT_INDEXER_URL = "https://sps-indexer-production.up.railway.app"
 
     /** SDK version */
-    const val SDK_VERSION = "1.1.0"
+    const val SDK_VERSION = "1.3.0"
 }
 
 /**
