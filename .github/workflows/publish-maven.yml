@@ -27,6 +27,8 @@ jobs:
   publish:
     name: Build, Sign & Upload to Central Portal
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required for creating GitHub Releases
     outputs:
       version: ${{ steps.version.outputs.VERSION }}
       deployment_id: ${{ steps.upload.outputs.DEPLOYMENT_ID }}

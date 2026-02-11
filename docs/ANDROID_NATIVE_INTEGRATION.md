@@ -4,10 +4,10 @@
 
 This guide covers integrating the **Styx Android Kit** — a Kotlin Multiplatform SDK targeting Android (Jetpack Compose) and JVM. It provides full Solana Mobile MWA 2.1 integration, privacy-preserving transactions, encrypted messaging, and an offline-first transaction outbox.
 
-> **SDK Group:** `com.styx.sdk`  
+> **SDK Group:** `nexus.styx`  
 > **Kotlin:** 2.1.0 (K2 compiler)  
 > **MWA:** 2.1.0  
-> **Minimum Android:** API 26 (Android 8.0)  
+> **Minimum Android:** API 24 (Android 7.0)  
 > **Compile SDK:** 35 (Android 15)
 
 ---
@@ -47,23 +47,21 @@ android {
 
 dependencies {
     // Styx KMP SDK — single dependency pulls in all modules
-    implementation("com.styx.sdk:styx-android:1.0.0")
+    implementation("nexus.styx:styx-android:1.2.0")
     
-    // Individual modules (if you prefer à la carte)
-    // implementation("com.styx.sdk:styx-core:1.0.0")
-    // implementation("com.styx.sdk:styx-crypto:1.0.0")
-    // implementation("com.styx.sdk:styx-messaging:1.0.0")
-    // implementation("com.styx.sdk:styx-privacy:1.0.0")
-    // implementation("com.styx.sdk:styx-sps:1.0.0")
-    // implementation("com.styx.sdk:styx-client:1.0.0")
+    // App Kit — UI components and presets
+    implementation("nexus.styx:styx-app-kit:1.2.0")
+    
+    // Envelope — encrypted message format
+    implementation("nexus.styx:styx-envelope:1.2.0")
 }
 ```
 
 ### 2. Initialize StyxKit
 
 ```kotlin
-import com.styx.android.StyxKit
-import com.styx.client.StyxClientConfig
+import nexus.styx.mobile.StyxKit
+import nexus.styx.mobile.StyxClientConfig
 
 class MyApp : Application() {
     lateinit var styx: StyxKit
@@ -358,27 +356,26 @@ Uses `MasterKey.Builder` with `AES256_GCM` key scheme (non-deprecated API).
 
 ---
 
-## Migration from nexus.styx
+## Migration Notes
 
-If you were using the original `nexus.styx` SDK artifacts:
+The SDK uses Maven group ID `nexus.styx` (the namespace we own on Maven Central):
 
-| Old (nexus.styx) | New (com.styx.sdk) |
-|-------------------|--------------------|
-| `nexus.styx:styx-android:1.0.0` | `com.styx.sdk:styx-android:1.0.0` |
-| `nexus.styx:styx-app-kit:1.0.0` | `com.styx.sdk:styx-android:1.0.0` (consolidated) |
-| `nexus.styx:styx-envelope:1.0.0` | `com.styx.sdk:styx-core:1.0.0` (envelope format in core) |
-| MWA 2.0.3 | MWA 2.1.0 |
-| BouncyCastle 1.78 | BouncyCastle 1.80 (via styx-crypto) |
-| Ktor 2.3.11 | Ktor 3.1.1 (via styx-client) |
-| `MasterKeys.getOrCreate()` | `MasterKey.Builder()` |
-| `StyxMobileWallet` | `StyxMwaClient` |
-| `GhSTPR...` (program ID) | `STYXbZ...` (canonical mainnet) |
+| Artifact | Maven Coordinates |
+| styx-android | `nexus.styx:styx-android:1.2.0` |
+| styx-app-kit | `nexus.styx:styx-app-kit:1.2.0` |
+| styx-envelope | `nexus.styx:styx-envelope:1.2.0` |
+
+### Version History
+| Version | Changes |
+|---------|--------|
+| 1.2.0 | Current release, full mainnet support |
+| 1.1.0 | Initial Maven Central release |
 
 ### Code Changes
 
 ```diff
-- import nexus.styx.app.StyxMobileWallet
-+ import com.styx.android.mwa.StyxMwaClient
+- import com.styx.android.StyxMobileWallet
++ import nexus.styx.mobile.StyxMwaClient
 
 - val wallet = StyxMobileWallet(activity)
 - wallet.connect()
@@ -388,6 +385,8 @@ If you were using the original `nexus.styx` SDK artifacts:
 - wallet.signAndSend(tx)
 + styx.signAndSend(sender, serializedTx)
 ```
+
+> **See also:** [ANDROID_WALLET_INTEGRATION.md](./ANDROID_WALLET_INTEGRATION.md) for a complete guide covering compression, private transfers, encrypted messaging, and all LIVE mainnet features.
 
 ---
 
