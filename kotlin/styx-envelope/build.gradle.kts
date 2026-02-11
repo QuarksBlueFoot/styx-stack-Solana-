@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "nexus.styx"
-version = findProperty("version") as String? ?: "1.1.0"
+version = findProperty("version") as String? ?: "1.2.0"
 
 repositories {
     mavenCentral()
