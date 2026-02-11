@@ -50,9 +50,9 @@ import {
 } from '@solana/web3.js';
 import { keccak_256 } from '@noble/hashes/sha3';
 import { sha256 } from '@noble/hashes/sha256';
+import { randomBytes } from '@noble/hashes/utils';
 import { x25519 } from '@noble/curves/ed25519';
 import { chacha20poly1305 } from '@noble/ciphers/chacha';
-import { randomBytes } from '@noble/ciphers/webcrypto';
 
 // Re-export domains
 export * from './domains';
@@ -231,20 +231,32 @@ export {
 // ═══════════════════════════════════════════════════════════════════════════
 
 /** SPS Program ID - Mainnet */
-export const SPS_PROGRAM_ID = new PublicKey('GhSTPRZFBnWXMjt6xFnpY2ZHFwijFoC44KkxXSEC94X9');
+export const SPS_PROGRAM_ID = new PublicKey('STYXbZeL1wcNigy1WAMFbUQ7PNzJpPYV557H7foNyY5');
 
 /** SPS Program ID - Devnet */
 export const SPS_DEVNET_PROGRAM_ID = new PublicKey('FehhtvqDUQrhDnnVVw4mvkwpgXa1CaQf6QytkysuGQeW');
 
-/** PDA Seeds */
+/** PDA Seeds — must match on-chain constants in sts_standard.rs */
 export const SEEDS = {
-  NULLIFIER: Buffer.from('nullifier'),
-  MINT: Buffer.from('sps_mint'),
-  NOTE: Buffer.from('sps_note'),
-  POOL: Buffer.from('sps_pool'),
-  RULESET: Buffer.from('sps_ruleset'),
-  ESCROW: Buffer.from('sps_escrow'),
+  NULLIFIER: Buffer.from('sts_nullifier'),
+  MINT: Buffer.from('sps_mint'),              // SDK-only (virtual mint derivation, no on-chain PDA)
+  NOTE: Buffer.from('sps_note'),              // SDK-only (note indexing)
+  POOL: Buffer.from('sts_pool'),
+  RULESET: Buffer.from('sts_ruleset'),
+  ESCROW: Buffer.from('sts_escrow'),
+  // v5+ PDA seeds
+  AMM_POOL: Buffer.from('sts_amm'),
+  RECEIPT_MINT: Buffer.from('sts_receipt'),
+  STEALTH: Buffer.from('sts_stealth'),
+  LP: Buffer.from('sts_lp'),
+  ICNFT: Buffer.from('icnft'),
+  IC_POOL: Buffer.from('ic_pool'),
+  SHADOW_MINT: Buffer.from('sts_shadow'),
+  DAM_POOL_TOKEN: Buffer.from('dam_token'),
 } as const;
+
+/** SPL Token Program ID */
+const TOKEN_PROGRAM_ID = new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
@@ -457,9 +469,10 @@ export function deriveMintPda(
 }
 
 /**
- * Derive pool PDA
+ * Derive AMM pool PDA (for trading pairs)
+ * Seeds: ["sts_amm", sorted_mint_a, sorted_mint_b]
  */
-export function derivePoolPda(
+export function deriveAmmPoolPda(
   mintA: Uint8Array,
   mintB: Uint8Array,
   programId: PublicKey = SPS_PROGRAM_ID
@@ -469,7 +482,38 @@ export function derivePoolPda(
     ? [mintA, mintB]
     : [mintB, mintA];
   return PublicKey.findProgramAddressSync(
-    [SEEDS.POOL, Buffer.from(first), Buffer.from(second)],
+    [SEEDS.AMM_POOL, Buffer.from(first), Buffer.from(second)],
+    programId
+  );
+}
+
+/** @deprecated Use deriveAmmPoolPda — renamed for clarity */
+export const derivePoolPda = deriveAmmPoolPda;
+
+/**
+ * Derive pool PDA for a single mint (authority for pool token account)
+ * Seeds: ["sts_pool", mint_id]
+ */
+export function deriveSinglePoolPda(
+  mintId: Uint8Array,
+  programId: PublicKey = SPS_PROGRAM_ID
+): [PublicKey, number] {
+  return PublicKey.findProgramAddressSync(
+    [SEEDS.POOL, Buffer.from(mintId)],
+    programId
+  );
+}
+
+/**
+ * Derive pool token account PDA (holds backing SPL tokens for shield/unshield)
+ * Seeds: ["sts_pool", mint_id, "token"]
+ */
+export function derivePoolTokenPda(
+  mintId: Uint8Array,
+  programId: PublicKey = SPS_PROGRAM_ID
+): [PublicKey, number] {
+  return PublicKey.findProgramAddressSync(
+    [SEEDS.POOL, Buffer.from(mintId), Buffer.from('token')],
     programId
   );
 }
@@ -753,24 +797,28 @@ export function buildPrivateMessageIx(
 
 /**
  * Build CREATE_AMM_POOL instruction
+ *
+ * Accounts: [creator(signer), amm_pool_pda(writable), system_program]
+ * Data: [domain:1][op:1][mint_a:32][mint_b:32][fee_bps:2] = 68 bytes
  */
 export function buildCreateAmmPoolIx(
   params: CreatePoolParams,
   authority: PublicKey,
   programId: PublicKey = SPS_PROGRAM_ID
 ): { instruction: TransactionInstruction; poolId: Uint8Array } {
-  const poolType = params.poolType === 'stable_swap' ? 1 : params.poolType === 'concentrated' ? 2 : 0;
   const fee = params.fee ?? 30; // 0.3% default
   
-  // Format: [domain][op][mint_a][mint_b][pool_type][fee_bps]
-  const data = Buffer.alloc(70);
+  // Format: [domain][op][mint_a][mint_b][fee_bps] = 68 bytes
+  const data = Buffer.alloc(68);
   let offset = 0;
   data.writeUInt8(DOMAIN_STS, offset++);
   data.writeUInt8(sts.OP_CREATE_AMM_POOL, offset++);
   Buffer.from(params.mintA).copy(data, offset); offset += 32;
   Buffer.from(params.mintB).copy(data, offset); offset += 32;
-  data.writeUInt8(poolType, offset++);
   data.writeUInt16LE(fee, offset);
+  
+  // Derive AMM pool PDA
+  const [ammPoolPda] = deriveAmmPoolPda(params.mintA, params.mintB, programId);
   
   // Compute pool ID
   const [first, second] = Buffer.compare(Buffer.from(params.mintA), Buffer.from(params.mintB)) <= 0
@@ -784,7 +832,11 @@ export function buildCreateAmmPoolIx(
   
   const instruction = new TransactionInstruction({
     programId,
-    keys: [{ pubkey: authority, isSigner: true, isWritable: true }],
+    keys: [
+      { pubkey: authority, isSigner: true, isWritable: true },
+      { pubkey: ammPoolPda, isSigner: false, isWritable: true },
+      { pubkey: SystemProgram.programId, isSigner: false, isWritable: false },
+    ],
     data,
   });
   
@@ -792,32 +844,48 @@ export function buildCreateAmmPoolIx(
 }
 
 /**
- * Build PRIVATE_SWAP instruction
+ * Build PRIVATE_SWAP instruction (devnet-only; gated behind #[cfg(feature = "devnet")] on mainnet)
+ * 
+ * Accounts: [swapper(signer), amm_pool_pda, nullifier_pda, system_program]
+ * Data: [domain:1][op:1][pool_id:32][input_mint:32][input_nullifier:32][input_amount:8]
+ *       [output_commitment:32][min_output:8][encrypted_len:4][encrypted_note?]
  */
 export function buildPrivateSwapIx(
   poolId: Uint8Array,
+  inputMint: Uint8Array,
   inputNullifier: Uint8Array,
+  inputAmount: bigint,
   outputCommitment: Uint8Array,
   minOutput: bigint,
   payer: PublicKey,
-  programId: PublicKey = SPS_PROGRAM_ID
+  ammPoolPda: PublicKey,
+  programId: PublicKey = SPS_PROGRAM_ID,
+  encryptedNote: Uint8Array = new Uint8Array(0),
 ): TransactionInstruction {
   const [nullifierPda] = deriveNullifierPda(inputNullifier, programId);
   
-  // Format: [domain][op][pool_id][input_nullifier][output_commitment][min_output]
-  const data = Buffer.alloc(106);
+  // Format: [domain][op][pool_id:32][input_mint:32][input_nullifier:32][input_amount:8]
+  //         [output_commitment:32][min_output:8][encrypted_len:4][encrypted_note?]
+  const data = Buffer.alloc(150 + encryptedNote.length);
   let offset = 0;
   data.writeUInt8(DOMAIN_STS, offset++);
   data.writeUInt8(sts.OP_PRIVATE_SWAP, offset++);
   Buffer.from(poolId).copy(data, offset); offset += 32;
+  Buffer.from(inputMint).copy(data, offset); offset += 32;
   Buffer.from(inputNullifier).copy(data, offset); offset += 32;
+  data.writeBigUInt64LE(inputAmount, offset); offset += 8;
   Buffer.from(outputCommitment).copy(data, offset); offset += 32;
-  data.writeBigUInt64LE(minOutput, offset);
+  data.writeBigUInt64LE(minOutput, offset); offset += 8;
+  data.writeUInt32LE(encryptedNote.length, offset); offset += 4;
+  if (encryptedNote.length > 0) {
+    Buffer.from(encryptedNote).copy(data, offset);
+  }
   
   return new TransactionInstruction({
     programId,
     keys: [
       { pubkey: payer, isSigner: true, isWritable: true },
+      { pubkey: ammPoolPda, isSigner: false, isWritable: true },
       { pubkey: nullifierPda, isSigner: false, isWritable: true },
       { pubkey: SystemProgram.programId, isSigner: false, isWritable: false },
     ],
@@ -827,6 +895,9 @@ export function buildPrivateSwapIx(
 
 /**
  * Build SHIELD instruction (SPL → SPS Note)
+ * 
+ * Accounts: [depositor(signer), depositor_token_account, pool_token_account(PDA), spl_mint, token_program]
+ * Data: [domain:1][op:1][spl_mint:32][amount:8][commitment:32][encrypted_len:4][encrypted_note?]
  */
 export function buildShieldIx(
   splMint: PublicKey,
@@ -834,23 +905,33 @@ export function buildShieldIx(
   commitment: Uint8Array,
   payer: PublicKey,
   tokenAccount: PublicKey,
-  programId: PublicKey = SPS_PROGRAM_ID
+  programId: PublicKey = SPS_PROGRAM_ID,
+  encryptedNote: Uint8Array = new Uint8Array(0),
 ): TransactionInstruction {
-  // Format: [domain][op][spl_mint][amount][commitment]
-  const data = Buffer.alloc(74);
+  // Derive pool token account PDA: ["sts_pool", mint_id, "token"]
+  const [poolTokenAccount] = derivePoolTokenPda(splMint.toBytes(), programId);
+  
+  // Format: [domain][op][spl_mint][amount][commitment][encrypted_len][encrypted_note?]
+  const data = Buffer.alloc(78 + encryptedNote.length);
   let offset = 0;
   data.writeUInt8(DOMAIN_STS, offset++);
   data.writeUInt8(sts.OP_SHIELD, offset++);
   splMint.toBuffer().copy(data, offset); offset += 32;
   data.writeBigUInt64LE(amount, offset); offset += 8;
-  Buffer.from(commitment).copy(data, offset);
+  Buffer.from(commitment).copy(data, offset); offset += 32;
+  data.writeUInt32LE(encryptedNote.length, offset); offset += 4;
+  if (encryptedNote.length > 0) {
+    Buffer.from(encryptedNote).copy(data, offset);
+  }
   
   return new TransactionInstruction({
     programId,
     keys: [
       { pubkey: payer, isSigner: true, isWritable: true },
       { pubkey: tokenAccount, isSigner: false, isWritable: true },
+      { pubkey: poolTokenAccount, isSigner: false, isWritable: true },
       { pubkey: splMint, isSigner: false, isWritable: false },
+      { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
     ],
     data,
   });
@@ -858,32 +939,52 @@ export function buildShieldIx(
 
 /**
  * Build UNSHIELD instruction (SPS Note → SPL)
+ * 
+ * Accounts: [withdrawer(signer), nullifier_pda, recipient_token_account, pool_token_account,
+ *            pool_pda, spl_mint, token_program, system_program, instructions_sysvar]
+ * Data: [domain:1][op:1][mint_id:32][nullifier:32][amount:8][recipient:32][burn_flag:1][schnorr_proof:96]
  */
 export function buildUnshieldIx(
+  splMint: PublicKey,
   nullifier: Uint8Array,
   amount: bigint,
   recipient: PublicKey,
+  recipientTokenAccount: PublicKey,
+  schnorrProof: Uint8Array,
   payer: PublicKey,
-  programId: PublicKey = SPS_PROGRAM_ID
+  programId: PublicKey = SPS_PROGRAM_ID,
+  burnReceipt: boolean = false,
 ): TransactionInstruction {
   const [nullifierPda] = deriveNullifierPda(nullifier, programId);
+  const [poolTokenAccount] = derivePoolTokenPda(splMint.toBytes(), programId);
+  const [poolPda] = deriveSinglePoolPda(splMint.toBytes(), programId);
   
-  // Format: [domain][op][nullifier][amount][recipient]
-  const data = Buffer.alloc(74);
+  // Format: [domain][op][mint_id:32][nullifier:32][amount:8][recipient:32][burn_flag:1][schnorr:96]
+  const data = Buffer.alloc(203);
   let offset = 0;
   data.writeUInt8(DOMAIN_STS, offset++);
   data.writeUInt8(sts.OP_UNSHIELD, offset++);
+  splMint.toBuffer().copy(data, offset); offset += 32;
   Buffer.from(nullifier).copy(data, offset); offset += 32;
   data.writeBigUInt64LE(amount, offset); offset += 8;
-  recipient.toBuffer().copy(data, offset);
+  recipient.toBuffer().copy(data, offset); offset += 32;
+  data.writeUInt8(burnReceipt ? 1 : 0, offset++);
+  Buffer.from(schnorrProof).copy(data, offset);
+  
+  const INSTRUCTIONS_SYSVAR = new PublicKey('Sysvar1nstructions1111111111111111111111111');
   
   return new TransactionInstruction({
     programId,
     keys: [
       { pubkey: payer, isSigner: true, isWritable: true },
       { pubkey: nullifierPda, isSigner: false, isWritable: true },
-      { pubkey: recipient, isSigner: false, isWritable: true },
+      { pubkey: recipientTokenAccount, isSigner: false, isWritable: true },
+      { pubkey: poolTokenAccount, isSigner: false, isWritable: true },
+      { pubkey: poolPda, isSigner: false, isWritable: false },
+      { pubkey: splMint, isSigner: false, isWritable: false },
+      { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
       { pubkey: SystemProgram.programId, isSigner: false, isWritable: false },
+      { pubkey: INSTRUCTIONS_SYSVAR, isSigner: false, isWritable: false },
     ],
     data,
   });
@@ -944,24 +1045,28 @@ export function buildAttachPoiIx(
 
 /**
  * Build RATCHET_MESSAGE instruction (Double Ratchet forward secrecy)
+ *
+ * On-chain layout: [domain:1][op:1][recipient:32][counter:8][ratchet_key:32][ciphertext_len:2][ciphertext]
+ * MIN_LEN = 76 bytes (before ciphertext)
  */
 export function buildRatchetMessageIx(
   recipientPubkey: Uint8Array,
-  ratchetHeader: Uint8Array,
-  encryptedMessage: Uint8Array,
+  counter: bigint,
+  ratchetKey: Uint8Array,
+  ciphertext: Uint8Array,
   sender: PublicKey,
   programId: PublicKey = SPS_PROGRAM_ID
 ): TransactionInstruction {
-  // Format: [domain][op][recipient][header_len][header][message_len][message]
-  const data = Buffer.alloc(40 + ratchetHeader.length + encryptedMessage.length);
+  // Format: [domain][op][recipient:32][counter:8][ratchet_key:32][ciphertext_len:2][ciphertext]
+  const data = Buffer.alloc(76 + ciphertext.length);
   let offset = 0;
   data.writeUInt8(DOMAIN_MESSAGING, offset++);
   data.writeUInt8(messaging.OP_RATCHET_MESSAGE, offset++);
   Buffer.from(recipientPubkey).copy(data, offset); offset += 32;
-  data.writeUInt16LE(ratchetHeader.length, offset); offset += 2;
-  Buffer.from(ratchetHeader).copy(data, offset); offset += ratchetHeader.length;
-  data.writeUInt16LE(encryptedMessage.length, offset); offset += 2;
-  Buffer.from(encryptedMessage).copy(data, offset);
+  data.writeBigUInt64LE(counter, offset); offset += 8;
+  Buffer.from(ratchetKey).copy(data, offset); offset += 32;
+  data.writeUInt16LE(ciphertext.length, offset); offset += 2;
+  Buffer.from(ciphertext).copy(data, offset);
   
   return new TransactionInstruction({
     programId,
@@ -1129,17 +1234,21 @@ export class SpsClient {
   }
 
   /**
-   * Private swap in AMM pool
+   * Private swap in AMM pool (devnet-only on mainnet)
    */
   async privateSwap(
     poolId: Uint8Array,
+    inputMint: Uint8Array,
     inputNullifier: Uint8Array,
+    inputAmount: bigint,
     outputCommitment: Uint8Array,
-    minOutput: bigint
+    minOutput: bigint,
+    ammPoolPda: PublicKey,
   ): Promise<string> {
     const instruction = buildPrivateSwapIx(
-      poolId, inputNullifier, outputCommitment, minOutput,
-      this.payer, this.programId
+      poolId, inputMint, inputNullifier, inputAmount,
+      outputCommitment, minOutput,
+      this.payer, ammPoolPda, this.programId
     );
     return this.sendTransaction([instruction]);
   }
@@ -1157,8 +1266,18 @@ export class SpsClient {
   /**
    * Unshield SPS Notes → SPL tokens
    */
-  async unshield(nullifier: Uint8Array, amount: bigint, recipient: PublicKey): Promise<string> {
-    const instruction = buildUnshieldIx(nullifier, amount, recipient, this.payer, this.programId);
+  async unshield(
+    splMint: PublicKey,
+    nullifier: Uint8Array,
+    amount: bigint,
+    recipient: PublicKey,
+    recipientTokenAccount: PublicKey,
+    schnorrProof: Uint8Array,
+  ): Promise<string> {
+    const instruction = buildUnshieldIx(
+      splMint, nullifier, amount, recipient, recipientTokenAccount,
+      schnorrProof, this.payer, this.programId
+    );
     return this.sendTransaction([instruction]);
   }
 

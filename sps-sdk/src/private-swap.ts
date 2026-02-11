@@ -4,6 +4,12 @@
  *  Shielded Pool DEX for ANY SPL Token
  * ═══════════════════════════════════════════════════════════════════════════
  *
+ * ⚠️  STATUS: COMING IN v5.0 — Currently in devnet testing.
+ * The SWAP domain (0x10) is archived in the current mainnet binary.
+ * All instructions in this module will be rejected on mainnet until
+ * the domain is re-enabled in a future program upgrade.
+ * Devnet program ID accepts these instructions for integration testing.
+ *
  * This SDK enables private swaps and transfers of ANY SPL token (SOL, memecoins, etc.)
  * using a shielded pool architecture similar to Tornado Cash / Elusiv but better.
  *
@@ -54,21 +60,22 @@ import { TOKEN_PROGRAM_ID, getAssociatedTokenAddress } from '@solana/spl-token';
 // CONSTANTS
 // ============================================================================
 
-export const PROGRAM_ID = new PublicKey('GhSTPRZFBnWXMjt6xFnpY2ZHFwijFoC44KkxXSEC94X9');
+export const PROGRAM_ID = new PublicKey('STYXbZeL1wcNigy1WAMFbUQ7PNzJpPYV557H7foNyY5');
 
 // Domain byte for Private Swap operations
 export const DOMAIN_SWAP = 0x10;
 
-// Pool seeds
+// Pool seeds — must match on-chain sts_standard.rs constants
+// NOTE: The SWAP domain (0x10) is archived on mainnet. These seeds are for devnet testing.
 export const SWAP_SEEDS = {
-  POOL: Buffer.from('sps_pool'),
+  POOL: Buffer.from('sts_pool'),
   TREE: Buffer.from('sps_swap_tree'),
-  NULLIFIER_SET: Buffer.from('sps_nullifiers'),
+  NULLIFIER_SET: Buffer.from('sts_nullifier'),
   ORDER_BOOK: Buffer.from('sps_orders'),
   POI_REGISTRY: Buffer.from('sps_poi'),
 };
 
-// Operation codes
+// Operation codes — canonical, matching domains.ts swap export
 export const SWAP_OPS = {
   // Pool Management
   INIT_POOL: 0x01,
@@ -89,11 +96,16 @@ export const SWAP_OPS = {
   CANCEL_ORDER: 0x31,     // Cancel order (reveal nullifier)
   MATCH_ORDERS: 0x32,     // Match two encrypted orders
   ATOMIC_SWAP: 0x33,      // Direct A↔B swap in same tx
+  PARTIAL_FILL: 0x34,     // Partial fill of order
   
   // POI (Proof of Innocence)
   ATTACH_POI: 0x40,
   VERIFY_POI: 0x41,
   REVEAL_FOR_COMPLIANCE: 0x42,
+  
+  // Relayer Operations
+  REGISTER_RELAYER: 0x50,
+  CLAIM_RELAYER_FEE: 0x51,
 };
 
 // ============================================================================
